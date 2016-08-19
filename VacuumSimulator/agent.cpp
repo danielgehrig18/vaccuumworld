@@ -29,7 +29,7 @@ char Agent::actionSelection()
         return 's';
     }
     else
-        if (locationSensorValue[2] == 1) {
+        if (locationSensorValue[1] == 1) {
             return 'l';
         }
         else

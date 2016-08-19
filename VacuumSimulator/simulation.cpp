@@ -18,5 +18,9 @@ Simulation::Simulation(int* dimensions, int* sensors)
 
 void Simulation::run(int timeSteps, bool visual)
 {
-    
+    for (int i; i<timeSteps; i++)
+    {
+        environment.step();
+        payoff += problem.calculatePayoff(environment);
+    }
 }

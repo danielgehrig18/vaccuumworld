@@ -73,3 +73,13 @@ void Environment::updateSensors(bool dirt, int location[2])
     dirtSensor.setValue(dirt);
     locationSensor.setValue(location);
 }
+
+void Environment::step()
+{
+    // updates sensors based on true dirt and location
+    updateSensors(currentDirt, agentLocation);
+    // agent makes decision depending on sensor reading
+    char action = agent.actionSelection();
+    // environment updated based on action and true location of agent.
+    updateEnvironment(action, agentLocation);
+}

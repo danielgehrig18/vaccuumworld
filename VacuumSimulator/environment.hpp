@@ -35,6 +35,7 @@ private:
 public:
     Environment(int* dimensions, char sensors[2]);
     void updateSensors(bool dirt, int location[2]);
+    void step();
 };
 
 #endif /* environment_hpp */

@@ -83,3 +83,22 @@ void Environment::step()
     // environment updated based on action and true location of agent.
     updateEnvironment(action, agentLocation);
 }
+
+void Environment::updateEnvironment(char action, int location[2])
+{
+    if (action=='s') {
+        currentDirt = false;
+    }
+    else if (action=='l')
+    {
+        if (location[1]==1) {
+            agentLocation[2] = 0;
+        }
+    }
+    else if (action=='r')
+    {
+        if (location[1]==0) {
+            agentLocation[1] = 1;
+        }
+    }
+}

@@ -40,6 +40,7 @@ public:
     void updateSensors(bool dirt, int location[2]);
     void updateEnvironment(char action, int location[2]);
     void step(bool visual);
+    ~Environment() {delete [] grid;};
 };
 
 #endif /* environment_hpp */

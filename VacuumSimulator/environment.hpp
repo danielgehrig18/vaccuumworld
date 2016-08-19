@@ -33,7 +33,7 @@ private:
     Agent agent;
     
 public:
-    void init(int* dimensions, char sensors[2]);
+    void init(int dimensions[2], char sensors[2]);
     bool** getGrid() {return grid;};
     void updateSensors(bool dirt, int location[2]);
     void updateEnvironment(char action, int location[2]);

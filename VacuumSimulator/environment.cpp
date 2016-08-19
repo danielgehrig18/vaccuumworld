@@ -12,7 +12,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void Environment::init(int* dimensions, char sensors[2])
+void Environment::init(int dimensions[2], char sensors[2])
 {
     int x = dimensions[1];
     int y = dimensions[2];

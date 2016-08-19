@@ -19,3 +19,19 @@ void Agent::construct(int initialCoords[2], LocationSensor* ptr1, DirtSensor* pt
     locationSensorPtr = ptr1;
     dirtSensorPtr = ptr2;
 };
+
+char Agent::actionSelection()
+{
+    int* locationSensorValue = locationSensorPtr->getValue();
+    bool dirtSensorValue = dirtSensorPtr->getValue();
+    
+    if (dirtSensorValue){
+        return 's';
+    }
+    else
+        if (locationSensorValue[2] == 1) {
+            return 'l';
+        }
+        else
+            return 'r';
+}

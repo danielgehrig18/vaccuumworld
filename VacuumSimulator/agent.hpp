@@ -27,6 +27,7 @@ private:
     
 public:
     void construct(int initialCoords[2],LocationSensor* ptr1, DirtSensor* ptr2);
+    char actionSelection();
 };
 
 #endif /* agent_hpp */

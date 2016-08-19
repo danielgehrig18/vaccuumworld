@@ -11,11 +11,16 @@
 #include "location_sensor.hpp"
 #include <string.h>
 #include <stdlib.h>
+#include <iostream>
 
-void Environment::init(int dimensions[2], char sensors[2])
+using namespace std;
+
+void Environment::init(int dim[2], char sensors[2])
 {
-    int x = dimensions[1];
-    int y = dimensions[2];
+    int x = dim[0];
+    int y = dim[1];
+    
+    memcpy(dimensions, dim, sizeof(dimensions));
     
     // instantiate agent
     DirtSensor* dirtSensorPtr;
@@ -44,27 +49,14 @@ void Environment::init(int dimensions[2], char sensors[2])
 
     agent.construct(agentLocation, locationSensorPtr, dirtSensorPtr);
     
-    // create 2d grid
-    bool** array2d;
-    bool* temp = new bool[x * y];
-    array2d = new bool*[y];
+    grid = new bool[x*y];
     
-    for (int i = 0; i < y; ++i)
+    for (int i = 0; i < x*y; i++)
     {
-        array2d[i] = (temp + i * x);
+        grid[i] = bool(rand()%2);
     };
     
-    grid = array2d;
-    
-    for (int i = 0; i < x; i++)
-    {
-        for (int j = 0; j < x; j++)
-        {
-            grid[i][j] = bool(rand()%2);
-        }
-    };
-    
-    currentDirt = grid[agentLocation[0]][agentLocation[1]];
+    currentDirt = grid[agentLocation[0] + y * agentLocation[1]];
 }
 
 void Environment::updateSensors(bool dirt, int location[2])
@@ -74,14 +66,28 @@ void Environment::updateSensors(bool dirt, int location[2])
     locationSensor.setValue(location);
 }
 
-void Environment::step()
+void Environment::step(bool visual)
 {
     // updates sensors based on true dirt and location
     updateSensors(currentDirt, agentLocation);
+    
     // agent makes decision depending on sensor reading
     char action = agent.actionSelection();
+    
     // environment updated based on action and true location of agent.
     updateEnvironment(action, agentLocation);
+    
+    
+    if (visual)
+    {
+        int* loc = locationSensor.getValue();
+        cout << "Sensors: " << endl;
+        cout << "dirt: " << dirtSensor.getValue() << endl;
+        cout << "loc: " << loc[0] << " " << loc[1] << endl;
+        cout << "action: " << action <<  endl;
+        cout << "Current Location:" << endl;
+        cout << agentLocation[0] << " " << agentLocation[1] << endl;
+    }
 }
 
 void Environment::updateEnvironment(char action, int location[2])

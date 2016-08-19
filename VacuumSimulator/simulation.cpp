@@ -7,12 +7,18 @@
 //
 
 #include "simulation.hpp"
+#include <iostream>
 
 void Simulation::run(int timeSteps, bool visual)
 {
-    for (int i; i<timeSteps; i++)
+    for (int i=0; i<timeSteps; i++)
     {
-        environment.step();
+        if (visual)
+        {
+            cout << "----------------------------" << endl;
+            cout << "step " << i + 1 << endl;
+        }
+        environment.step(visual);
         payoff += problem.calculatePayoff(environment);
     }
 }

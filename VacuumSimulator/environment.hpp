@@ -23,21 +23,23 @@ private:
     // corresponds to the true location and dirt presence
     int agentLocation[2];
     bool currentDirt;
+    int dimensions[2];
     
     // sensor runs all the time and collects data from environment. agent can access sensor data.
     DirtSensor dirtSensor;
     LocationSensor locationSensor;
     
-    bool** grid;
+    bool* grid;
     
     Agent agent;
     
 public:
     void init(int dimensions[2], char sensors[2]);
-    bool** getGrid() {return grid;};
+    bool* getGrid() {return grid;};
+    int* getDimensions() {return dimensions;};
     void updateSensors(bool dirt, int location[2]);
     void updateEnvironment(char action, int location[2]);
-    void step();
+    void step(bool visual);
 };
 
 #endif /* environment_hpp */

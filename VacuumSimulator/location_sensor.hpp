@@ -20,7 +20,7 @@ private:
 public:
     void setValue(int location[2]) {memcpy(value,location,sizeof(value));};
     int* getValue() {if (Sensor::getStatus()) {return value;} else {return nullptr;}}
-    void setName() {Sensor::setName('l');}
+    LocationSensor() {Sensor::setName('l');}
 };
 
 #endif /* location_sensor_hpp */

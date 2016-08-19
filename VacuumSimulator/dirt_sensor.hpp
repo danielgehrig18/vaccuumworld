@@ -18,7 +18,7 @@ private:
 public:
     void setValue(bool dirt) {value = dirt;};
     bool getValue() {if (Sensor::getStatus()) {return value;} else {return false;}}
-    void setName() {Sensor::setName('d');}
+    DirtSensor() {Sensor::setName('d');}
 };
 
 #endif /* dirt_sensor_hpp */

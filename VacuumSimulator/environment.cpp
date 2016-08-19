@@ -98,7 +98,7 @@ void Environment::updateEnvironment(char action, int location[2])
     else if (action=='l')
     {
         if (location[1]==1) {
-            agentLocation[2] = 0;
+            agentLocation[1] = 0;
         }
     }
     else if (action=='r')

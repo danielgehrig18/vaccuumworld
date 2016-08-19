@@ -19,17 +19,17 @@ class Simulation
 {
 private:
     // the environment contains the agent, sensors and grid and keeps track of the environment.
-    Environment Environment();
+    Environment environment = Environment();
     // the problem represents the formulation of the problem and contains informatin about:
     // - step-costs for each agent action
     // - goal-testing for each state that the agent is in.
-    Problem Problem();
+    Problem problem = Problem();
     // The payoff represents the value amassed after performing the actions and arriving at a goal state.
     float payoff;
     
 public:
     // A simulation must be initialized with the grid dimesions, agent initial location and available sensors
-    Simulation(int* dimensions, char* sensors[2]);
+    Simulation(int* dimensions, char sensors[2]) {environment.init(dimensions, sensors);};
     // This function runs the simulation for timeSteps steps. The simulation can be visualized using the flag visual.
     void run(int timeSteps, bool visual);
     float getPayoff() {return payoff;};

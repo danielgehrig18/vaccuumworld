@@ -8,11 +8,6 @@
 
 #include "simulation.hpp"
 
-Simulation::Simulation(int* dimensions, int* sensors)
-{
-    environment.init(dimensions, sensors);
-}
-
 void Simulation::run(int timeSteps, bool visual)
 {
     for (int i; i<timeSteps; i++)

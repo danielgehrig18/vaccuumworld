@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C2109C3B1D537700001610CC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C3A1D537700001610CC /* main.cpp */; };
+		C2109C471D578CF3001610CC /* simulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C451D578CF3001610CC /* simulation.cpp */; };
+		C2109C4A1D57918D001610CC /* environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C481D57918D001610CC /* environment.cpp */; };
+		C2109C4D1D57D09F001610CC /* agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C4B1D57D09F001610CC /* agent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,15 @@
 /* Begin PBXFileReference section */
 		C2109C371D537700001610CC /* VacuumSimulator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VacuumSimulator; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2109C3A1D537700001610CC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C2109C451D578CF3001610CC /* simulation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simulation.cpp; sourceTree = "<group>"; };
+		C2109C461D578CF3001610CC /* simulation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = simulation.hpp; sourceTree = "<group>"; };
+		C2109C481D57918D001610CC /* environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = environment.cpp; sourceTree = "<group>"; };
+		C2109C491D57918D001610CC /* environment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = environment.hpp; sourceTree = "<group>"; };
+		C2109C4B1D57D09F001610CC /* agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = agent.cpp; sourceTree = "<group>"; };
+		C2109C4C1D57D09F001610CC /* agent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = agent.hpp; sourceTree = "<group>"; };
+		C2109C5B1D593E1E001610CC /* sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sensor.hpp; sourceTree = "<group>"; };
+		C23A72831D676BD600C3AE71 /* location_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = location_sensor.hpp; sourceTree = "<group>"; };
+		C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dirt_sensor.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +69,34 @@
 		C2109C391D537700001610CC /* VacuumSimulator */ = {
 			isa = PBXGroup;
 			children = (
-				C2109C3A1D537700001610CC /* main.cpp */,
+				C2109C581D59330F001610CC /* headers */,
+				C2109C591D593322001610CC /* main */,
 			);
 			path = VacuumSimulator;
+			sourceTree = "<group>";
+		};
+		C2109C581D59330F001610CC /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				C2109C5B1D593E1E001610CC /* sensor.hpp */,
+				C2109C461D578CF3001610CC /* simulation.hpp */,
+				C2109C491D57918D001610CC /* environment.hpp */,
+				C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */,
+				C23A72831D676BD600C3AE71 /* location_sensor.hpp */,
+				C2109C4C1D57D09F001610CC /* agent.hpp */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		C2109C591D593322001610CC /* main */ = {
+			isa = PBXGroup;
+			children = (
+				C2109C3A1D537700001610CC /* main.cpp */,
+				C2109C451D578CF3001610CC /* simulation.cpp */,
+				C2109C481D57918D001610CC /* environment.cpp */,
+				C2109C4B1D57D09F001610CC /* agent.cpp */,
+			);
+			name = main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2109C471D578CF3001610CC /* simulation.cpp in Sources */,
+				C2109C4D1D57D09F001610CC /* agent.cpp in Sources */,
+				C2109C4A1D57918D001610CC /* environment.cpp in Sources */,
 				C2109C3B1D537700001610CC /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +277,7 @@
 				C2109C401D537700001610CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -11,6 +11,7 @@
 		C2109C471D578CF3001610CC /* simulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C451D578CF3001610CC /* simulation.cpp */; };
 		C2109C4A1D57918D001610CC /* environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C481D57918D001610CC /* environment.cpp */; };
 		C2109C4D1D57D09F001610CC /* agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C4B1D57D09F001610CC /* agent.cpp */; };
+		C24534501D67B831008E89C3 /* problem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C245344E1D67B831008E89C3 /* problem.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,8 @@
 		C2109C5B1D593E1E001610CC /* sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sensor.hpp; sourceTree = "<group>"; };
 		C23A72831D676BD600C3AE71 /* location_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = location_sensor.hpp; sourceTree = "<group>"; };
 		C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dirt_sensor.hpp; sourceTree = "<group>"; };
+		C245344E1D67B831008E89C3 /* problem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = problem.cpp; sourceTree = "<group>"; };
+		C245344F1D67B831008E89C3 /* problem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = problem.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 				C2109C461D578CF3001610CC /* simulation.hpp */,
 				C2109C491D57918D001610CC /* environment.hpp */,
 				C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */,
+				C245344F1D67B831008E89C3 /* problem.hpp */,
 				C23A72831D676BD600C3AE71 /* location_sensor.hpp */,
 				C2109C4C1D57D09F001610CC /* agent.hpp */,
 			);
@@ -91,6 +95,7 @@
 		C2109C591D593322001610CC /* main */ = {
 			isa = PBXGroup;
 			children = (
+				C245344E1D67B831008E89C3 /* problem.cpp */,
 				C2109C3A1D537700001610CC /* main.cpp */,
 				C2109C451D578CF3001610CC /* simulation.cpp */,
 				C2109C481D57918D001610CC /* environment.cpp */,
@@ -157,6 +162,7 @@
 			files = (
 				C2109C471D578CF3001610CC /* simulation.cpp in Sources */,
 				C2109C4D1D57D09F001610CC /* agent.cpp in Sources */,
+				C24534501D67B831008E89C3 /* problem.cpp in Sources */,
 				C2109C4A1D57918D001610CC /* environment.cpp in Sources */,
 				C2109C3B1D537700001610CC /* main.cpp in Sources */,
 			);

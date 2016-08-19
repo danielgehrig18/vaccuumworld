@@ -7,13 +7,10 @@
 //
 
 #include "simulation.hpp"
-#include "problem.hpp"
-#include "environment.hpp"
 
 Simulation::Simulation(int* dimensions, int* sensors)
 {
-    problem = Problem();
-    environment = Environment(dimensions, sensors);
+    environment.init(dimensions, sensors);
 }
 
 void Simulation::run(int timeSteps, bool visual)

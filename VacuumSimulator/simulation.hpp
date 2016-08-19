@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "environment.hpp"
-//#include "problem.hpp"
+#include "problem.hpp"
 #include <string>
 
 class Simulation
@@ -19,11 +19,11 @@ class Simulation
 {
 private:
     // the environment contains the agent, sensors and grid and keeps track of the environment.
-    Environment environment;
+    Environment Environment();
     // the problem represents the formulation of the problem and contains informatin about:
     // - step-costs for each agent action
     // - goal-testing for each state that the agent is in.
-    //Problem problem;
+    Problem Problem();
     // The payoff represents the value amassed after performing the actions and arriving at a goal state.
     float payoff;
     

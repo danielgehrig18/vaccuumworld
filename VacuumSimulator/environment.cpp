@@ -15,14 +15,14 @@
 
 using namespace std;
 
-void Environment::init(int dim[2], char sensors[2])
+void Environment::init(vector<vector<int>> dim, char sensors[2])
 {
     srand (time(NULL));
     
-    int x = dim[0];
-    int y = dim[1];
+    int y = sizeof(dim[0])/sizeof(dim[0][0]);
+    int x = sizeof(dim)/(y*sizeof(dim[0][0]));
     
-    memcpy(dimensions, dim, sizeof(dimensions));
+    dimensions = dim;
     
     // instantiate agent
     DirtSensor* dirtSensorPtr;
@@ -51,12 +51,15 @@ void Environment::init(int dim[2], char sensors[2])
 
     agent.construct(agentLocation, locationSensorPtr, dirtSensorPtr);
     
-    for (int i = 0; i < x*y; i++)
+    for (int i = 0; i < x; i++)
     {
-        grid[i] = bool(rand()%2);
+        for (int j = 0; j < y; j++)
+        {
+            dimensions[i][j] = bool(rand()%2);
+        }
     };
     
-    currentDirt = grid[agentLocation[0] + (y-1) * agentLocation[1]];
+    currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
 }
 
 void Environment::updateSensors(bool dirt, int location[2])
@@ -93,7 +96,7 @@ void Environment::step(bool visual)
 void Environment::updateEnvironment(char action, int location[2])
 {
     if (action=='s') {
-        grid[agentLocation[0] + (dimensions[1]-1) * agentLocation[1]] = false;
+        dimensions[agentLocation[0]][agentLocation[1]] = false;
     }
     else if (action=='l')
     {
@@ -108,5 +111,5 @@ void Environment::updateEnvironment(char action, int location[2])
         }
     }
     
-    currentDirt = grid[agentLocation[0] + (dimensions[1]-1) * agentLocation[1]];
+    currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
 }

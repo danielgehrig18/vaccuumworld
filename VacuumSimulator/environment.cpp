@@ -49,8 +49,6 @@ void Environment::init(int dim[2], char sensors[2])
 
     agent.construct(agentLocation, locationSensorPtr, dirtSensorPtr);
     
-    grid = new bool[x*y];
-    
     for (int i = 0; i < x*y; i++)
     {
         grid[i] = bool(rand()%2);
@@ -93,7 +91,7 @@ void Environment::step(bool visual)
 void Environment::updateEnvironment(char action, int location[2])
 {
     if (action=='s') {
-        currentDirt = false;
+        grid[location[0] + dimensions[1] * location[1]] = false;
     }
     else if (action=='l')
     {
@@ -107,4 +105,6 @@ void Environment::updateEnvironment(char action, int location[2])
             agentLocation[1] = 1;
         }
     }
+    
+    currentDirt = grid[location[0] + dimensions[1] * location[1]];
 }

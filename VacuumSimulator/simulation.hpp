@@ -25,7 +25,7 @@ private:
     // - goal-testing for each state that the agent is in.
     Problem problem;
     // The payoff represents the value amassed after performing the actions and arriving at a goal state.
-    float payoff;
+    float payoff=0;
     
 public:
     // A simulation must be initialized with the grid dimesions, agent initial location and available sensors

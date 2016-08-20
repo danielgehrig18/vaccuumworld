@@ -10,11 +10,11 @@
 
 int Problem::calculatePayoff(Environment environment)
 {
-    int payoff;
+    int payoff=0;
     bool* grid = environment.getGrid();
     int* dimensions = environment.getDimensions();
     
-    for (int i; i<dimensions[0]*dimensions[1]; i++)
+    for (int i=0; i<dimensions[0]*dimensions[1]; i++)
     {
         if (!grid[i]) {
             payoff += freeSpotCost;

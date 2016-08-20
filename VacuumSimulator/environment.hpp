@@ -29,7 +29,7 @@ private:
     DirtSensor dirtSensor;
     LocationSensor locationSensor;
     
-    bool* grid;
+    bool grid[2];
     
     Agent agent;
     
@@ -40,7 +40,6 @@ public:
     void updateSensors(bool dirt, int location[2]);
     void updateEnvironment(char action, int location[2]);
     void step(bool visual);
-    ~Environment() {delete [] grid;};
 };
 
 #endif /* environment_hpp */

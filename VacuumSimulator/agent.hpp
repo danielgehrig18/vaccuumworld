@@ -22,6 +22,9 @@ private:
     LocationSensor* locationSensorPtr;
     DirtSensor* dirtSensorPtr;
     
+    // strategy
+    Strategy strategy;
+    
     // initial position of the agent.
     int coords[2];
     

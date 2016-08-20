@@ -25,13 +25,5 @@ char Agent::actionSelection()
     int* locationSensorValue = locationSensorPtr->getValue();
     bool dirtSensorValue = dirtSensorPtr->getValue();
     
-    if (dirtSensorValue){
-        return 's';
-    }
-    else
-        if (locationSensorValue[1] == 1) {
-            return 'l';
-        }
-        else
-            return 'r';
+    return strategy.chooseAction(locationSensorValue, dirtSensorValue);
 }

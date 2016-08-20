@@ -103,6 +103,7 @@ void Environment::updateEnvironment(char action, int location[2])
         case 'r': if (location[1]!=y) agentLocation[1] +=1;
         case 'u': if (location[0]!=0) agentLocation[0] -=1;
         case 'd': if (location[0]!=x) agentLocation[0] +=1;
+        case 'n':
         case 's': dimensions[agentLocation[0]][agentLocation[1]] = false;
     }
     

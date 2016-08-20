@@ -12,6 +12,7 @@
 		C2109C4A1D57918D001610CC /* environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C481D57918D001610CC /* environment.cpp */; };
 		C2109C4D1D57D09F001610CC /* agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2109C4B1D57D09F001610CC /* agent.cpp */; };
 		C24534501D67B831008E89C3 /* problem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C245344E1D67B831008E89C3 /* problem.cpp */; };
+		C268F0701D6906F2008A63DB /* strategy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C268F06E1D6906F2008A63DB /* strategy.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,8 @@
 		C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dirt_sensor.hpp; sourceTree = "<group>"; };
 		C245344E1D67B831008E89C3 /* problem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = problem.cpp; sourceTree = "<group>"; };
 		C245344F1D67B831008E89C3 /* problem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = problem.hpp; sourceTree = "<group>"; };
+		C268F06E1D6906F2008A63DB /* strategy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strategy.cpp; sourceTree = "<group>"; };
+		C268F06F1D6906F2008A63DB /* strategy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = strategy.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,7 @@
 				C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */,
 				C245344F1D67B831008E89C3 /* problem.hpp */,
 				C23A72831D676BD600C3AE71 /* location_sensor.hpp */,
+				C268F06F1D6906F2008A63DB /* strategy.hpp */,
 				C2109C4C1D57D09F001610CC /* agent.hpp */,
 			);
 			name = headers;
@@ -99,6 +103,7 @@
 				C2109C3A1D537700001610CC /* main.cpp */,
 				C2109C451D578CF3001610CC /* simulation.cpp */,
 				C2109C481D57918D001610CC /* environment.cpp */,
+				C268F06E1D6906F2008A63DB /* strategy.cpp */,
 				C2109C4B1D57D09F001610CC /* agent.cpp */,
 			);
 			name = main;
@@ -162,6 +167,7 @@
 			files = (
 				C2109C471D578CF3001610CC /* simulation.cpp in Sources */,
 				C2109C4D1D57D09F001610CC /* agent.cpp in Sources */,
+				C268F0701D6906F2008A63DB /* strategy.cpp in Sources */,
 				C24534501D67B831008E89C3 /* problem.cpp in Sources */,
 				C2109C4A1D57918D001610CC /* environment.cpp in Sources */,
 				C2109C3B1D537700001610CC /* main.cpp in Sources */,

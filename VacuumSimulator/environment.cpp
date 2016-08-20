@@ -54,7 +54,7 @@ void Environment::init(int dim[2], char sensors[2])
         grid[i] = bool(rand()%2);
     };
     
-    currentDirt = grid[agentLocation[0] + y * agentLocation[1]];
+    currentDirt = grid[agentLocation[0] + (y-1) * agentLocation[1]];
 }
 
 void Environment::updateSensors(bool dirt, int location[2])
@@ -91,7 +91,7 @@ void Environment::step(bool visual)
 void Environment::updateEnvironment(char action, int location[2])
 {
     if (action=='s') {
-        grid[location[0] + dimensions[1] * location[1]] = false;
+        grid[agentLocation[0] + (dimensions[1]-1) * agentLocation[1]] = false;
     }
     else if (action=='l')
     {
@@ -106,5 +106,5 @@ void Environment::updateEnvironment(char action, int location[2])
         }
     }
     
-    currentDirt = grid[location[0] + dimensions[1] * location[1]];
+    currentDirt = grid[agentLocation[0] + (dimensions[1]-1) * agentLocation[1]];
 }

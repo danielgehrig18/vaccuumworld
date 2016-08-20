@@ -13,6 +13,7 @@
 #include "sensor.hpp"
 #include "dirt_sensor.hpp"
 #include "location_sensor.hpp"
+#include "strategy.hpp"
 
 class Agent
 // The agent is an object that can perform actions by consulting its strategy and update its belief state based on sensor input.

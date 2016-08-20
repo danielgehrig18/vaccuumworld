@@ -95,20 +95,15 @@ void Environment::step(bool visual)
 
 void Environment::updateEnvironment(char action, int location[2])
 {
-    if (action=='s') {
-        dimensions[agentLocation[0]][agentLocation[1]] = false;
-    }
-    else if (action=='l')
-    {
-        if (location[1]==1) {
-            agentLocation[1] = 0;
-        }
-    }
-    else if (action=='r')
-    {
-        if (location[1]==0) {
-            agentLocation[1] = 1;
-        }
+    int y = sizeof(dimensions[0])/sizeof(dimensions[0][0]);
+    int x = sizeof(dimensions)/(y*sizeof(dimensions[0][0]));
+    
+    switch (action) {
+        case 'l': if (location[1]!=0) agentLocation[1] -=1;
+        case 'r': if (location[1]!=y) agentLocation[1] +=1;
+        case 'u': if (location[0]!=0) agentLocation[0] -=1;
+        case 'd': if (location[0]!=x) agentLocation[0] +=1;
+        case 's': dimensions[agentLocation[0]][agentLocation[1]] = false;
     }
     
     currentDirt = dimensions[agentLocation[0]][agentLocation[1]];

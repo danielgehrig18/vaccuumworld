@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
     int dimensions[] = {1, 2};
     
     // Ask for the lenght of the simulation.
-    int timeSteps = 10;
+    int timeSteps = 100;
     
     // Define which sensors will be used
     char sensors[] = {'d', 'l'};
@@ -27,12 +27,16 @@ int main(int argc, const char * argv[]) {
     // initialize the simulation
     Simulation s = Simulation(dimensions, sensors);
     
+    float start = clock();
+    
     // run the simulation
     s.run(timeSteps, true);
     
+    float duration = ( clock() - start ) / (double) CLOCKS_PER_SEC;
+    
     // evaluate the result of the simulation and display a score
     float payoff = s.getPayoff();
-    cout << "The overall payoff for the agent is " << payoff << ".";
+    cout << "The overall payoff for the agent is " << payoff << " and took " << duration << endl;
     
     return 0;
 }

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VacuumSimulator/environment.cpp"
-            timestampString = "493341511.225695"
+            timestampString = "493349835.848298"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "Environment::init(int dim[2], char sensors[2])"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,29 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VacuumSimulator/main.cpp"
-            timestampString = "493342167.68048"
+            filePath = "VacuumSimulator/environment.cpp"
+            timestampString = "493351708.722252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VacuumSimulator/simulation.cpp"
-            timestampString = "493349502.519692"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "Simulation::run(int timeSteps, bool visual)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "Environment::init(int dim[2], char sensors[2])"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

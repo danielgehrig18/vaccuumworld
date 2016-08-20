@@ -20,3 +20,8 @@ char Strategy::chooseAction(int locationSensorValue[2], bool dirtSensorValue)
         default: return 'n';
     }
 }
+
+void Strategy::setType(char strategy)
+{
+    type = strategy;
+}

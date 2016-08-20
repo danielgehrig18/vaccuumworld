@@ -30,7 +30,7 @@ private:
     int coords[2];
     
 public:
-    void construct(int initialCoords[2],LocationSensor* ptr1, DirtSensor* ptr2);
+    void construct(int initialCoords[2],LocationSensor* ptr1, DirtSensor* ptr2, char strategy);
     char actionSelection();
 };
 

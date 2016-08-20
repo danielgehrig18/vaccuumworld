@@ -32,7 +32,7 @@ private:
     Agent agent;
     
 public:
-    void init(vector<vector<int>> dimensions, char sensors[2]);
+    void init(vector<vector<int>> dimensions, char sensors[2], char strategy);
     vector<vector<int>> getDimensions(){return dimensions;};
     void updateSensors(bool dirt, int location[2]);
     void updateEnvironment(char action, int location[2]);

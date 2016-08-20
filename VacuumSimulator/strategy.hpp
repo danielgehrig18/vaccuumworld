@@ -17,6 +17,7 @@ private:
     char actions[6] = {'u', 'd', 'l', 'r', 's', 'n'};
 public:
     char chooseAction(int locationSensorValue[2], bool dirtSensorValue);
+    void setType(char strategy);
 };
 
 #endif /* strategy_hpp */

@@ -11,13 +11,15 @@
 #include "agent.hpp"
 #include <string.h>
 
-void Agent::construct(int initialCoords[2], LocationSensor* ptr1, DirtSensor* ptr2)
+void Agent::construct(int initialCoords[2], LocationSensor* ptr1, DirtSensor* ptr2, char strgy)
 {
     coords[0] = initialCoords[0];
     coords[1] = initialCoords[1];
     
     locationSensorPtr = ptr1;
     dirtSensorPtr = ptr2;
+    
+    strategy.setType(strgy);
 };
 
 char Agent::actionSelection()

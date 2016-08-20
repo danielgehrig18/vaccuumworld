@@ -15,7 +15,7 @@
 
 using namespace std;
 
-void Environment::init(vector<vector<int>> dim, char sensors[2])
+void Environment::init(vector<vector<int>> dim, char sensors[2], char strategy)
 {
     srand (time(NULL));
     
@@ -54,7 +54,7 @@ void Environment::init(vector<vector<int>> dim, char sensors[2])
         agentLocation[1] = rand()%y;
     }
     
-    agent.construct(agentLocation, locationSensorPtr, dirtSensorPtr);
+    agent.construct(agentLocation, locationSensorPtr, dirtSensorPtr, strategy);
     
     for (int i = 0; i < x; i++)
     {

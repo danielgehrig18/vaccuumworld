@@ -9,6 +9,11 @@
 #include "simulation.hpp"
 #include <iostream>
 
+Simulation::Simulation(vector<vector<int>> dimensions, char sensors[2], char strategy)
+{
+    environment.init(dimensions, sensors, strategy);
+}
+
 void Simulation::run(int timeSteps, bool visual)
 {
     for (int i=0; i<timeSteps; i++)

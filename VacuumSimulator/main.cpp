@@ -25,8 +25,11 @@ int main(int argc, const char * argv[]) {
     // Define which sensors will be used
     char sensors[] = {'d', 'l'};
     
+    // Define strategy
+    char strategy = 'g';
+    
     // initialize the simulation
-    Simulation s = Simulation(dimensions, sensors);
+    Simulation s = Simulation(dimensions, sensors, strategy);
     
     float start = clock();
     

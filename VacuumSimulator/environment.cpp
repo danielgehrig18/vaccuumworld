@@ -17,6 +17,8 @@ using namespace std;
 
 void Environment::init(int dim[2], char sensors[2])
 {
+    srand (time(NULL));
+    
     int x = dim[0];
     int y = dim[1];
     

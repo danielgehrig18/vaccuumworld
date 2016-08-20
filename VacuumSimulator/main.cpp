@@ -16,8 +16,8 @@ int main(int argc, const char * argv[]) {
     cout << "Welcome to the vacuum world. Please Initialize the map.\n";
     
     // Ask for the dimensions of the vacuum world. It must be a rectangular array.
-    vector<vector<int>> dimensions ={{1, 1},
-                                     {1, 1}};
+    vector<vector<int>> dimensions ={{0, 0},
+                                     {0, 0}};
     
     // Ask for the lenght of the simulation.
     int timeSteps = 100;

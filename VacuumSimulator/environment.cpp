@@ -48,14 +48,19 @@ void Environment::init(vector<vector<int>> dim, char sensors[2])
     // set initialCoords of agent.
     agentLocation[0] = rand()%x;
     agentLocation[1] = rand()%y;
-
+    
+    while (dimensions[agentLocation[0]][agentLocation[1]]!=-1) {
+        agentLocation[0] = rand()%x;
+        agentLocation[1] = rand()%y;
+    }
+    
     agent.construct(agentLocation, locationSensorPtr, dirtSensorPtr);
     
     for (int i = 0; i < x; i++)
     {
         for (int j = 0; j < y; j++)
         {
-            dimensions[i][j] = bool(rand()%2);
+            if (dimensions[i][j]==0) dimensions[i][j] = bool(rand()%2);
         }
     };
     
@@ -99,12 +104,20 @@ void Environment::updateEnvironment(char action, int location[2])
     int x = sizeof(dimensions)/(y*sizeof(dimensions[0][0]));
     
     switch (action) {
-        case 'l': if (location[1]!=0) agentLocation[1] -=1;
-        case 'r': if (location[1]!=y) agentLocation[1] +=1;
-        case 'u': if (location[0]!=0) agentLocation[0] -=1;
-        case 'd': if (location[0]!=x) agentLocation[0] +=1;
+        case 'l':
+            if (location[1]!=0 && dimensions[location[0]][location[1]-1]!=-1)
+                agentLocation[1] -=1;
+        case 'r':
+            if (location[1]!=y && dimensions[location[0]][location[1]+1]!=-1)
+                agentLocation[1] +=1;
+        case 'u':
+            if (location[0]!=0 && dimensions[location[0]-1][location[1]]!=-1)
+                agentLocation[0] -=1;
+        case 'd':
+            if (location[0]!=x && dimensions[location[0]+1][location[1]]!=-1)
+                agentLocation[0] +=1;
         case 'n':
-        case 's': dimensions[agentLocation[0]][agentLocation[1]] = false;
+        case 's': dimensions[agentLocation[0]][agentLocation[1]] = 0;
     }
     
     currentDirt = dimensions[agentLocation[0]][agentLocation[1]];

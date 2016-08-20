@@ -7,20 +7,16 @@
 //
 
 #include "environment.hpp"
-#include "dirt_sensor.hpp"
-#include "location_sensor.hpp"
-#include <string.h>
-#include <stdlib.h>
 #include <iostream>
 
 using namespace std;
 
-void Environment::init(vector<vector<int>> dim, char sensors[2], char strategy)
+void Environment::init(vector<vector<int>> dim, array<char, 2> sensors, char strategy)
 {
     srand (time(NULL));
     
-    int y = sizeof(dim[0])/sizeof(dim[0][0]);
-    int x = sizeof(dim)/(y*sizeof(dim[0][0]));
+    unsigned long int y = dim.size();
+    unsigned long int x = dim[0].size();
     
     dimensions = dim;
     
@@ -28,7 +24,10 @@ void Environment::init(vector<vector<int>> dim, char sensors[2], char strategy)
     DirtSensor* dirtSensorPtr;
     LocationSensor* locationSensorPtr;
     
-    for (int i = 0; i < sizeof(sensors); i++)
+    int a = sizeof(sensors);
+    int b = sizeof(sensors[0]);
+    
+    for (const char &i : sensors)
     {
         
         // instantiate sensors
@@ -49,7 +48,7 @@ void Environment::init(vector<vector<int>> dim, char sensors[2], char strategy)
     agentLocation[0] = rand()%x;
     agentLocation[1] = rand()%y;
     
-    while (dimensions[agentLocation[0]][agentLocation[1]]!=-1) {
+    while (dimensions[agentLocation[0]][agentLocation[1]]==-1) {
         agentLocation[0] = rand()%x;
         agentLocation[1] = rand()%y;
     }
@@ -93,15 +92,23 @@ void Environment::step(bool visual)
         cout << "dirt: " << dirtSensor.getValue() << endl;
         cout << "loc: " << loc[0] << " " << loc[1] << endl;
         cout << "action: " << action <<  endl;
-        cout << "Current Location:" << endl;
-        cout << agentLocation[0] << " " << agentLocation[1] << endl;
+        cout << "Current Location: " << agentLocation[0] << " " << agentLocation[1] << endl;
+        cout << "Map: " << endl;
+        for (auto const& value: dimensions)
+        {
+            for (auto const& i: value)
+            {
+                cout << i;
+            }
+            cout << endl;
+        }
     }
 }
 
 void Environment::updateEnvironment(char action, int location[2])
 {
-    int y = sizeof(dimensions[0])/sizeof(dimensions[0][0]);
-    int x = sizeof(dimensions)/(y*sizeof(dimensions[0][0]));
+    int y = dimensions.size();
+    int x = dimensions[0].size();
     
     switch (action) {
         case 'l':

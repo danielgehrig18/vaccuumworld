@@ -15,7 +15,7 @@ char Strategy::chooseAction(int locationSensorValue[2], bool dirtSensorValue)
         case 'r':
             return actions[rand()%6];
         case 'g':
-            if (!dirtSensorValue) return 's';
+            if (dirtSensorValue) return 's';
             else return actions[rand()%4];
         default: return 'n';
     }

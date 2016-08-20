@@ -6,10 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "location_sensor.hpp"
-#include "dirt_sensor.hpp"
 #include "agent.hpp"
-#include <string.h>
 
 void Agent::construct(int initialCoords[2], LocationSensor* ptr1, DirtSensor* ptr2, char strgy)
 {

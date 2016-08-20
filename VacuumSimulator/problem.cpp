@@ -13,8 +13,8 @@ int Problem::calculatePayoff(Environment environment)
     int payoff=0;
     vector<vector<int>> dimensions = environment.getDimensions();
     
-    int y = sizeof(dimensions[0])/sizeof(dimensions[0][0]);
-    int x = sizeof(dimensions)/(y*sizeof(dimensions[0][0]));
+    int y = dimensions.size();
+    int x = dimensions[0].size();
     
     for (int i=0; i<x; i++)
     {

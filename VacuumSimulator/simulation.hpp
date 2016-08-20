@@ -11,6 +11,7 @@
 
 #include "environment.hpp"
 #include "problem.hpp"
+#include <array>
 
 class Simulation
 // The simulation class runs a simulation with given starting point of the agent and grid size. It does bookkeeping on the estimated payoff that the agent will receive after execution.
@@ -27,7 +28,7 @@ private:
     
 public:
     // A simulation must be initialized with the grid dimesions, agent initial location and available sensors
-    Simulation(vector<vector<int>> dimensions, char sensors[2], char strategy);
+    Simulation(vector<vector<int>> dimensions, array<char, 2> sensors, char strategy);
     // This function runs the simulation for timeSteps steps. The simulation can be visualized using the flag visual.
     void run(int timeSteps, bool visual);
     float getPayoff() {return payoff;};

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include "simulation.hpp"
+#include <array>
 
 using namespace std;
 
@@ -16,14 +17,17 @@ int main(int argc, const char * argv[]) {
     cout << "Welcome to the vacuum world. Please Initialize the map.\n";
     
     // Ask for the dimensions of the vacuum world. It must be a rectangular array.
-    vector<vector<int>> dimensions ={{0, 0},
-                                     {0, 0}};
+    vector<vector<int>> dimensions ={{0, 0, 0},
+                                     {0, 0, 0},
+                                     {0, 0, 0},
+                                     {0, 0, 0},
+                                     {0, 0, 0}};
     
     // Ask for the lenght of the simulation.
-    int timeSteps = 100;
+    int timeSteps = 20;
     
     // Define which sensors will be used
-    char sensors[] = {'d', 'l'};
+    array<char, 2> sensors = {'d', 'l'};
     
     // Define strategy
     char strategy = 'g';

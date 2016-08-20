@@ -14,6 +14,7 @@
 #include "location_sensor.hpp"
 #include "dirt_sensor.hpp"
 #include <vector>
+#include <array>
 
 using namespace std;
 
@@ -32,7 +33,7 @@ private:
     Agent agent;
     
 public:
-    void init(vector<vector<int>> dimensions, char sensors[2], char strategy);
+    void init(vector<vector<int>> dimensions, array<char, 2> sensors, char strategy);
     vector<vector<int>> getDimensions(){return dimensions;};
     void updateSensors(bool dirt, int location[2]);
     void updateEnvironment(char action, int location[2]);

@@ -9,12 +9,12 @@
 #ifndef environment_hpp
 #define environment_hpp
 
-#include <stdio.h>
+#include <vector>
+#include <array>
+
 #include "agent.hpp"
 #include "location_sensor.hpp"
 #include "dirt_sensor.hpp"
-#include <vector>
-#include <array>
 
 using namespace std;
 

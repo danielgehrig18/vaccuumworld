@@ -9,10 +9,8 @@
 #ifndef agent_hpp
 #define agent_hpp
 
-#include <stdio.h>
 #include <array>
 
-#include "sensor.hpp"
 #include "dirt_sensor.hpp"
 #include "location_sensor.hpp"
 #include "strategy.hpp"

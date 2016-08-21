@@ -9,9 +9,10 @@
 #ifndef simulation_hpp
 #define simulation_hpp
 
+#include <array>
+
 #include "environment.hpp"
 #include "problem.hpp"
-#include <array>
 
 class Simulation
 // The simulation class runs a simulation with given starting point of the agent and grid size. It does bookkeeping on the estimated payoff that the agent will receive after execution.

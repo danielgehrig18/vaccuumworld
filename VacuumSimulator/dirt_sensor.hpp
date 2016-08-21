@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+#include "sensor.hpp"
+
 class DirtSensor: public Sensor
 {
 private:

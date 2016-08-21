@@ -9,10 +9,9 @@
 #ifndef location_sensor_hpp
 #define location_sensor_hpp
 
-#include <stdio.h>
-#include <string.h>
-#include "sensor.hpp"
 #include <array>
+
+#include "sensor.hpp"
 
 using namespace std;
 

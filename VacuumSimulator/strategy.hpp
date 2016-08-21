@@ -9,7 +9,6 @@
 #ifndef strategy_hpp
 #define strategy_hpp
 
-#include <stdio.h>
 #include <array>
 
 using namespace std;

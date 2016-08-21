@@ -8,7 +8,7 @@
 
 #include "agent.hpp"
 
-void Agent::construct(int initialCoords[2], LocationSensor* ptr1, DirtSensor* ptr2, char strgy)
+void Agent::construct(array<int, 2> initialCoords, LocationSensor* ptr1, DirtSensor* ptr2, char strgy)
 {
     coords[0] = initialCoords[0];
     coords[1] = initialCoords[1];
@@ -21,7 +21,7 @@ void Agent::construct(int initialCoords[2], LocationSensor* ptr1, DirtSensor* pt
 
 char Agent::actionSelection()
 {
-    int* locationSensorValue = locationSensorPtr->getValue();
+    array<int, 2> locationSensorValue = locationSensorPtr->getValue();
     bool dirtSensorValue = dirtSensorPtr->getValue();
     
     return strategy.chooseAction(locationSensorValue, dirtSensorValue);

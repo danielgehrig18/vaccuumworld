@@ -12,14 +12,17 @@
 #include <stdio.h>
 #include <string.h>
 #include "sensor.hpp"
+#include <array>
+
+using namespace std;
 
 class LocationSensor: public Sensor
 {
 private:
-    int value[2];
+    array<int, 2> value;
 public:
-    void setValue(int location[2]) {memcpy(value,location,sizeof(value));};
-    int* getValue() {if (Sensor::getStatus()) {return value;} else {return nullptr;}}
+    void setValue(array<int, 2> location) {value = location;};
+    array<int, 2> getValue() {if (Sensor::getStatus()) {return value;} else {return {0,0};}}
     LocationSensor() {Sensor::setName('l');}
 };
 

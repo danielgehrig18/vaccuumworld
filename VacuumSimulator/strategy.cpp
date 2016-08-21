@@ -9,7 +9,7 @@
 #include "strategy.hpp"
 #include <stdlib.h>
 
-char Strategy::chooseAction(int locationSensorValue[2], bool dirtSensorValue)
+char Strategy::chooseAction(array<int, 2> locationSensorValue, bool dirtSensorValue)
 {
     switch (type) {
         case 'r':

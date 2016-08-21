@@ -10,13 +10,16 @@
 #define strategy_hpp
 
 #include <stdio.h>
+#include <array>
+
+using namespace std;
 
 class Strategy {
 private:
     char type;
     char actions[6] = {'u', 'd', 'l', 'r', 's', 'n'};
 public:
-    char chooseAction(int locationSensorValue[2], bool dirtSensorValue);
+    char chooseAction(array<int, 2> locationSensorValue, bool dirtSensorValue);
     void setType(char strategy);
 };
 

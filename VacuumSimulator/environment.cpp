@@ -60,9 +60,8 @@ void Environment::init(vector<vector<int>> dim, array<char, 2> sensors, char str
     currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
 }
 
-void Environment::updateSensors(bool dirt, int location[2])
+void Environment::updateSensors(bool dirt, array<int, 2> location)
 {
-    
     dirtSensor.setValue(dirt);
     locationSensor.setValue(location);
 }
@@ -74,7 +73,7 @@ void Environment::step(bool visual)
     
     if (visual)
     {
-        int* loc = locationSensor.getValue();
+        array<int, 2> loc = locationSensor.getValue();
         cout << "BEFORE SENSING: " << endl;
         cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
         cout << " location: " << loc[0] << " " << loc[1] << endl;
@@ -84,7 +83,7 @@ void Environment::step(bool visual)
     
     if (visual)
     {
-        int* loc = locationSensor.getValue();
+        array<int, 2> loc = locationSensor.getValue();
         cout << "AFTER SENSING: " << endl;
         cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
         cout << " location: " << loc[0] << " " << loc[1] << endl;
@@ -95,7 +94,6 @@ void Environment::step(bool visual)
     
     if (visual)
     {
-        int* loc = locationSensor.getValue();
         cout << "ACTION SELECTION: " << endl;
         cout << "--> action: " << action <<  endl;
     }
@@ -127,7 +125,7 @@ void Environment::step(bool visual)
     }
 }
 
-void Environment::updateEnvironment(char action, int location[2])
+void Environment::updateEnvironment(char action, array<int, 2> location)
 {
     int x = dimensions.size();
     int y = dimensions[0].size();

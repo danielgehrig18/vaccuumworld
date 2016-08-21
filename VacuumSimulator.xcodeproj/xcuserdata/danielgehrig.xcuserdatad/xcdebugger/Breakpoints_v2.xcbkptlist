@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "14"
             endingLineNumber = "14"
-            landmarkName = "Strategy::chooseAction(int locationSensorValue[2], int dirtSensorValue)"
+            landmarkName = "Strategy::chooseAction(array&lt;int, 2&gt; locationSensorValue, bool dirtSensorValue)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,22 +48,6 @@
             startingLineNumber = "83"
             endingLineNumber = "83"
             landmarkName = "Environment::step(bool visual)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VacuumSimulator/environment.cpp"
-            timestampString = "493431574.663619"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "Environment::init(vector&lt;vector&lt;int&gt;&gt; dim, array&lt;char, 2&gt; sensors, char strategy)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

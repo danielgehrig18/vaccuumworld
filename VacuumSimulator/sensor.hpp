@@ -15,7 +15,7 @@ class Sensor
 {
 private:
     char name;
-    bool status=false;
+    bool status=true;
 public:
     void setName(char sensorName) {name = sensorName;};
     bool getStatus() {return status;};

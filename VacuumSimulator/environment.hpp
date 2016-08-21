@@ -22,7 +22,7 @@ class Environment
 {
 private:
     // corresponds to the true location and dirt presence
-    int agentLocation[2];
+    array<int, 2> agentLocation;
     bool currentDirt;
     vector<vector<int>> dimensions;
     
@@ -35,8 +35,8 @@ private:
 public:
     void init(vector<vector<int>> dimensions, array<char, 2> sensors, char strategy);
     vector<vector<int>> getDimensions(){return dimensions;};
-    void updateSensors(bool dirt, int location[2]);
-    void updateEnvironment(char action, int location[2]);
+    void updateSensors(bool dirt, array<int, 2> location);
+    void updateEnvironment(char action, array<int, 2> location);
     void step(bool visual);
 };
 

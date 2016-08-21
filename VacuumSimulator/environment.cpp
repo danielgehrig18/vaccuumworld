@@ -15,8 +15,8 @@ void Environment::init(vector<vector<int>> dim, array<char, 2> sensors, char str
 {
     srand (time(NULL));
     
-    unsigned long int y = dim.size();
-    unsigned long int x = dim[0].size();
+    unsigned long int x = dim.size();
+    unsigned long int y = dim[0].size();
     
     dimensions = dim;
     
@@ -24,22 +24,16 @@ void Environment::init(vector<vector<int>> dim, array<char, 2> sensors, char str
     DirtSensor* dirtSensorPtr;
     LocationSensor* locationSensorPtr;
     
-    int a = sizeof(sensors);
-    int b = sizeof(sensors[0]);
-    
-    for (const char &i : sensors)
+    for (const char i : sensors)
     {
         
         // instantiate sensors
-        char name = sensors[i];
-        if (name == 'd')
+        if (i == 'd')
         {
-            dirtSensor.init();
             dirtSensorPtr = &dirtSensor;
         }
         else
         {
-            locationSensor.init();
             locationSensorPtr = &locationSensor;
         }
     };

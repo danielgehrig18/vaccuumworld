@@ -38,7 +38,6 @@
 		C2109C4B1D57D09F001610CC /* agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = agent.cpp; sourceTree = "<group>"; };
 		C2109C4C1D57D09F001610CC /* agent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = agent.hpp; sourceTree = "<group>"; };
 		C2109C5B1D593E1E001610CC /* sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sensor.hpp; sourceTree = "<group>"; };
-		C23A72831D676BD600C3AE71 /* location_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = location_sensor.hpp; sourceTree = "<group>"; };
 		C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dirt_sensor.hpp; sourceTree = "<group>"; };
 		C245344E1D67B831008E89C3 /* problem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = problem.cpp; sourceTree = "<group>"; };
 		C245344F1D67B831008E89C3 /* problem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = problem.hpp; sourceTree = "<group>"; };
@@ -94,7 +93,6 @@
 				C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */,
 				C245344F1D67B831008E89C3 /* problem.hpp */,
 				C268F0751D6A06CA008A63DB /* proximity_sensor.hpp */,
-				C23A72831D676BD600C3AE71 /* location_sensor.hpp */,
 				C268F0781D6A1AB2008A63DB /* model.hpp */,
 				C268F06F1D6906F2008A63DB /* strategy.hpp */,
 				C2109C4C1D57D09F001610CC /* agent.hpp */,

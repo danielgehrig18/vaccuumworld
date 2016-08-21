@@ -10,7 +10,6 @@
 #define agent_hpp
 
 #include "dirt_sensor.hpp"
-#include "location_sensor.hpp"
 #include "proximity_sensor.hpp"
 #include "strategy.hpp"
 
@@ -21,7 +20,6 @@ class Agent
 {
 private:
     // sensor that is used to update the belief-state of the agent.
-    LocationSensor* locationSensorPtr;
     DirtSensor* dirtSensorPtr;
     ProximitySensor* proximitySensorPtr;
     
@@ -29,7 +27,7 @@ private:
     Strategy strategy;
     
 public:
-    void init(LocationSensor* ptr1, DirtSensor* ptr2, ProximitySensor* ptr3, char strategy);
+    void init(DirtSensor* ptr2, ProximitySensor* ptr3, char strategy);
     char actionSelection();
 };
 

@@ -21,7 +21,7 @@ private:
 public:
     char chooseAction(bool dirt, array<bool, 4> proximity);
     char moreGreedySearch(bool dirt, array<bool, 4>proximity);
-    char greedySearch(bool dirtSensor);
+    char greedySearch(bool dirt);
     char randomSearch();
     void setType(char strategy);
 };

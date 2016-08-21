@@ -13,7 +13,6 @@
 #include <array>
 
 #include "agent.hpp"
-#include "location_sensor.hpp"
 #include "dirt_sensor.hpp"
 #include "proximity_sensor.hpp"
 #include "model.hpp"
@@ -35,7 +34,6 @@ private:
     
     // sensor runs all the time and collects data from environment. agent can access sensor data.
     DirtSensor dirtSensor;
-    LocationSensor locationSensor;
     ProximitySensor proximitySensor;
     
     Agent agent;
@@ -43,7 +41,7 @@ private:
 public:
     void init(vector<vector<int>> dimensions, vector<char> sensors, char strategy);
     vector<vector<int>> getDimensions(){return dimensions;};
-    void updateSensors(bool dirt, array<int, 2> location, array<bool, 4> walls);
+    void updateSensors(bool dirt, array<bool, 4> walls);
     void updateEnvironment(char action, array<int, 2> location);
     void step(bool visual);
     void reset();

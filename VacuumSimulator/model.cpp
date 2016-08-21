@@ -25,3 +25,8 @@ array<bool, 4> Model::getProximity(vector<vector<int> > map, array<int, 2> locat
     
     return walls;
 }
+
+int Model::getDirt(vector<vector<int>> map, array<int, 2> location)
+{
+    return map[location[0]][location[1]];
+}

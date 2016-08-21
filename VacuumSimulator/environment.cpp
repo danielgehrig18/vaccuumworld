@@ -17,7 +17,6 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
     
     // instantiate agent
     DirtSensor* dirtSensorPtr;
-    LocationSensor* locationSensorPtr;
     ProximitySensor* proximitySensorPtr;
     
     for (const char i : sensors)
@@ -29,10 +28,6 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
                 dirtSensorPtr = &dirtSensor;
                 dirtSensorPtr->init();
                 break;
-            case 'l':
-                locationSensorPtr = &locationSensor;
-                locationSensorPtr->init();
-                break;
             case 'p':
                 proximitySensorPtr = &proximitySensor;
                 proximitySensorPtr->init();
@@ -40,15 +35,14 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
         }
     };
     
-    agent.init(locationSensorPtr, dirtSensorPtr, proximitySensorPtr, strategy);
+    agent.init(dirtSensorPtr, proximitySensorPtr, strategy);
     
     reset();
 }
 
-void Environment::updateSensors(bool dirt, array<int, 2> location, array<bool, 4> walls)
+void Environment::updateSensors(bool dirt, array<bool, 4> walls)
 {
     dirtSensor.setValue(dirt);
-    locationSensor.setValue(location);
     proximitySensor.setValue(walls);
 }
 
@@ -59,20 +53,16 @@ void Environment::step(bool visual)
     
     if (visual)
     {
-        array<int, 2> loc = locationSensor.getValue();
         cout << "BEFORE SENSING: " << endl;
         cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
-        cout << " location: " << loc[0] << " " << loc[1] << endl;
     }
     // updates sensors based on true dirt and location
-    updateSensors(currentDirt, agentLocation, walls);
+    updateSensors(currentDirt, walls);
     
     if (visual)
     {
-        array<int, 2> loc = locationSensor.getValue();
         cout << "AFTER SENSING: " << endl;
         cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
-        cout << " location: " << loc[0] << " " << loc[1] << endl;
     }
     
     // agent makes decision depending on sensor reading
@@ -80,17 +70,14 @@ void Environment::step(bool visual)
     
     if (visual)
     {
-        cout << "ACTION SELECTION: " << endl;
-        cout << "--> action: " << action <<  endl;
+        cout << "ACTION SELECTION: --> action: " << action <<  endl;
     }
     
     // environment updated based on action and true location of agent.
     updateEnvironment(action, agentLocation);
     
-    
     if (visual)
     {
-
         cout << "MAP AFTER ACTION: " << endl;
         for (int i=0; i<x; i++)
         {

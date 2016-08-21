@@ -70,11 +70,35 @@ void Environment::updateSensors(bool dirt, int location[2])
 void Environment::step(bool visual)
 {
     int x = dimensions.size();
+    int y = dimensions[0].size();
+    
+    if (visual)
+    {
+        int* loc = locationSensor.getValue();
+        cout << "BEFORE SENSING: " << endl;
+        cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
+        cout << " location: " << loc[0] << " " << loc[1] << endl;
+    }
     // updates sensors based on true dirt and location
     updateSensors(currentDirt, agentLocation);
     
+    if (visual)
+    {
+        int* loc = locationSensor.getValue();
+        cout << "AFTER SENSING: " << endl;
+        cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
+        cout << " location: " << loc[0] << " " << loc[1] << endl;
+    }
+    
     // agent makes decision depending on sensor reading
     char action = agent.actionSelection();
+    
+    if (visual)
+    {
+        int* loc = locationSensor.getValue();
+        cout << "ACTION SELECTION: " << endl;
+        cout << "--> action: " << action <<  endl;
+    }
     
     // environment updated based on action and true location of agent.
     updateEnvironment(action, agentLocation);
@@ -82,18 +106,21 @@ void Environment::step(bool visual)
     
     if (visual)
     {
-        int* loc = locationSensor.getValue();
-        cout << "Sensors: " << endl;
-        cout << "dirt: " << dirtSensor.getValue() << endl;
-        cout << "loc: " << loc[0] << " " << loc[1] << endl;
-        cout << "action: " << action <<  endl;
-        cout << "Current Location: " << agentLocation[0] << " " << agentLocation[1] << endl;
-        cout << "Map: " << endl;
-        for (auto const& value: dimensions)
+
+        cout << "MAP AFTER ACTION: " << endl;
+        for (int i=0; i<x; i++)
         {
-            for (auto const& i: value)
+            for (int j=0; j<y; j++)
             {
-                cout << i;
+                if (agentLocation[0] == i && agentLocation[1] == j)
+                {
+                    if (dimensions[i][j] == 0)
+                    {
+                        cout << 'Q';
+                    }
+                    else cout << 'J';
+                }
+                else cout << dimensions[i][j];
             }
             cout << endl;
         }

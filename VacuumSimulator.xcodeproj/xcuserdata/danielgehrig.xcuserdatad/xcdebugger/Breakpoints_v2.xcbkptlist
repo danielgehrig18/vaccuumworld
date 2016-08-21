@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VacuumSimulator/environment.cpp"
-            timestampString = "493426706.660208"
+            filePath = "VacuumSimulator/strategy.cpp"
+            timestampString = "493430515.49924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "Environment::init(vector&lt;vector&lt;int&gt;&gt; dim, array&lt;char, 2&gt; sensors, char strategy)"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "Strategy::chooseAction(int locationSensorValue[2], int dirtSensorValue)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,76 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VacuumSimulator/environment.cpp"
-            timestampString = "493426706.660208"
+            timestampString = "493431574.663619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "Environment::init(vector&lt;vector&lt;int&gt;&gt; dim, array&lt;char, 2&gt; sensors, char strategy)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VacuumSimulator/main.cpp"
-            timestampString = "493426706.660208"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VacuumSimulator/main.cpp"
-            timestampString = "493426706.660208"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VacuumSimulator/main.cpp"
-            timestampString = "493426706.660208"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VacuumSimulator/environment.cpp"
-            timestampString = "493426706.660208"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "Environment::init(vector&lt;vector&lt;int&gt;&gt; dim, array&lt;char, 2&gt; sensors, char strategy)"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "Environment::step(bool visual)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,23 +42,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VacuumSimulator/environment.cpp"
-            timestampString = "493426706.660208"
+            timestampString = "493431574.663619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "Environment::init(vector&lt;vector&lt;int&gt;&gt; dim, array&lt;char, 2&gt; sensors, char strategy)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "Environment::step(bool visual)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VacuumSimulator/environment.cpp"
-            timestampString = "493426706.660208"
+            timestampString = "493431574.663619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"

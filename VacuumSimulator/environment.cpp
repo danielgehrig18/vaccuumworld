@@ -129,23 +129,23 @@ void Environment::step(bool visual)
 
 void Environment::updateEnvironment(char action, int location[2])
 {
-    int y = dimensions.size();
-    int x = dimensions[0].size();
+    int x = dimensions.size();
+    int y = dimensions[0].size();
     
     switch (action) {
         case 'l':
-            if (location[1]!=0 && dimensions[location[0]][location[1]-1]!=-1)
+            if (location[1]!=0) if(dimensions[location[0]][location[1]-1]!=-1)
                 agentLocation[1] -=1;
         case 'r':
-            if (location[1]!=y && dimensions[location[0]][location[1]+1]!=-1)
+            if (location[1]!=y-1) if(dimensions[location[0]][location[1]+1]!=-1)
                 agentLocation[1] +=1;
         case 'u':
-            if (location[0]!=0 && dimensions[location[0]-1][location[1]]!=-1)
+            if (location[0]!=0) if (dimensions[location[0]-1][location[1]]!=-1)
                 agentLocation[0] -=1;
         case 'd':
-            if (location[0]!=x && dimensions[location[0]+1][location[1]]!=-1)
+            if (location[0]!=x-1) if(dimensions[location[0]+1][location[1]]!=-1)
                 agentLocation[0] +=1;
-        case 'n':
+        case 'n': break;
         case 's': dimensions[agentLocation[0]][agentLocation[1]] = 0;
     }
     

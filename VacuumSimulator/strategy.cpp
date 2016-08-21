@@ -9,15 +9,15 @@
 #include "strategy.hpp"
 #include <stdlib.h>
 
-char Strategy::chooseAction(array<int, 2> locationSensorValue, bool dirtSensorValue, array<int, 2>gridDimensions)
+char Strategy::chooseAction(bool dirt, array<bool, 4> proximity)
 {
     switch (type) {
         case 'r':
             return randomSearch();
         case 'g':
-            return greedySearch(dirtSensorValue);
+            return greedySearch(dirt);
         case 'h':
-            return moreGreedySearch(locationSensorValue, dirtSensorValue, gridDimensions);
+            return moreGreedySearch(dirt, proximity);
         break;
         default: return 'n';
     }
@@ -28,30 +28,29 @@ char Strategy::randomSearch()
     return actions[rand()%5];
 }
 
-char Strategy::greedySearch(bool dirtSensor)
+char Strategy::greedySearch(bool dirt)
 {
-    if (dirtSensor) return 's';
+    if (dirt) return 's';
     else return actions[rand()%4];
 }
 
-char Strategy::moreGreedySearch(array<int, 2> locationSensorValue, bool dirtSensorValue, array<int, 2>gridDimensions)
+char Strategy::moreGreedySearch(bool dirt, array<bool, 4> proximity)
 {
-    if (dirtSensorValue) return 's';
+    if (dirt) return 's';
     else {
-        int x = locationSensorValue[0];
-        int y = locationSensorValue[1];
+        int possibleDirections = 0;
+        for (bool a: proximity) {if (a) possibleDirections++;}
         
-        int xMax = gridDimensions[0]-1;
-        int yMax = gridDimensions[1]-1;
+        int randIndex = rand()%possibleDirections;
         
-        if ((x > 0 && x < xMax) && (y > 0 && y < yMax)) int randIndex = rand()%4;
-        else if 
-        
-        
-        
+        int counter = 0;
+        for (int i=0; i<4; i++)
+        {
+            if (randIndex == counter) return actions[i];
+            if (proximity[i]) counter++;
+        }
     }
-    
-    
+    return 'n';
 }
 
 void Strategy::setType(char strategy)

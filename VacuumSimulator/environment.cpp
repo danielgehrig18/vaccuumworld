@@ -13,38 +13,43 @@ using namespace std;
 
 void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strategy)
 {
-    unsigned long int x = dim.size();
-    unsigned long int y = dim[0].size();
-    
     dimensions = dim;
     
     // instantiate agent
     DirtSensor* dirtSensorPtr;
     LocationSensor* locationSensorPtr;
+    ProximitySensor* proximitySensorPtr;
     
     for (const char i : sensors)
     {
         
         // instantiate sensors
-        if (i == 'd')
-        {
-            dirtSensorPtr = &dirtSensor;
-            dirtSensorPtr->init();
-        }
-        else
-        {
-            locationSensorPtr = &locationSensor;
-            locationSensorPtr->init();
+        switch (i) {
+            case 'd':
+                dirtSensorPtr = &dirtSensor;
+                dirtSensorPtr->init();
+                break;
+            case 'l':
+                locationSensorPtr = &locationSensor;
+                locationSensorPtr->init();
+                break;
+            case 'p':
+                proximitySensorPtr = &proximitySensor;
+                proximitySensorPtr->init();
+  
         }
     };
+    
+    agent.init(locationSensorPtr, dirtSensorPtr, proximitySensorPtr, strategy);
     
     reset();
 }
 
-void Environment::updateSensors(bool dirt, array<int, 2> location)
+void Environment::updateSensors(bool dirt, array<int, 2> location, array<bool, 4> walls)
 {
     dirtSensor.setValue(dirt);
     locationSensor.setValue(location);
+    proximitySensor.setValue(walls);
 }
 
 void Environment::step(bool visual)
@@ -60,7 +65,7 @@ void Environment::step(bool visual)
         cout << " location: " << loc[0] << " " << loc[1] << endl;
     }
     // updates sensors based on true dirt and location
-    updateSensors(currentDirt, agentLocation);
+    updateSensors(currentDirt, agentLocation, walls);
     
     if (visual)
     {
@@ -134,6 +139,9 @@ void Environment::updateEnvironment(char action, array<int, 2> location)
     }
     
     currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
+    
+    // set wall presence
+    walls = model.getProximity(dimensions, agentLocation);
 }
 
 void Environment::reset()
@@ -150,13 +158,17 @@ void Environment::reset()
         agentLocation[1] = rand()%y;
     }
     
+    // set dirt locations
     for (int i = 0; i < x; i++)
     {
         for (int j = 0; j < y; j++)
         {
-            if (dimensions[i][j]==0) dimensions[i][j] = bool(rand()%2);
+            if (dimensions[i][j]==0) dimensions[i][j] = rand()%2;
         }
     };
     
     currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
+    
+    // set wall presence
+    walls = model.getProximity(dimensions, agentLocation);
 }

@@ -9,10 +9,9 @@
 #ifndef agent_hpp
 #define agent_hpp
 
-#include <array>
-
 #include "dirt_sensor.hpp"
 #include "location_sensor.hpp"
+#include "proximity_sensor.hpp"
 #include "strategy.hpp"
 
 using namespace std;
@@ -24,12 +23,13 @@ private:
     // sensor that is used to update the belief-state of the agent.
     LocationSensor* locationSensorPtr;
     DirtSensor* dirtSensorPtr;
+    ProximitySensor* proximitySensorPtr;
     
     // strategy
     Strategy strategy;
     
 public:
-    void construct(LocationSensor* ptr1, DirtSensor* ptr2, char strategy);
+    void init(LocationSensor* ptr1, DirtSensor* ptr2, ProximitySensor* ptr3, char strategy);
     char actionSelection();
 };
 

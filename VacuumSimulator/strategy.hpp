@@ -17,10 +17,10 @@ using namespace std;
 class Strategy {
 private:
     char type;
-    vector<char> actions = {'u', 'l', 'd', 'r', 's'};
+    vector<char> actions = {'u', 'r', 'd', 'l', 's'};
 public:
-    char chooseAction(array<int, 2> locationSensorValue, bool dirtSensorValue, array<int, 2> gridDimensions);
-    char moreGreedySearch(array<int, 2> locationSensorValue, bool dirtSensorValue, array<int, 2>gridDimensions);
+    char chooseAction(bool dirt, array<bool, 4> proximity);
+    char moreGreedySearch(bool dirt, array<bool, 4>proximity);
     char greedySearch(bool dirtSensor);
     char randomSearch();
     void setType(char strategy);

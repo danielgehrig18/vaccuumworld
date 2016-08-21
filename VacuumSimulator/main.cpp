@@ -26,23 +26,22 @@ int main(int argc, const char * argv[]) {
     int timeSteps = 20;
     
     // Ask for number of iterations
-    int it = 10000;
+    int it = 1;
     
     // Define which sensors will be used
-    // l : location
     // d : dirt
-    // g : grid (dimensions of grid)
-    vector<char> sensors = {'l', 'd', 'g'};
+    // p : proximity sensor
+    vector<char> sensors = {'d', 'p'};
     
     // Define strategy
-    char strategy = 'r';
+    char strategy = 'h';
     
     float p = 0;
     
     for (int i=0; i < it; i++)
     {
         Simulation s = Simulation(dimensions, sensors, strategy);
-        s.run(timeSteps, false);
+        s.run(timeSteps, true);
         p += s.getPayoff();
     }
     

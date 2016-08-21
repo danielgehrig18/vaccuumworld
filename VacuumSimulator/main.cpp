@@ -29,10 +29,13 @@ int main(int argc, const char * argv[]) {
     int it = 10000;
     
     // Define which sensors will be used
-    array<char, 2> sensors = {'d', 'l'};
+    // l : location
+    // d : dirt
+    // g : grid (dimensions of grid)
+    vector<char> sensors = {'l', 'd', 'g'};
     
     // Define strategy
-    char strategy = 'g';
+    char strategy = 'r';
     
     float p = 0;
     

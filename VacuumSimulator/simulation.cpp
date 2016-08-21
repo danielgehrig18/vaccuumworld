@@ -9,7 +9,7 @@
 #include "simulation.hpp"
 #include <iostream>
 
-Simulation::Simulation(vector<vector<int>> dimensions, array<char, 2> sensors, char strategy)
+Simulation::Simulation(vector<vector<int>> dimensions, vector<char> sensors, char strategy)
 {
     srand (time(NULL));
     environment.init(dimensions, sensors, strategy);

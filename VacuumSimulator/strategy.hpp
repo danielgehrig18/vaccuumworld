@@ -10,15 +10,19 @@
 #define strategy_hpp
 
 #include <array>
+#include <vector>
 
 using namespace std;
 
 class Strategy {
 private:
     char type;
-    char actions[6] = {'u', 'd', 'l', 'r', 's', 'n'};
+    vector<char> actions = {'u', 'l', 'd', 'r', 's'};
 public:
-    char chooseAction(array<int, 2> locationSensorValue, bool dirtSensorValue);
+    char chooseAction(array<int, 2> locationSensorValue, bool dirtSensorValue, array<int, 2> gridDimensions);
+    char moreGreedySearch(array<int, 2> locationSensorValue, bool dirtSensorValue, array<int, 2>gridDimensions);
+    char greedySearch(bool dirtSensor);
+    char randomSearch();
     void setType(char strategy);
 };
 

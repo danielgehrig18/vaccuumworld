@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void Environment::init(vector<vector<int>> dim, array<char, 2> sensors, char strategy)
+void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strategy)
 {
     unsigned long int x = dim.size();
     unsigned long int y = dim[0].size();

@@ -8,11 +8,8 @@
 
 #include "agent.hpp"
 
-void Agent::construct(array<int, 2> initialCoords, LocationSensor* ptr1, DirtSensor* ptr2, char strgy)
+void Agent::construct(LocationSensor* ptr1, DirtSensor* ptr2, char strgy)
 {
-    coords[0] = initialCoords[0];
-    coords[1] = initialCoords[1];
-    
     locationSensorPtr = ptr1;
     dirtSensorPtr = ptr2;
     

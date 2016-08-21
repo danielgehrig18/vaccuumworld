@@ -13,8 +13,6 @@ using namespace std;
 
 void Environment::init(vector<vector<int>> dim, array<char, 2> sensors, char strategy)
 {
-    srand (time(NULL));
-    
     unsigned long int x = dim.size();
     unsigned long int y = dim[0].size();
     
@@ -38,26 +36,7 @@ void Environment::init(vector<vector<int>> dim, array<char, 2> sensors, char str
         }
     };
     
-    // set initialCoords of agent.
-    agentLocation[0] = rand()%x;
-    agentLocation[1] = rand()%y;
-    
-    while (dimensions[agentLocation[0]][agentLocation[1]]==-1) {
-        agentLocation[0] = rand()%x;
-        agentLocation[1] = rand()%y;
-    }
-    
-    agent.construct(agentLocation, locationSensorPtr, dirtSensorPtr, strategy);
-    
-    for (int i = 0; i < x; i++)
-    {
-        for (int j = 0; j < y; j++)
-        {
-            if (dimensions[i][j]==0) dimensions[i][j] = bool(rand()%2);
-        }
-    };
-    
-    currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
+    reset();
 }
 
 void Environment::updateSensors(bool dirt, array<int, 2> location)
@@ -151,6 +130,31 @@ void Environment::updateEnvironment(char action, array<int, 2> location)
         case 's': dimensions[agentLocation[0]][agentLocation[1]] = 0;
             break;
     }
+    
+    currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
+}
+
+void Environment::reset()
+{
+    int x = dimensions.size();
+    int y = dimensions[0].size();
+
+    // set initialCoords of agent.
+    agentLocation[0] = rand()%x;
+    agentLocation[1] = rand()%y;
+    
+    while (dimensions[agentLocation[0]][agentLocation[1]]==-1) {
+        agentLocation[0] = rand()%x;
+        agentLocation[1] = rand()%y;
+    }
+    
+    for (int i = 0; i < x; i++)
+    {
+        for (int j = 0; j < y; j++)
+        {
+            if (dimensions[i][j]==0) dimensions[i][j] = bool(rand()%2);
+        }
+    };
     
     currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
 }

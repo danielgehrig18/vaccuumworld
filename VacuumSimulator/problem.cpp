@@ -20,7 +20,7 @@ int Problem::calculatePayoff(Environment environment)
     {
         for (int j=0; j<y; j++)
         {
-            if (dimensions[i][j]!=0) {
+            if (dimensions[i][j]==0) {
                 payoff += freeSpotCost;
             }
         }

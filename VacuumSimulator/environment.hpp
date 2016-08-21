@@ -38,6 +38,7 @@ public:
     void updateSensors(bool dirt, array<int, 2> location);
     void updateEnvironment(char action, array<int, 2> location);
     void step(bool visual);
+    void reset();
 };
 
 #endif /* environment_hpp */

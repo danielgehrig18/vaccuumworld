@@ -28,11 +28,8 @@ private:
     // strategy
     Strategy strategy;
     
-    // initial position of the agent.
-    int coords[2];
-    
 public:
-    void construct(array<int, 2> initialCoords,LocationSensor* ptr1, DirtSensor* ptr2, char strategy);
+    void construct(LocationSensor* ptr1, DirtSensor* ptr2, char strategy);
     char actionSelection();
 };
 

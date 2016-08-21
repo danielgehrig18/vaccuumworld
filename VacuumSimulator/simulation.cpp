@@ -11,6 +11,7 @@
 
 Simulation::Simulation(vector<vector<int>> dimensions, array<char, 2> sensors, char strategy)
 {
+    srand (time(NULL));
     environment.init(dimensions, sensors, strategy);
 }
 
@@ -26,4 +27,9 @@ void Simulation::run(int timeSteps, bool visual)
         environment.step(visual);
         payoff += problem.calculatePayoff(environment);
     }
+}
+
+void Simulation::reset()
+{
+    environment.reset();
 }

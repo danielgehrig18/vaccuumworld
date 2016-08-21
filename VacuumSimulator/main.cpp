@@ -8,23 +8,25 @@
 
 #include <iostream>
 #include <vector>
-#include "simulation.hpp"
 #include <array>
+
+#include "simulation.hpp"
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
+    
     cout << "Welcome to the vacuum world. Please Initialize the map.\n";
     
     // Ask for the dimensions of the vacuum world. It must be a rectangular array.
-    vector<vector<int>> dimensions ={{0, 0, 0},
-                                     {0, 0, 0},
-                                     {0, 0, 0},
-                                     {0, 0, 0},
-                                     {0, 0, 0}};
+    vector<vector<int>> dimensions ={{0, 0},
+                                     {0, 0}};
     
     // Ask for the lenght of the simulation.
     int timeSteps = 20;
+    
+    // Ask for number of iterations
+    int it = 10000;
     
     // Define which sensors will be used
     array<char, 2> sensors = {'d', 'l'};
@@ -32,19 +34,16 @@ int main(int argc, const char * argv[]) {
     // Define strategy
     char strategy = 'g';
     
-    // initialize the simulation
-    Simulation s = Simulation(dimensions, sensors, strategy);
+    float p = 0;
     
-    float start = clock();
+    for (int i=0; i < it; i++)
+    {
+        Simulation s = Simulation(dimensions, sensors, strategy);
+        s.run(timeSteps, false);
+        p += s.getPayoff();
+    }
     
-    // run the simulation
-    s.run(timeSteps, true);
-    
-    float duration = ( clock() - start ) / (double) CLOCKS_PER_SEC;
-    
-    // evaluate the result of the simulation and display a score
-    float payoff = s.getPayoff();
-    cout << "The overall payoff for the agent is " << payoff << " and took " << duration << endl;
+    cout << "The average overall payoff for the agent is " << p/it << endl;
     
     return 0;
 }

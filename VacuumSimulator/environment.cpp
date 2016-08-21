@@ -29,10 +29,12 @@ void Environment::init(vector<vector<int>> dim, array<char, 2> sensors, char str
         if (i == 'd')
         {
             dirtSensorPtr = &dirtSensor;
+            dirtSensorPtr->init();
         }
         else
         {
             locationSensorPtr = &locationSensor;
+            locationSensorPtr->init();
         }
     };
     

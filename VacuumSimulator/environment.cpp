@@ -134,17 +134,22 @@ void Environment::updateEnvironment(char action, array<int, 2> location)
         case 'l':
             if (location[1]!=0) if(dimensions[location[0]][location[1]-1]!=-1)
                 agentLocation[1] -=1;
+            break;
         case 'r':
             if (location[1]!=y-1) if(dimensions[location[0]][location[1]+1]!=-1)
                 agentLocation[1] +=1;
+            break;
         case 'u':
             if (location[0]!=0) if (dimensions[location[0]-1][location[1]]!=-1)
                 agentLocation[0] -=1;
+            break;
         case 'd':
             if (location[0]!=x-1) if(dimensions[location[0]+1][location[1]]!=-1)
                 agentLocation[0] +=1;
+            break;
         case 'n': break;
         case 's': dimensions[agentLocation[0]][agentLocation[1]] = 0;
+            break;
     }
     
     currentDirt = dimensions[agentLocation[0]][agentLocation[1]];

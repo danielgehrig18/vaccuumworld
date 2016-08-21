@@ -69,6 +69,7 @@ void Environment::updateSensors(bool dirt, int location[2])
 
 void Environment::step(bool visual)
 {
+    int x = dimensions.size();
     // updates sensors based on true dirt and location
     updateSensors(currentDirt, agentLocation);
     

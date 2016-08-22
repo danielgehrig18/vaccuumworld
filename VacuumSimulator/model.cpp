@@ -6,6 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 #include <iostream>
+#include <stdlib.h>
 
 #include "model.hpp"
 
@@ -29,7 +30,7 @@ array<bool, 4> Model::getProximity(vector<vector<int> > map, array<int, 2> locat
     return walls;
 }
 
-array<int, 2> Model::getLocation(char action, array<int, 2> location, vector<vector<int>> dimensions)
+array<int, 2> Model::getNewLocation(char action, array<int, 2> location, vector<vector<int>> dimensions)
 {
     int x = dimensions.size();
     int y = dimensions[0].size();
@@ -58,7 +59,33 @@ array<int, 2> Model::getLocation(char action, array<int, 2> location, vector<vec
     return newLocation;
 }
 
-int Model::getDirt(vector<vector<int>> map, array<int, 2> location)
+array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> location)
 {
-    return map[location[0]][location[1]];
+    array<int, 2> closestDirt;
+    int closestDistance=-1;
+    
+    for (int i=0; i<map.size(); i++)
+    {
+        for (int j=0; j<map[0].size(); j++)
+        {
+            if (map[i][j] == 1)
+            {
+                int distance = abs(location[0]-i) + abs(location[1]-j);
+                if (distance < closestDistance && distance != -1)
+                {
+                    closestDistance = distance;
+                    closestDirt = {(i-location[0]), (j-location[1])};
+                }
+            }
+        }
+    }
+    if (closestDistance == -1) return {false,false,false,false};
+    else
+    {
+        int x = closestDirt[0];
+        int y = closestDirt[1];
+        
+        return {y>=abs(x), x>=abs(y), y<=-abs(x), x<=-abs(y)};
+    }
+    
 }

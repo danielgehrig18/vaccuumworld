@@ -8,12 +8,17 @@
 
 #include "agent.hpp"
 
-void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, char strgy)
+void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
+                 LocationSensor* ptr4, vector<vector<int>> stt, char strtgy)
 {
     dirtSensorPtr = ptr1;
     proximitySensorPtr = ptr2;
+    directionSensorPtr = ptr3;
+    locationSensorPtr = ptr4;
     
-    strategy.setType(strgy);
+    state = stt;
+    
+    strategy.setType(strtgy);
 };
 
 char Agent::actionSelection()

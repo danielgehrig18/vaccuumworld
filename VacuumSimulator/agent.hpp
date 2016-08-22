@@ -9,6 +9,8 @@
 #ifndef agent_hpp
 #define agent_hpp
 
+#include <vector>
+
 #include "dirt_sensor.hpp"
 #include "proximity_sensor.hpp"
 #include "direction_sensor.hpp"
@@ -34,7 +36,8 @@ private:
     Strategy strategy;
     
 public:
-    void init(DirtSensor* ptr2, ProximitySensor* ptr3, char strategy);
+    void init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
+              LocationSensor* ptr4, vector<vector<int>> state, char strategy);
     char actionSelection();
 };
 

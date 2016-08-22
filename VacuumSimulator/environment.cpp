@@ -18,6 +18,8 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
     // instantiate agent
     DirtSensor* dirtSensorPtr;
     ProximitySensor* proximitySensorPtr;
+    DirectionSensor* directionSensorPtr;
+    LocationSensor* locationSensorPtr;
     
     for (const char i : sensors)
     {
@@ -31,25 +33,37 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
             case 'p':
                 proximitySensorPtr = &proximitySensor;
                 proximitySensorPtr->init();
-  
+                break;
+            case 'r': // richtung
+                directionSensorPtr = &directionSensor;
+                directionSensorPtr->init();
+                break;
+            case 'l':
+                locationSensorPtr = &locationSensor;
+                locationSensorPtr->init();
+                break;
         }
     };
     
-    agent.init(dirtSensorPtr, proximitySensorPtr, strategy);
+    agent.init(dirtSensorPtr, proximitySensorPtr, directionSensorPtr,
+               locationSensorPtr, dimensions, strategy);
     
     reset();
 }
 
-void Environment::updateSensors(bool dirt, array<bool, 4> walls)
+void Environment::updateSensors(bool dirt, array<bool, 4> walls,
+                                array<bool, 4> directions, array<int, 2> location )
 {
     dirtSensor.setValue(dirt);
     proximitySensor.setValue(walls);
+    directionSensor.setValue(directions);
+    locationSensor.setValue(location);
 }
 
 void Environment::step(bool visual)
 {
     // updates sensors based on true dirt and location
-    updateSensors(currentDirt, walls);
+    updateSensors(currentDirt, walls, directions, agentLocation);
     
     if (visual)
     {
@@ -98,7 +112,7 @@ void Environment::step(bool visual)
 void Environment::updateEnvironment(char action, array<int, 2> location)
 {
     // get new location
-    agentLocation = model.getLocation(action, location, dimensions);
+    agentLocation = model.getNewLocation(action, location, dimensions);
     
     // update dirt
     if (action=='s') dimensions[agentLocation[0]][agentLocation[1]] = false;
@@ -107,6 +121,9 @@ void Environment::updateEnvironment(char action, array<int, 2> location)
     
     // set wall presence
     walls = model.getProximity(dimensions, agentLocation);
+    
+    // set new directions
+    directions = model.getDirections(dimensions, agentLocation);
 }
 
 void Environment::reset()
@@ -132,8 +149,14 @@ void Environment::reset()
         }
     };
     
-    currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
+    // get currentDirt
+    currentDirt = model.getDirt(dimensions, agentLocation);
     
     // set wall presence
     walls = model.getProximity(dimensions, agentLocation);
+    
+    // set directions
+    directions = model.getDirections(dimensions, agentLocation);
+    
+    //
 }

@@ -26,6 +26,7 @@ private:
     array<int, 2> agentLocation;
     bool currentDirt;
     array<bool, 4> walls;
+    array<bool, 4> directions;
     
     vector<vector<int>> dimensions;
     
@@ -35,6 +36,8 @@ private:
     // sensor runs all the time and collects data from environment. agent can access sensor data.
     DirtSensor dirtSensor;
     ProximitySensor proximitySensor;
+    LocationSensor locationSensor;
+    DirectionSensor directionSensor;
     
     Agent agent;
     
@@ -42,7 +45,8 @@ public:
     void init(vector<vector<int>> dimensions, vector<char> sensors, char strategy);
     vector<vector<int>> getDimensions(){return dimensions;};
     array<int, 2> getAgentLocation(){return agentLocation;};
-    void updateSensors(bool dirt, array<bool, 4> walls);
+    void updateSensors(bool dirt, array<bool, 4> walls,
+                       array<bool, 4> directions, array<int, 2> location );
     void updateEnvironment(char action, array<int, 2> location);
     void step(bool visual);
     void reset();

@@ -11,6 +11,8 @@
 
 #include "dirt_sensor.hpp"
 #include "proximity_sensor.hpp"
+#include "direction_sensor.hpp"
+#include "location_sensor.hpp"
 #include "strategy.hpp"
 
 using namespace std;
@@ -22,6 +24,11 @@ private:
     // sensor that is used to update the belief-state of the agent.
     DirtSensor* dirtSensorPtr;
     ProximitySensor* proximitySensorPtr;
+    DirectionSensor* directionSensorPtr;
+    LocationSensor* locationSensorPtr;
+    
+    // state
+    vector<vector<int>> state;
     
     // strategy
     Strategy strategy;

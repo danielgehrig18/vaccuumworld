@@ -41,6 +41,8 @@
 		C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dirt_sensor.hpp; sourceTree = "<group>"; };
 		C245344E1D67B831008E89C3 /* problem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = problem.cpp; sourceTree = "<group>"; };
 		C245344F1D67B831008E89C3 /* problem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = problem.hpp; sourceTree = "<group>"; };
+		C25856361D6BA20700D8762E /* direction_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = direction_sensor.hpp; sourceTree = "<group>"; };
+		C25856391D6BA21D00D8762E /* location_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = location_sensor.hpp; sourceTree = "<group>"; };
 		C268F06E1D6906F2008A63DB /* strategy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strategy.cpp; sourceTree = "<group>"; };
 		C268F06F1D6906F2008A63DB /* strategy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = strategy.hpp; sourceTree = "<group>"; };
 		C268F0751D6A06CA008A63DB /* proximity_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proximity_sensor.hpp; sourceTree = "<group>"; };
@@ -93,7 +95,9 @@
 				C23A72861D676BE400C3AE71 /* dirt_sensor.hpp */,
 				C245344F1D67B831008E89C3 /* problem.hpp */,
 				C268F0751D6A06CA008A63DB /* proximity_sensor.hpp */,
+				C25856361D6BA20700D8762E /* direction_sensor.hpp */,
 				C268F0781D6A1AB2008A63DB /* model.hpp */,
+				C25856391D6BA21D00D8762E /* location_sensor.hpp */,
 				C268F06F1D6906F2008A63DB /* strategy.hpp */,
 				C2109C4C1D57D09F001610CC /* agent.hpp */,
 			);

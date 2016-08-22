@@ -11,6 +11,7 @@
 
 #include <array>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -18,11 +19,19 @@ class Strategy {
 private:
     char type;
     vector<char> actions = {'u', 'r', 'd', 'l', 's'};
+    queue<char> plan;
+    
 public:
-    char chooseAction(bool dirt, array<bool, 4> proximity);
+    bool actionPlanned() {return !plan.empty();};
+    void planAction(bool dirt, array<bool, 4> proximity, array<bool, 4> direction,
+                    array<int, 2> location, vector<vector<int>> state);
+    char executeAction() {return plan.front(); plan.pop();};
+    
     char moreGreedySearch(bool dirt, array<bool, 4>proximity);
     char greedySearch(bool dirt);
     char randomSearch();
+    char superGreedySearch(bool dirt, array<bool, 4> proximity, array<bool, 4> direction);
+    vector<char> stateSearch(array<int, 2> location, vector<vector<int>> state);
     void setType(char strategy);
 };
 

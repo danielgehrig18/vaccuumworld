@@ -9,7 +9,6 @@
 #ifndef proximity_sensor_hpp
 #define proximity_sensor_hpp
 
-#include <stdio.h>
 #include <array>
 
 #include "sensor.hpp"
@@ -21,7 +20,7 @@ class ProximitySensor: public Sensor
 private:
     array<bool, 4> value; // order is up, right, down, left
 public:
-    void setValue(array<bool, 4> dirt) {if (Sensor::getStatus()) value = dirt;};
+    void setValue(array<bool, 4> walls) {if (Sensor::getStatus()) value = walls;};
     array<bool, 4> getValue() {return value;}
     ProximitySensor() {Sensor::setName('b');}
 };

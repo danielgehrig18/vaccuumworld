@@ -20,6 +20,12 @@ char Agent::actionSelection()
 {
     bool dirtSensorValue = dirtSensorPtr->getValue();
     array<bool, 4> proximitySensorValue = proximitySensorPtr->getValue();
+    array<bool, 4> directionSensorValue = directionSensorPtr->getValue();
+    array<int, 2> locationSensorValue = locationSensorPtr->getValue();
     
-    return strategy.chooseAction(dirtSensorValue, proximitySensorValue);
+    if (!strategy.actionPlanned())
+        strategy.planAction(dirtSensorValue, proximitySensorValue,
+                            directionSensorValue, locationSensorValue, state);
+    
+    return strategy.executeAction();
 }

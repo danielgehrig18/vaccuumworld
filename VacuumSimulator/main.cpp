@@ -19,11 +19,9 @@ int main(int argc, const char * argv[]) {
     cout << "Welcome to the vacuum world. Please Initialize the map.\n";
     
     // Ask for the dimensions of the vacuum world. It must be a rectangular array.
-    vector<vector<int>> dimensions ={{0, 0, 0},
-                                     {0, 0, 0}};
-    
-    // Ask for the lenght of the simulation.
-    int timeSteps = 20;
+    vector<vector<int>> dimensions ={{0,  0, -1,  0, -1, -1,  0,  0},
+                                     {0,  0, -1,  0,  0, -1,  0,  0},
+                                     {0,  0,  0,  0,  0,  0,  0,  0}};
     
     // Ask for number of iterations
     int it = 1000;
@@ -37,21 +35,23 @@ int main(int argc, const char * argv[]) {
     // r: random
     // g: greedy (uses dirt sensor)
     // h: smart greedy (uses proximity and dirt sensor)
-    char strategy = 'r';
+    char strategy = 'h';
     
     float p = 0;
-    float st = -1;
+    float st = 0;
     
     Simulation s = Simulation(dimensions, sensors, strategy);
     
     for (int i=0; i < it; i++)
     {
-        s.run(timeSteps, false);
-        p += s.getPayoff();
+        cout << "Iteration " << i+1 << endl;
+        s.run(false);
+        p += s.getPenalty();
         st += s.getCompletionSteps();
+        s.reset();
     }
     
-    cout << "The average overall payoff for the agent is " << p/it << endl;
+    cout << "The average penalty for the agent is " << p/it << endl;
     cout << "with completion in " << st/it<< endl;
     
     return 0;

@@ -8,22 +8,22 @@
 
 #include "problem.hpp"
 
-int Problem::calculatePayoff(Environment environment)
+int Problem::calculatePenalty(Environment environment)
 {
-    int payoff=0;
+    int penalty=0;
     
     vector<vector<int>> dimensions = environment.getDimensions();
     
-    for (vector<int> a:dimensions) for (int i:a) if (i==0) payoff += freeSpotCost;
+    for (vector<int> a:dimensions) for (int i:a) if (i==1) penalty += dirtSpotCost;
     
-    return payoff;
+    return penalty;
 }
 
 bool Problem::goalTest(Environment environment)
 {
     vector<vector<int>> dimensions = environment.getDimensions();
     
-    for (vector<int> a:dimensions) for (int i:a) if (i) return false;
+    for (vector<int> a:dimensions) for (int i:a) if (i==1) return false;
     
     return true;
 }

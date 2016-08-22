@@ -37,17 +37,9 @@ char Strategy::moreGreedySearch(bool dirt, array<bool, 4> proximity)
 {
     if (dirt) return 's';
     else {
-        int possibleDirections = 0;
-        for (bool a: proximity) {if (a) possibleDirections++;}
-        
-        int randIndex = rand()%possibleDirections;
-        
-        int counter = -1;
-        for (int i=0; i<proximity.size(); i++)
-        {
-            if (!proximity[i]) counter++;
-            if (randIndex == counter) return actions[i];
-        }
+        int randIndex = rand()%proximity.size();
+        while (proximity[randIndex]) {randIndex = rand()%proximity.size();}
+        return actions[randIndex];
     }
     return 'n';
 }

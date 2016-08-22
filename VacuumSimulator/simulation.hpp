@@ -25,16 +25,16 @@ private:
     // - goal-testing for each state that the agent is in.
     Problem problem;
     // The payoff represents the value amassed after performing the actions and arriving at a goal state.
-    float payoff=0;
+    float penalty=0;
     int completionSteps;
     
 public:
     // A simulation must be initialized with the grid dimesions, agent initial location and available sensors
     Simulation(vector<vector<int>> dimensions, vector<char> sensors, char strategy);
     // This function runs the simulation for timeSteps steps. The simulation can be visualized using the flag visual.
-    void run(int timeSteps, bool visual);
+    void run(bool visual);
     void reset();
-    float getPayoff() {return payoff;};
+    float getPenalty() {return penalty;};
     int getCompletionSteps() {return completionSteps;};
 };
 

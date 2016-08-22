@@ -15,26 +15,24 @@ Simulation::Simulation(vector<vector<int>> dimensions, vector<char> sensors, cha
     environment.init(dimensions, sensors, strategy);
 }
 
-void Simulation::run(int timeSteps, bool visual)
-{
-    payoff = 0;
-    completionSteps = timeSteps;
-    
-    for (int i=0; i<timeSteps; i++)
+void Simulation::run(bool visual)
+{    
+    int counter = 0;
+    while (!problem.goalTest(environment))
     {
-        if (problem.goalTest(environment) && completionSteps>i) completionSteps = i;
+        if (visual) cout << "--- step " << counter + 1 << " ---" << endl;
         
-        if (visual)
-        {
-            cout << "----------------------------" << endl;
-            cout << "step " << i + 1 << endl;
-        }
         environment.step(visual);
-        payoff += problem.calculatePayoff(environment);
+        penalty += problem.calculatePenalty(environment);
+        counter++;
     }
+    if (visual) cout << "*** Completion in " << counter << " steps. ***" << endl;
+    completionSteps = counter;
 }
 
 void Simulation::reset()
 {
+    penalty = 0;
+    completionSteps = -1;
     environment.reset();
 }

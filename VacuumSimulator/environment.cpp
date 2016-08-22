@@ -89,6 +89,7 @@ void Environment::step(bool visual)
                     }
                     else cout << 'J';
                 }
+                else if (dimensions[i][j]==-1) cout <<'x';
                 else cout << dimensions[i][j];
             }
             cout << endl;

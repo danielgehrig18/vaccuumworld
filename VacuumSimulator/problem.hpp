@@ -16,9 +16,9 @@
 class Problem
 {
 private:
-    int freeSpotCost = 1;
+    int dirtSpotCost = 1;
 public:
-    int calculatePayoff(Environment environment);
+    int calculatePenalty(Environment environment);
     bool goalTest(Environment environment);
 };
 

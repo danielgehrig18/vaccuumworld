@@ -5,8 +5,11 @@
 //  Created by Daniel Gehrig on 21/08/16.
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
+#include <iostream>
 
 #include "model.hpp"
+
+using namespace std;
 
 array<bool, 4> Model::getProximity(vector<vector<int> > map, array<int, 2> location)
 {
@@ -35,21 +38,21 @@ array<int, 2> Model::getLocation(char action, array<int, 2> location, vector<vec
     
     switch (action) {
         case 'l':
-            if (location[1]!=0) if(dimensions[location[0]][location[1]-1]!=-1)
+            if (location[1]!=0 && dimensions[location[0]][location[1]-1]!=-1)
                 newLocation[1] -=1;
-                break;
+            break;
         case 'r':
-            if (location[1]!=y-1) if(dimensions[location[0]][location[1]+1]!=-1)
+            if (location[1]!=y-1 && dimensions[location[0]][location[1]+1]!=-1)
                 newLocation[1] +=1;
-                break;
+            break;
         case 'u':
-            if (location[0]!=0) if (dimensions[location[0]-1][location[1]]!=-1)
+            if (location[0]!=0 && dimensions[location[0]-1][location[1]]!=-1)
                 newLocation[0] -=1;
-                break;
+            break;
         case 'd':
-            if (location[0]!=x-1) if(dimensions[location[0]+1][location[1]]!=-1)
+            if (location[0]!=x-1 && dimensions[location[0]+1][location[1]]!=-1)
                 newLocation[0] +=1;
-                break;
+            break;
         case 's': break;
     }
     return newLocation;

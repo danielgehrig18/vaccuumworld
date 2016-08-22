@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
     int timeSteps = 20;
     
     // Ask for number of iterations
-    int it = 1;
+    int it = 1000;
     
     // Define which sensors will be used
     // d : dirt
@@ -34,13 +34,14 @@ int main(int argc, const char * argv[]) {
     vector<char> sensors = {'d', 'p'};
     
     // Define strategy
-    char strategy = 'h';
+    char strategy = 'r';
     
     float p = 0;
     
+    Simulation s = Simulation(dimensions, sensors, strategy);
+    
     for (int i=0; i < it; i++)
     {
-        Simulation s = Simulation(dimensions, sensors, strategy);
         s.run(timeSteps, true);
         p += s.getPayoff();
     }

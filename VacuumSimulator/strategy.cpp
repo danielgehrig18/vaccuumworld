@@ -43,11 +43,11 @@ char Strategy::moreGreedySearch(bool dirt, array<bool, 4> proximity)
         
         int randIndex = rand()%possibleDirections;
         
-        int counter = 0;
-        for (int i=0; i<4; i++)
+        int counter = -1;
+        for (int i=0; i<proximity.size(); i++)
         {
+            if (!proximity[i]) counter++;
             if (randIndex == counter) return actions[i];
-            if (proximity[i]) counter++;
         }
     }
     return 'n';

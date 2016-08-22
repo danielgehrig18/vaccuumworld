@@ -17,6 +17,8 @@ Simulation::Simulation(vector<vector<int>> dimensions, vector<char> sensors, cha
 
 void Simulation::run(int timeSteps, bool visual)
 {
+    payoff = 0;
+    
     for (int i=0; i<timeSteps; i++)
     {
         if (visual)

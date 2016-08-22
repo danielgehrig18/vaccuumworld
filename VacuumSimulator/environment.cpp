@@ -48,21 +48,16 @@ void Environment::updateSensors(bool dirt, array<bool, 4> walls)
 
 void Environment::step(bool visual)
 {
-    int x = dimensions.size();
-    int y = dimensions[0].size();
-    
-    if (visual)
-    {
-        cout << "BEFORE SENSING: " << endl;
-        cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
-    }
     // updates sensors based on true dirt and location
     updateSensors(currentDirt, walls);
     
     if (visual)
     {
-        cout << "AFTER SENSING: " << endl;
+        array<char, 4> directions = {'u', 'r', 'd', 'l'};
+        array<bool, 4> prox = proximitySensor.getValue();
         cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
+        cout << " Proximity: ";
+        for (int i=0; i<directions.size(); i++) if (prox[i]) cout << directions[i];
     }
     
     // agent makes decision depending on sensor reading
@@ -70,7 +65,7 @@ void Environment::step(bool visual)
     
     if (visual)
     {
-        cout << "ACTION SELECTION: --> action: " << action <<  endl;
+        cout <<endl<< "--> action: " << action <<  endl;
     }
     
     // environment updated based on action and true location of agent.
@@ -78,6 +73,9 @@ void Environment::step(bool visual)
     
     if (visual)
     {
+        int x = dimensions.size();
+        int y = dimensions[0].size();
+
         cout << "MAP AFTER ACTION: " << endl;
         for (int i=0; i<x; i++)
         {
@@ -100,30 +98,11 @@ void Environment::step(bool visual)
 
 void Environment::updateEnvironment(char action, array<int, 2> location)
 {
-    int x = dimensions.size();
-    int y = dimensions[0].size();
+    // get new location
+    agentLocation = model.getLocation(action, location, dimensions);
     
-    switch (action) {
-        case 'l':
-            if (location[1]!=0) if(dimensions[location[0]][location[1]-1]!=-1)
-                agentLocation[1] -=1;
-            break;
-        case 'r':
-            if (location[1]!=y-1) if(dimensions[location[0]][location[1]+1]!=-1)
-                agentLocation[1] +=1;
-            break;
-        case 'u':
-            if (location[0]!=0) if (dimensions[location[0]-1][location[1]]!=-1)
-                agentLocation[0] -=1;
-            break;
-        case 'd':
-            if (location[0]!=x-1) if(dimensions[location[0]+1][location[1]]!=-1)
-                agentLocation[0] +=1;
-            break;
-        case 'n': break;
-        case 's': dimensions[agentLocation[0]][agentLocation[1]] = 0;
-            break;
-    }
+    // update dirt
+    if (action=='s') dimensions[agentLocation[0]][agentLocation[1]] = false;
     
     currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
     

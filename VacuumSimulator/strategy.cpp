@@ -24,6 +24,12 @@ void Strategy::planAction(bool dirt, array<bool, 4> proximity, array<bool, 4> di
     }
 }
 
+vector<char> Strategy::stateSearch(array<int,2> location, vector<vector<int>> state)
+{
+    return {'n'};
+}
+
+
 char Strategy::randomSearch()
 {
     return actions[rand()%5];
@@ -49,11 +55,6 @@ char Strategy::moreGreedySearch(bool dirt, array<bool, 4> proximity)
 char Strategy::superGreedySearch(bool dirt, array<bool, 4> proximity, array<bool, 4> direction)
 {
     return 'n';
-}
-
-vector<char> stateSearch(array<int, 2> location, vector<vector<int>> state)
-{
-    return vector<char> {'n'};
 }
 
 void Strategy::setType(char strategy)

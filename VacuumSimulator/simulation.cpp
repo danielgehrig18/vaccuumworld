@@ -18,9 +18,12 @@ Simulation::Simulation(vector<vector<int>> dimensions, vector<char> sensors, cha
 void Simulation::run(int timeSteps, bool visual)
 {
     payoff = 0;
+    completionSteps = timeSteps;
     
     for (int i=0; i<timeSteps; i++)
     {
+        if (problem.goalTest(environment) && completionSteps>i) completionSteps = i;
+        
         if (visual)
         {
             cout << "----------------------------" << endl;

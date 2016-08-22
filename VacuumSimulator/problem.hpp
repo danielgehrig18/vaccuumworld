@@ -19,6 +19,7 @@ private:
     int freeSpotCost = 1;
 public:
     int calculatePayoff(Environment environment);
+    bool goalTest(Environment environment);
 };
 
 #endif /* problem_hpp */

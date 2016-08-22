@@ -18,7 +18,6 @@ char Strategy::chooseAction(bool dirt, array<bool, 4> proximity)
             return greedySearch(dirt);
         case 'h':
             return moreGreedySearch(dirt, proximity);
-        break;
         default: return 'n';
     }
 }

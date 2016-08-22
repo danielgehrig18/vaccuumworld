@@ -26,6 +26,7 @@ private:
     Problem problem;
     // The payoff represents the value amassed after performing the actions and arriving at a goal state.
     float payoff=0;
+    int completionSteps;
     
 public:
     // A simulation must be initialized with the grid dimesions, agent initial location and available sensors
@@ -34,6 +35,7 @@ public:
     void run(int timeSteps, bool visual);
     void reset();
     float getPayoff() {return payoff;};
+    int getCompletionSteps() {return completionSteps;};
 };
 
 #endif /* simulation_hpp */

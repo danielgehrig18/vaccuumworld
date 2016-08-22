@@ -11,19 +11,19 @@
 int Problem::calculatePayoff(Environment environment)
 {
     int payoff=0;
+    
     vector<vector<int>> dimensions = environment.getDimensions();
     
-    int x = dimensions.size();
-    int y = dimensions[0].size();
+    for (vector<int> a:dimensions) for (int i:a) if (i==0) payoff += freeSpotCost;
     
-    for (int i=0; i<x; i++)
-    {
-        for (int j=0; j<y; j++)
-        {
-            if (dimensions[i][j]==0) {
-                payoff += freeSpotCost;
-            }
-        }
-    }
     return payoff;
+}
+
+bool Problem::goalTest(Environment environment)
+{
+    vector<vector<int>> dimensions = environment.getDimensions();
+    
+    for (vector<int> a:dimensions) for (int i:a) if (i) return false;
+    
+    return true;
 }

@@ -71,15 +71,13 @@ void Environment::step(bool visual)
     // environment updated based on action and true location of agent.
     updateEnvironment(action, agentLocation);
     
+    // display map
     if (visual)
     {
-        int x = dimensions.size();
-        int y = dimensions[0].size();
-
         cout << "MAP AFTER ACTION: " << endl;
-        for (int i=0; i<x; i++)
+        for (int i=0; i<dimensions.size(); i++)
         {
-            for (int j=0; j<y; j++)
+            for (int j=0; j<dimensions[0].size(); j++)
             {
                 if (agentLocation[0] == i && agentLocation[1] == j)
                 {

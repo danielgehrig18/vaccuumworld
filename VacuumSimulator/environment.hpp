@@ -41,6 +41,7 @@ private:
 public:
     void init(vector<vector<int>> dimensions, vector<char> sensors, char strategy);
     vector<vector<int>> getDimensions(){return dimensions;};
+    array<int, 2> getAgentLocation(){return agentLocation;};
     void updateSensors(bool dirt, array<bool, 4> walls);
     void updateEnvironment(char action, array<int, 2> location);
     void step(bool visual);

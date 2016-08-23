@@ -69,7 +69,7 @@ void Environment::step(bool visual)
     {
         array<char, 4> directions = {'u', 'r', 'd', 'l'};
         array<bool, 4> prox = proximitySensor.getValue();
-        array<bool, 4> richtungen = proximitySensor.getValue();
+        array<bool, 4> richtungen = directionSensor.getValue();
         
         cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
         cout << " Proximity: ";
@@ -153,6 +153,24 @@ void Environment::reset()
             if (dimensions[i][j]==0) dimensions[i][j] = rand()%2;
         }
     };
+    
+    // display map
+    if (true){
+        cout << "MAP: " << endl;
+        for (int i=0; i<dimensions.size(); i++)
+        {
+            for (int j=0; j<dimensions[0].size(); j++)
+            {
+                if (agentLocation[0] == i && agentLocation[1] == j)
+                {
+                    if (dimensions[i][j] == 0) cout << 'Q'; else cout << 'J';
+                }
+                else if (dimensions[i][j]==-1) cout <<'x';
+                else cout << dimensions[i][j];
+            }
+            cout << endl;
+        }
+    }
     
     // get currentDirt
     currentDirt = model.getDirt(dimensions, agentLocation);

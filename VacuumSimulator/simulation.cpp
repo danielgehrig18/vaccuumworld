@@ -17,30 +17,6 @@ Simulation::Simulation(vector<vector<int>> dimensions, vector<char> sensors, cha
 
 void Simulation::run(bool visual)
 {
-    // display map
-    if (visual){
-        vector<vector<int>> dimensions = environment.getDimensions();
-        array<int, 2> agentLocation = environment.getAgentLocation();
-        cout << "MAP: " << endl;
-        for (int i=0; i<dimensions.size(); i++)
-        {
-            for (int j=0; j<dimensions[0].size(); j++)
-            {
-                if (agentLocation[0] == i && agentLocation[1] == j)
-                {
-                    if (dimensions[i][j] == 0)
-                    {
-                        cout << 'Q';
-                    }
-                    else cout << 'J';
-                }
-                else if (dimensions[i][j]==-1) cout <<'x';
-                else cout << dimensions[i][j];
-            }
-            cout << endl;
-        }
-    }
-    
     int counter = 0;
     while (!problem.goalTest(environment))
     {

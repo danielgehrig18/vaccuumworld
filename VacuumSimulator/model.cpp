@@ -75,11 +75,12 @@ array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> locati
                 if (distance == closestDistance)
                     closestDirt.push_back({(i-location[0]), (j-location[1])});
                 
-                else if (distance < closestDistance || distance != -1)
-                {
-                    vector<array<int, 2>> closestDirt;
-                    closestDirt.push_back({(i-location[0]), (j-location[1])});
-                }
+                else if (distance < closestDistance || closestDistance == -1)
+                    {
+                        closestDirt.clear();
+                        closestDirt.push_back({(i-location[0]), (j-location[1])});
+                        closestDistance = distance;
+                    }
             }
         }
     }
@@ -93,7 +94,7 @@ array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> locati
         {
             int x=coords[0];
             int y=coords[1];
-            array<bool,4> newDirt = {y>=abs(x), x>=abs(y), y<=-abs(x), x<=-abs(y)};
+            array<bool,4> newDirt = {x<=-abs(y), y>=abs(x), x>=abs(y), y<=abs(x)};
             
             for (int i=0; i<directions.size(); i++)
                 directions[i] = directions[i]||newDirt[i];
@@ -106,7 +107,7 @@ array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> locati
 
 vector<vector<int>> Model::getNewDimensions(char action, array<int,2> location, vector<vector<int>> dimensions)
 {
-    if (action=='s') dimensions[location[0]][location[1]] = false;
+    if (action=='s') dimensions[location[0]][location[1]] = 0;
     return dimensions;
 }
 

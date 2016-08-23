@@ -18,8 +18,8 @@ int main(int argc, const char * argv[]) {
     
     cout << "Welcome to the vacuum world. Please Initialize the map.\n";
     
-    // Ask for the dimensions of the vacuum world. It must be a rectangular array.
-    vector<vector<int>> dimensions ={{0,  0,  0},
+    // Ask for the map of the vacuum world. It must be a rectangular array.
+    vector<vector<int>> map ={{0,  0,  0},
                                      {0,  0,  0},
                                      {0,  0,  0}};
     
@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
     float p = 0;
     float st = 0;
     
-    Simulation s = Simulation(dimensions, sensors, strategy);
+    Simulation s = Simulation(map, sensors, strategy);
     
     for (int i=0; i < it; i++)
     {

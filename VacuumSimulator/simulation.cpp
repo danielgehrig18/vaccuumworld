@@ -9,10 +9,10 @@
 #include "simulation.hpp"
 #include <iostream>
 
-Simulation::Simulation(vector<vector<int>> dimensions, vector<char> sensors, char strategy)
+Simulation::Simulation(vector<vector<int>> map, vector<char> sensors, char strategy)
 {
     srand (time(NULL));
-    environment.init(dimensions, sensors, strategy);
+    environment.init(map, sensors, strategy);
 }
 
 void Simulation::run(bool visual)

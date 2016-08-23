@@ -13,9 +13,9 @@ using namespace std;
 
 void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strategy)
 {
-    dimensions = dim;
+    map = dim;
     
-    // instantiate agent
+    // instantiate sensors
     DirtSensor* dirtSensorPtr;
     ProximitySensor* proximitySensorPtr;
     DirectionSensor* directionSensorPtr;
@@ -24,7 +24,6 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
     for (const char i : sensors)
     {
         
-        // instantiate sensors
         switch (i) {
             case 'd':
                 dirtSensorPtr = &dirtSensor;
@@ -45,9 +44,11 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
         }
     };
     
+    // instantiate agent
     agent.init(dirtSensorPtr, proximitySensorPtr, directionSensorPtr,
-               locationSensorPtr, dimensions, strategy);
+               locationSensorPtr, map, strategy);
     
+    // randomize agent position and map and update environment states.
     reset();
 }
 
@@ -93,20 +94,20 @@ void Environment::step(bool visual)
     if (visual)
     {
         cout << "MAP AFTER ACTION: " << endl;
-        for (int i=0; i<dimensions.size(); i++)
+        for (int i=0; i<map.size(); i++)
         {
-            for (int j=0; j<dimensions[0].size(); j++)
+            for (int j=0; j<map[0].size(); j++)
             {
                 if (agentLocation[0] == i && agentLocation[1] == j)
                 {
-                    if (dimensions[i][j] == 0)
+                    if (map[i][j] == 0)
                     {
                         cout << 'Q';
                     }
                     else cout << 'J';
                 }
-                else if (dimensions[i][j]==-1) cout <<'x';
-                else cout << dimensions[i][j];
+                else if (map[i][j]==-1) cout <<'x';
+                else cout << map[i][j];
             }
             cout << endl;
         }
@@ -116,31 +117,31 @@ void Environment::step(bool visual)
 void Environment::updateEnvironment(char action, array<int, 2> location)
 {
     // get new location
-    agentLocation = model.getNewLocation(action, location, dimensions);
+    agentLocation = model.getNewLocation(action, location, map);
     
     // update map
-    dimensions = model.getNewDimensions(action, location, dimensions);
+    map = model.getNewMap(action, location, map);
     
     // update dirt
-    currentDirt = model.getDirt(dimensions, agentLocation);
+    currentDirt = model.getDirt(map, agentLocation);
     
     // set wall presence
-    walls = model.getProximity(dimensions, agentLocation);
+    walls = model.getProximity(map, agentLocation);
     
     // set new directions
-    directions = model.getDirections(dimensions, agentLocation);
+    directions = model.getDirections(map, agentLocation);
 }
 
 void Environment::reset()
 {
-    int x = dimensions.size();
-    int y = dimensions[0].size();
+    int x = map.size();
+    int y = map[0].size();
 
     // set initialCoords of agent.
     agentLocation[0] = rand()%x;
     agentLocation[1] = rand()%y;
     
-    while (dimensions[agentLocation[0]][agentLocation[1]]==-1) {
+    while (map[agentLocation[0]][agentLocation[1]]==-1) {
         agentLocation[0] = rand()%x;
         agentLocation[1] = rand()%y;
     }
@@ -150,35 +151,35 @@ void Environment::reset()
     {
         for (int j = 0; j < y; j++)
         {
-            if (dimensions[i][j]==0) dimensions[i][j] = rand()%2;
+            if (map[i][j]==0) map[i][j] = rand()%2;
         }
     };
     
     // display map
     if (true){
         cout << "MAP: " << endl;
-        for (int i=0; i<dimensions.size(); i++)
+        for (int i=0; i<map.size(); i++)
         {
-            for (int j=0; j<dimensions[0].size(); j++)
+            for (int j=0; j<map[0].size(); j++)
             {
                 if (agentLocation[0] == i && agentLocation[1] == j)
                 {
-                    if (dimensions[i][j] == 0) cout << 'Q'; else cout << 'J';
+                    if (map[i][j] == 0) cout << 'Q'; else cout << 'J';
                 }
-                else if (dimensions[i][j]==-1) cout <<'x';
-                else cout << dimensions[i][j];
+                else if (map[i][j]==-1) cout <<'x';
+                else cout << map[i][j];
             }
             cout << endl;
         }
     }
     
     // get currentDirt
-    currentDirt = model.getDirt(dimensions, agentLocation);
+    currentDirt = model.getDirt(map, agentLocation);
     
     // set wall presence
-    walls = model.getProximity(dimensions, agentLocation);
+    walls = model.getProximity(map, agentLocation);
     
     // set directions
-    directions = model.getDirections(dimensions, agentLocation);
+    directions = model.getDirections(map, agentLocation);
     
 }

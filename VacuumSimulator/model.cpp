@@ -30,30 +30,21 @@ array<bool, 4> Model::getProximity(vector<vector<int> > map, array<int, 2> locat
     return walls;
 }
 
-array<int, 2> Model::getNewLocation(char action, array<int, 2> location, vector<vector<int>> dimensions)
+array<int, 2> Model::getNewLocation(char action, array<int, 2> location, vector<vector<int>> map)
 {
-    int x = dimensions.size();
-    int y = dimensions[0].size();
+    int x = map.size();
+    int y = map[0].size();
+    
+    int i = location[0];
+    int j = location[1];
     
     array<int, 2> newLocation = location;
     
     switch (action) {
-        case 'l':
-            if (location[1]!=0 && dimensions[location[0]][location[1]-1]!=-1)
-                newLocation[1] -=1;
-            break;
-        case 'r':
-            if (location[1]!=y-1 && dimensions[location[0]][location[1]+1]!=-1)
-                newLocation[1] +=1;
-            break;
-        case 'u':
-            if (location[0]!=0 && dimensions[location[0]-1][location[1]]!=-1)
-                newLocation[0] -=1;
-            break;
-        case 'd':
-            if (location[0]!=x-1 && dimensions[location[0]+1][location[1]]!=-1)
-                newLocation[0] +=1;
-            break;
+        case 'l': if (j!=0 && map[i][j-1]!=-1) newLocation[1] -=1; break;
+        case 'r': if (j!=y-1 && map[i][j+1]!=-1)newLocation[1] +=1; break;
+        case 'u': if (i!=0 && map[i-1][j]!=-1) newLocation[0] -=1; break;
+        case 'd': if (i!=x-1 && map[i+1][j]!=-1) newLocation[0] +=1; break;
         case 's': break;
     }
     return newLocation;
@@ -105,9 +96,9 @@ array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> locati
     
 }
 
-vector<vector<int>> Model::getNewDimensions(char action, array<int,2> location, vector<vector<int>> dimensions)
+vector<vector<int>> Model::getNewMap(char action, array<int,2> location, vector<vector<int>> map)
 {
-    if (action=='s') dimensions[location[0]][location[1]] = 0;
-    return dimensions;
+    if (action=='s') map[location[0]][location[1]] = 0;
+    return map;
 }
 

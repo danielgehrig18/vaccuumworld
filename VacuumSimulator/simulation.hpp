@@ -30,7 +30,7 @@ private:
     
 public:
     // A simulation must be initialized with the grid dimesions, agent initial location and available sensors
-    Simulation(vector<vector<int>> dimensions, vector<char> sensors, char strategy);
+    Simulation(vector<vector<int>> map, vector<char> sensors, char strategy);
     // This function runs the simulation for timeSteps steps. The simulation can be visualized using the flag visual.
     void run(bool visual);
     void reset();

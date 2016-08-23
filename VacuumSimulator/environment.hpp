@@ -28,7 +28,7 @@ private:
     array<bool, 4> walls;
     array<bool, 4> directions;
     
-    vector<vector<int>> dimensions;
+    vector<vector<int>> map;
     
     // model
     Model model;
@@ -42,8 +42,8 @@ private:
     Agent agent;
     
 public:
-    void init(vector<vector<int>> dimensions, vector<char> sensors, char strategy);
-    vector<vector<int>> getDimensions(){return dimensions;};
+    void init(vector<vector<int>> map, vector<char> sensors, char strategy);
+    vector<vector<int>> getMap(){return map;};
     array<int, 2> getAgentLocation(){return agentLocation;};
     void updateSensors(bool dirt, array<bool, 4> walls,
                        array<bool, 4> directions, array<int, 2> location );

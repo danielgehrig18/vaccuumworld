@@ -19,10 +19,10 @@ class Model
 {
 public:
     int getDirt(vector<vector<int>> map, array<int, 2> location) {return map[location[0]][location[1]];};
-    array<int,2> getNewLocation(char action, array<int, 2> location, vector<vector<int>> dimensions);
+    array<int,2> getNewLocation(char action, array<int, 2> location, vector<vector<int>> map);
     array<bool,4> getProximity(vector<vector<int>> map, array<int, 2> location);
     array<bool,4> getDirections(vector<vector<int>> map, array<int, 2> location);
-    vector<vector<int>> getNewDimensions(char action, array<int,2> location, vector<vector<int>> dimensions);
+    vector<vector<int>> getNewMap(char action, array<int,2> location, vector<vector<int>> map);
 
 };
 

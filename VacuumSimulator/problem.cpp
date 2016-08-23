@@ -12,18 +12,18 @@ int Problem::calculatePenalty(Environment environment)
 {
     int penalty=0;
     
-    vector<vector<int>> dimensions = environment.getDimensions();
+    vector<vector<int>> map = environment.getMap();
     
-    for (vector<int> a:dimensions) for (int i:a) if (i==1) penalty += dirtSpotCost;
+    for (vector<int> a:map) for (int i:a) if (i==1) penalty += dirtSpotCost;
     
     return penalty;
 }
 
 bool Problem::goalTest(Environment environment)
 {
-    vector<vector<int>> dimensions = environment.getDimensions();
+    vector<vector<int>> map = environment.getMap();
     
-    for (vector<int> a:dimensions) for (int i:a) if (i==1) return false;
+    for (vector<int> a:map) for (int i:a) if (i==1) return false;
     
     return true;
 }

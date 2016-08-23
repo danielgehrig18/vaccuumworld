@@ -89,3 +89,10 @@ array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> locati
     }
     
 }
+
+vector<vector<int>> Model::getNewDimensions(char action, array<int,2> location, vector<vector<int>> dimensions)
+{
+    if (action=='s') dimensions[location[0]][location[1]] = false;
+    return dimensions;
+}
+

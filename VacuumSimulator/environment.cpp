@@ -114,10 +114,11 @@ void Environment::updateEnvironment(char action, array<int, 2> location)
     // get new location
     agentLocation = model.getNewLocation(action, location, dimensions);
     
-    // update dirt
-    if (action=='s') dimensions[agentLocation[0]][agentLocation[1]] = false;
+    // update map
+    dimensions = model.getNewDimensions(action, location, dimensions);
     
-    currentDirt = dimensions[agentLocation[0]][agentLocation[1]];
+    // update dirt
+    currentDirt = model.getDirt(dimensions, agentLocation);
     
     // set wall presence
     walls = model.getProximity(dimensions, agentLocation);
@@ -158,5 +159,4 @@ void Environment::reset()
     // set directions
     directions = model.getDirections(dimensions, agentLocation);
     
-    //
 }

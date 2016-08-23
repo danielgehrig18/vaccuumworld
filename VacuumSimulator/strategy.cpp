@@ -45,16 +45,29 @@ char Strategy::moreGreedySearch(bool dirt, array<bool, 4> proximity)
 {
     if (dirt) return 's';
     else {
-        int randIndex = rand()%proximity.size();
-        while (proximity[randIndex]) {randIndex = rand()%proximity.size();}
-        return actions[randIndex];
+        vector<int> possibleActions;
+        for (int i=0; i<proximity.size(); i++) if (!proximity[i]) possibleActions.push_back(i);
+        int randIndex = rand()%possibleActions.size();
+        return actions[possibleActions[randIndex]];
     }
     return 'n';
 }
 
 char Strategy::superGreedySearch(bool dirt, array<bool, 4> proximity, array<bool, 4> direction)
 {
-    return 'n';
+    array<bool, 4> combinedConstraint;
+    if (dirt) return 's';
+    vector<int> possibleActions;
+    vector<int> bestActions;
+    for (int i=0; i<proximity.size();i++)
+    {
+        if (direction[i]&&!proximity[i]) bestActions.push_back(i);
+        if (!proximity[i]) possibleActions.push_back(i);
+    }
+    int x = bestActions.size();
+    if (x==0) return actions[possibleActions[rand()%possibleActions.size()]];
+    else return actions[bestActions[rand()%x]];
+    
 }
 
 void Strategy::setType(char strategy)

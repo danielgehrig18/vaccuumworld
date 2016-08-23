@@ -69,9 +69,13 @@ void Environment::step(bool visual)
     {
         array<char, 4> directions = {'u', 'r', 'd', 'l'};
         array<bool, 4> prox = proximitySensor.getValue();
+        array<bool, 4> richtungen = proximitySensor.getValue();
+        
         cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
         cout << " Proximity: ";
         for (int i=0; i<directions.size(); i++) if (prox[i]) cout << directions[i];
+        cout << " Directions: ";
+        for (int i=0; i<directions.size(); i++) if (richtungen[i]) cout << directions[i];
     }
     
     // agent makes decision depending on sensor reading

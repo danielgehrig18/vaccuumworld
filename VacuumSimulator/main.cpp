@@ -24,18 +24,18 @@ int main(int argc, const char * argv[]) {
                                      {0,  0,  0,  0,  0,  0,  0,  0}};
     
     // Ask for number of iterations
-    int it = 1000;
+    int it = 1;
     
     // Define which sensors will be used
     // d : dirt
     // p : proximity sensor
-    vector<char> sensors = {'d', 'p'};
+    vector<char> sensors = {'d', 'p', 'l', 'r'};
     
     // Define strategy
     // r: random
     // g: greedy (uses dirt sensor)
     // h: smart greedy (uses proximity and dirt sensor)
-    char strategy = 'h';
+    char strategy = 'i';
     
     float p = 0;
     float st = 0;
@@ -45,7 +45,7 @@ int main(int argc, const char * argv[]) {
     for (int i=0; i < it; i++)
     {
         cout << "Iteration " << i+1 << endl;
-        s.run(false);
+        s.run(true);
         p += s.getPenalty();
         st += s.getCompletionSteps();
         s.reset();

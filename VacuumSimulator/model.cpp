@@ -61,7 +61,7 @@ array<int, 2> Model::getNewLocation(char action, array<int, 2> location, vector<
 
 array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> location)
 {
-    array<int, 2> closestDirt;
+    vector<array<int, 2>> closestDirt;
     int closestDistance=-1;
     
     for (int i=0; i<map.size(); i++)
@@ -71,21 +71,35 @@ array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> locati
             if (map[i][j] == 1)
             {
                 int distance = abs(location[0]-i) + abs(location[1]-j);
-                if (distance < closestDistance && distance != -1)
+                
+                if (distance == closestDistance)
+                    closestDirt.push_back({(i-location[0]), (j-location[1])});
+                
+                else if (distance < closestDistance || distance != -1)
                 {
-                    closestDistance = distance;
-                    closestDirt = {(i-location[0]), (j-location[1])};
+                    vector<array<int, 2>> closestDirt;
+                    closestDirt.push_back({(i-location[0]), (j-location[1])});
                 }
             }
         }
     }
-    if (closestDistance == -1) return {false,false,false,false};
+    
+    array<bool,4> directions = {false,false,false,false};
+    
+    if (closestDistance == -1) return directions;
     else
     {
-        int x = closestDirt[0];
-        int y = closestDirt[1];
+        for (array<int, 2> coords: closestDirt)
+        {
+            int x=coords[0];
+            int y=coords[1];
+            array<bool,4> newDirt = {y>=abs(x), x>=abs(y), y<=-abs(x), x<=-abs(y)};
+            
+            for (int i=0; i<directions.size(); i++)
+                directions[i] = directions[i]||newDirt[i];
+        }
         
-        return {y>=abs(x), x>=abs(y), y<=-abs(x), x<=-abs(y)};
+        return directions;
     }
     
 }

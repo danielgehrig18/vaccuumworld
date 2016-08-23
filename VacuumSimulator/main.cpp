@@ -19,9 +19,9 @@ int main(int argc, const char * argv[]) {
     cout << "Welcome to the vacuum world. Please Initialize the map.\n";
     
     // Ask for the map of the vacuum world. It must be a rectangular array.
-    vector<vector<int>> map ={{0,  0,  0},
-                                     {0,  0,  0},
-                                     {0,  0,  0}};
+    vector<vector<int>> map ={{0,  0,  0, -1,  0,  0,  0},
+                              {0,  0,  0,  0,  0,  0,  0},
+                              {0,  0,  0, -1,  0,  0,  0}};
     
     // Ask for number of iterations
     int it = 1;
@@ -35,7 +35,7 @@ int main(int argc, const char * argv[]) {
     // r: random
     // g: greedy (uses dirt sensor)
     // h: smart greedy (uses proximity and dirt sensor)
-    char strategy = 'i';
+    char strategy = 'r';
     
     float p = 0;
     float st = 0;

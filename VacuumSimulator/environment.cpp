@@ -66,8 +66,7 @@ void Environment::step(bool visual)
     // updates sensors based on true dirt and location
     updateSensors(currentDirt, walls, directions, agentLocation);
     
-    if (visual)
-    {
+    if (visual) {
         array<char, 4> directions = {'u', 'r', 'd', 'l'};
         array<bool, 4> prox = proximitySensor.getValue();
         array<bool, 4> richtungen = directionSensor.getValue();
@@ -82,8 +81,7 @@ void Environment::step(bool visual)
     // agent makes decision depending on sensor reading
     char action = agent.actionSelection();
     
-    if (visual)
-    {
+    if (visual) {
         cout <<endl<< "--> action: " << action <<  endl;
     }
     
@@ -91,8 +89,7 @@ void Environment::step(bool visual)
     updateEnvironment(action, agentLocation);
     
     // display map
-    if (visual)
-    {
+    if (visual) {
         cout << "MAP AFTER ACTION: " << endl;
         for (int i=0; i<map.size(); i++)
         {
@@ -154,24 +151,6 @@ void Environment::reset()
             if (map[i][j]==0) map[i][j] = rand()%2;
         }
     };
-    
-    // display map
-    if (true){
-        cout << "MAP: " << endl;
-        for (int i=0; i<map.size(); i++)
-        {
-            for (int j=0; j<map[0].size(); j++)
-            {
-                if (agentLocation[0] == i && agentLocation[1] == j)
-                {
-                    if (map[i][j] == 0) cout << 'Q'; else cout << 'J';
-                }
-                else if (map[i][j]==-1) cout <<'x';
-                else cout << map[i][j];
-            }
-            cout << endl;
-        }
-    }
     
     // get currentDirt
     currentDirt = model.getDirt(map, agentLocation);

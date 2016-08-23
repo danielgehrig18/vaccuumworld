@@ -25,7 +25,7 @@ public:
     bool actionPlanned() {return !plan.empty();};
     void planAction(bool dirt, array<bool, 4> proximity, array<bool, 4> direction,
                     array<int, 2> location, vector<vector<int>> state);
-    char executeAction() {return plan.front(); plan.pop();};
+    char executeAction();
     
     char moreGreedySearch(bool dirt, array<bool, 4>proximity);
     char greedySearch(bool dirt);

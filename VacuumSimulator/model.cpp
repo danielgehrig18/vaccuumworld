@@ -85,7 +85,7 @@ array<bool,4> Model::getDirections(vector<vector<int>> map, array<int, 2> locati
         {
             int x=coords[0];
             int y=coords[1];
-            array<bool,4> newDirt = {x<=-abs(y), y>=abs(x), x>=abs(y), y<=abs(x)};
+            array<bool,4> newDirt = {x<=-abs(y), y>=abs(x), x>=abs(y), y<=-abs(x)};
             
             for (int i=0; i<directions.size(); i++)
                 directions[i] = directions[i]||newDirt[i];

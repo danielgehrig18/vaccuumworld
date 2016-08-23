@@ -24,6 +24,13 @@ void Strategy::planAction(bool dirt, array<bool, 4> proximity, array<bool, 4> di
     }
 }
 
+char Strategy::executeAction()
+{
+    char action = plan.front();
+    plan.pop();
+    return action;
+};
+
 vector<char> Strategy::stateSearch(array<int,2> location, vector<vector<int>> state)
 {
     return {'n'};

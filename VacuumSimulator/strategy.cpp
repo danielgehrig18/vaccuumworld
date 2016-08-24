@@ -31,9 +31,36 @@ char Strategy::executeAction()
     return action;
 };
 
-vector<char> Strategy::stateSearch(array<int,2> location, vector<vector<int>> state)
+vector<char> Strategy::stateSearch(array<int,2> location, vector<vector<int>> map)
 {
-    return {'n'};
+    // find closest dirt patches to location
+    vector<array<int, 2>> closestDirt;
+    int closestDistance=-1;
+    
+    for (int i=0; i<map.size(); i++)
+    {
+        for (int j=0; j<map[0].size(); j++)
+        {
+            if (map[i][j] == 1)
+            {
+                int distance = abs(location[0]-i) + abs(location[1]-j);
+                
+                if (distance == closestDistance)
+                    closestDirt.push_back({(i-location[0]), (j-location[1])});
+                
+                else if (distance < closestDistance || closestDistance == -1)
+                {
+                    closestDirt.clear();
+                    closestDirt.push_back({(i-location[0]), (j-location[1])});
+                    closestDistance = distance;
+                }
+            }
+        }
+    }
+    
+    // select random dirt patch and devise plan to clean it.
+    array<int, 2> dirtPatch = closestDirt[rand()%closestDirt.size()];
+    return pathSearch(dirtPatch, location, map);
 }
 
 
@@ -80,4 +107,12 @@ char Strategy::superGreedySearch(bool dirt, array<bool, 4> proximity, array<bool
 void Strategy::setType(char strategy)
 {
     type = strategy;
+}
+
+vector<char> Strategy::pathSearch(array<int,2> dirtPatch, array<int,2> location,
+                                  vector<vector<int>> map)
+{
+    pathSearcher.init(dirtPatch, location, map);
+    pathSearch.search();
+    return pathSearch.getSolution();
 }

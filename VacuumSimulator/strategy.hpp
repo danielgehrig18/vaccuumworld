@@ -13,6 +13,8 @@
 #include <vector>
 #include <queue>
 
+#include "path_searcher.hpp"
+
 using namespace std;
 
 class Strategy {
@@ -20,6 +22,7 @@ private:
     char type;
     vector<char> actions = {'u', 'r', 'd', 'l', 's'};
     queue<char> plan;
+    PathSearcher pathSearcher;
     
 public:
     bool actionPlanned() {return !plan.empty();};
@@ -33,6 +36,8 @@ public:
     char superGreedySearch(bool dirt, array<bool, 4> proximity, array<bool, 4> direction);
     vector<char> stateSearch(array<int, 2> location, vector<vector<int>> state);
     void setType(char strategy);
+    vector<char> pathSearch(array<int,2> dirtPatch, array<int,2> location,
+                            vector<vector<int>> map);
 };
 
 #endif /* strategy_hpp */

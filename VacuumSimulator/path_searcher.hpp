@@ -16,16 +16,10 @@
 
 using namespace std;
 
-
-class CompareCosts {
-public:
-    bool operator()(State& s1, State& s2) {return s1.getTotalCost()<s2.getTotalCost();}
-};
-
 class PathSearcher
 {
 private:
-    priority_queue<State*, vector<State*>, CompareCosts> frontier;
+    priority_queue<State, vector<State>> frontier;
     vector<vector<int>> visitedStates;
     
     State* goalNode;
@@ -38,6 +32,7 @@ public:
     void search();
     vector<char> getSolution();
     void expand(State* node);
+    void addNode(State* node, array<int,2> location, int h);
 };
 
 #endif /* path_searcher_hpp */

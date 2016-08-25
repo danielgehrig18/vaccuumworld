@@ -43,8 +43,8 @@ private:
     
 public:
     void init(vector<vector<int>> map, vector<char> sensors, char strategy);
-    vector<vector<int>> getMap(){return map;};
-    array<int, 2> getAgentLocation(){return agentLocation;};
+    vector<vector<int>> getMap();
+    array<int, 2> getAgentLocation();
     void updateSensors(bool dirt, array<bool, 4> walls,
                        array<bool, 4> directions, array<int, 2> location );
     void updateEnvironment(char action, array<int, 2> location);

@@ -20,9 +20,9 @@ class LocationSensor: public Sensor
 private:
     array<int, 2> value;
 public:
-    void setValue(array<int, 2> location) {if (Sensor::getStatus()) value = location;};
-    array<int, 2> getValue() {return value;}
-    LocationSensor() {Sensor::setName('l');}
+    void setValue(array<int, 2> location);
+    array<int, 2> getValue();
+    LocationSensor();
 };
 
 #endif /* location_sensor_hpp */

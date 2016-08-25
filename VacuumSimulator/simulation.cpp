@@ -15,6 +15,16 @@ Simulation::Simulation(vector<vector<int>> map, vector<char> sensors, char strat
     environment.init(map, sensors, strategy);
 }
 
+float Simulation::getPenalty()
+{
+    return penalty;
+};
+
+int Simulation::getCompletionSteps()
+{
+    return completionSteps;
+};
+
 void Simulation::run(bool visual)
 {
     int counter = 0;

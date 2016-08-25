@@ -25,7 +25,7 @@ private:
     PathSearcher pathSearcher;
     
 public:
-    bool actionPlanned() {return !plan.empty();};
+    bool actionPlanned();
     void planAction(bool dirt, array<bool, 4> proximity, array<bool, 4> direction,
                     array<int, 2> location, vector<vector<int>> state);
     char executeAction();

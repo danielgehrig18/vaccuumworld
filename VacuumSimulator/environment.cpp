@@ -52,6 +52,18 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
     reset();
 }
 
+vector<vector<int>> Environment::getMap()
+{
+    return map;
+};
+
+array<int, 2> Environment::getAgentLocation()
+{
+    return agentLocation;
+};
+
+
+
 void Environment::updateSensors(bool dirt, array<bool, 4> walls,
                                 array<bool, 4> directions, array<int, 2> location )
 {

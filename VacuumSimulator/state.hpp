@@ -25,19 +25,22 @@ private:
     int pathCost;
     int heuristic;
 public:
-    bool isRoot() {return !parent;};
-    char getAction() {return action;};
-    array<int, 2> getLocation() {return location;}
-    int getPathCost() {return pathCost;};
-    int getTotalCost() {return pathCost + heuristic;}
-    void setParent(State* p) {parent = p;}
-    void addChild(State* c) {children.push_back(c);}
-    State* getParent() {return parent;};
+    bool isRoot();
+    char getAction();
+    array<int, 2> getLocation();
+    int getPathCost();
+    int getTotalCost();
+    
+    void setParent(State* p);
+    void addChild(State* c);
+    
+    State* getParent();
     State* childOf(array<int,2> location, int h);
+    bool operator()(State s1, State s2);
+
+    bool operator==(State s);
     
-    bool operator==(State s) {return location==s.location;};
-    
-    State(array<int,2> loc, int p, int h) {location = loc; heuristic = h; pathCost = p;};
+    State(array<int,2> loc, int p, int h);
     ~State();
 };
 

@@ -20,9 +20,9 @@ class ProximitySensor: public Sensor
 private:
     array<bool, 4> value; // order is up, right, down, left
 public:
-    void setValue(array<bool, 4> walls) {if (Sensor::getStatus()) value = walls;};
-    array<bool, 4> getValue() {return value;}
-    ProximitySensor() {Sensor::setName('b');}
+    void setValue(array<bool, 4> walls);
+    array<bool, 4> getValue();
+    ProximitySensor();
 };
 
 #endif /* proximity_sensor_hpp */

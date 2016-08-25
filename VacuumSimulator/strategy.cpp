@@ -9,6 +9,11 @@
 #include "strategy.hpp"
 #include <stdlib.h>
 
+bool Strategy::actionPlanned()
+{
+    return !plan.empty();
+};
+
 void Strategy::planAction(bool dirt, array<bool, 4> proximity, array<bool, 4> direction,
                             array<int, 2> location, vector<vector<int>> state)
 {
@@ -113,6 +118,6 @@ vector<char> Strategy::pathSearch(array<int,2> dirtPatch, array<int,2> location,
                                   vector<vector<int>> map)
 {
     pathSearcher.init(dirtPatch, location, map);
-    pathSearch.search();
-    return pathSearch.getSolution();
+    pathSearcher.search();
+    return pathSearcher.getSolution();
 }

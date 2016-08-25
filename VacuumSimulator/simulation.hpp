@@ -34,8 +34,8 @@ public:
     // This function runs the simulation for timeSteps steps. The simulation can be visualized using the flag visual.
     void run(bool visual);
     void reset();
-    float getPenalty() {return penalty;};
-    int getCompletionSteps() {return completionSteps;};
+    float getPenalty();
+    int getCompletionSteps();
 };
 
 #endif /* simulation_hpp */

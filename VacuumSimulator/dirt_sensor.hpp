@@ -18,9 +18,9 @@ class DirtSensor: public Sensor
 private:
     bool value;
 public:
-    void setValue(bool dirt) {if (Sensor::getStatus()) value = dirt;};
-    bool getValue() {return value;}
-    DirtSensor() {Sensor::setName('d');}
+    void setValue(bool dirt);
+    bool getValue();
+    DirtSensor();
 };
 
 #endif /* dirt_sensor_hpp */

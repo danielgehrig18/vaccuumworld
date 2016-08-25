@@ -14,6 +14,11 @@
 		C24534501D67B831008E89C3 /* problem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C245344E1D67B831008E89C3 /* problem.cpp */; };
 		C258563D1D6CF26400D8762E /* path_searcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C258563B1D6CF26400D8762E /* path_searcher.cpp */; };
 		C25856401D6CF40600D8762E /* state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C258563E1D6CF40600D8762E /* state.cpp */; };
+		C25856421D6E1AF400D8762E /* sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C25856411D6E1AF400D8762E /* sensor.cpp */; };
+		C25856441D6F86C100D8762E /* dirt_sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C25856431D6F86C100D8762E /* dirt_sensor.cpp */; };
+		C25856461D6F8ED400D8762E /* proximity_sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C25856451D6F8ED400D8762E /* proximity_sensor.cpp */; };
+		C25856481D6F8FD700D8762E /* direction_sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C25856471D6F8FD700D8762E /* direction_sensor.cpp */; };
+		C258564A1D6F909600D8762E /* location_sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C25856491D6F909600D8762E /* location_sensor.cpp */; };
 		C268F0701D6906F2008A63DB /* strategy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C268F06E1D6906F2008A63DB /* strategy.cpp */; };
 		C268F0791D6A1AB2008A63DB /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C268F0771D6A1AB2008A63DB /* model.cpp */; };
 /* End PBXBuildFile section */
@@ -49,6 +54,11 @@
 		C258563C1D6CF26400D8762E /* path_searcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = path_searcher.hpp; sourceTree = "<group>"; };
 		C258563E1D6CF40600D8762E /* state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = state.cpp; sourceTree = "<group>"; };
 		C258563F1D6CF40600D8762E /* state.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = state.hpp; sourceTree = "<group>"; };
+		C25856411D6E1AF400D8762E /* sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sensor.cpp; sourceTree = "<group>"; };
+		C25856431D6F86C100D8762E /* dirt_sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dirt_sensor.cpp; sourceTree = "<group>"; };
+		C25856451D6F8ED400D8762E /* proximity_sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proximity_sensor.cpp; sourceTree = "<group>"; };
+		C25856471D6F8FD700D8762E /* direction_sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = direction_sensor.cpp; sourceTree = "<group>"; };
+		C25856491D6F909600D8762E /* location_sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = location_sensor.cpp; sourceTree = "<group>"; };
 		C268F06E1D6906F2008A63DB /* strategy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strategy.cpp; sourceTree = "<group>"; };
 		C268F06F1D6906F2008A63DB /* strategy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = strategy.hpp; sourceTree = "<group>"; };
 		C268F0751D6A06CA008A63DB /* proximity_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proximity_sensor.hpp; sourceTree = "<group>"; };
@@ -119,8 +129,13 @@
 				C2109C3A1D537700001610CC /* main.cpp */,
 				C2109C451D578CF3001610CC /* simulation.cpp */,
 				C258563B1D6CF26400D8762E /* path_searcher.cpp */,
+				C25856471D6F8FD700D8762E /* direction_sensor.cpp */,
+				C25856411D6E1AF400D8762E /* sensor.cpp */,
 				C258563E1D6CF40600D8762E /* state.cpp */,
+				C25856451D6F8ED400D8762E /* proximity_sensor.cpp */,
+				C25856491D6F909600D8762E /* location_sensor.cpp */,
 				C268F0771D6A1AB2008A63DB /* model.cpp */,
+				C25856431D6F86C100D8762E /* dirt_sensor.cpp */,
 				C2109C481D57918D001610CC /* environment.cpp */,
 				C268F06E1D6906F2008A63DB /* strategy.cpp */,
 				C2109C4B1D57D09F001610CC /* agent.cpp */,
@@ -186,13 +201,18 @@
 			files = (
 				C2109C471D578CF3001610CC /* simulation.cpp in Sources */,
 				C25856401D6CF40600D8762E /* state.cpp in Sources */,
+				C258564A1D6F909600D8762E /* location_sensor.cpp in Sources */,
 				C2109C4D1D57D09F001610CC /* agent.cpp in Sources */,
 				C268F0791D6A1AB2008A63DB /* model.cpp in Sources */,
 				C258563D1D6CF26400D8762E /* path_searcher.cpp in Sources */,
+				C25856441D6F86C100D8762E /* dirt_sensor.cpp in Sources */,
 				C268F0701D6906F2008A63DB /* strategy.cpp in Sources */,
+				C25856461D6F8ED400D8762E /* proximity_sensor.cpp in Sources */,
 				C24534501D67B831008E89C3 /* problem.cpp in Sources */,
 				C2109C4A1D57918D001610CC /* environment.cpp in Sources */,
+				C25856481D6F8FD700D8762E /* direction_sensor.cpp in Sources */,
 				C2109C3B1D537700001610CC /* main.cpp in Sources */,
+				C25856421D6E1AF400D8762E /* sensor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

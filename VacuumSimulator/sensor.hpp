@@ -17,9 +17,9 @@ private:
     char name;
     bool status=false;
 public:
-    void setName(char sensorName) {name = sensorName;};
-    bool getStatus() {return status;};
-    void init() {status=true;};
+    void setName(char sensorName);
+    bool getStatus();
+    void init();
 };
 
 #endif /* sensor_hpp */

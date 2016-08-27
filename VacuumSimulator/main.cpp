@@ -37,15 +37,18 @@ int main(int argc, const char * argv[]) {
     // h: smart greedy (uses proximity and dirt sensor)
     char strategy = 's';
     
+    // visualize
+    bool visualize = true;
+    
     float p = 0;
     float st = 0;
     
-    Simulation s = Simulation(map, sensors, strategy);
+    Simulation s = Simulation(map, sensors, strategy, visualize);
     
     for (int i=0; i < it; i++)
     {
         cout << "Iteration " << i+1 << endl;
-        s.run(true);
+        s.run();
         p += s.getPenalty();
         st += s.getCompletionSteps();
         s.reset();

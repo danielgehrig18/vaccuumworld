@@ -6,13 +6,17 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "simulation.hpp"
 #include <iostream>
 
-Simulation::Simulation(vector<vector<int>> map, vector<char> sensors, char strategy)
+#include "simulation.hpp"
+#include "visualizer.hpp"
+
+Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
+                       char strategy, bool visual)
 {
     srand (time(NULL));
     environment.init(map, sensors, strategy);
+    visualize = visual;
 }
 
 float Simulation::getPenalty()
@@ -25,18 +29,30 @@ int Simulation::getCompletionSteps()
     return completionSteps;
 }
 
-void Simulation::run(bool visual)
+void Simulation::run()
 {
     int counter = 0;
+    
+    if (visualize)
+    {
+        Visualizer::visualizeMap(environment.getMap(),
+                                environment.getAgentLocation());
+    }
     while (!problem.goalTest(environment))
     {
-        if (visual) cout << "--- step " << counter + 1 << " ---" << endl;
+        if (visualize)
+        {
+            cout << "--- step " << counter + 1 << " ---" << endl;
+        }
         
-        environment.step(visual);
+        environment.step(visualize);
         penalty += problem.calculatePenalty(environment);
         counter ++;
     }
-    if (visual) cout << "*** Completion in " << counter << " steps. ***" << endl;
+    if (visualize)
+    {
+        cout << "*** Completion in " << counter << " steps. ***" << endl;
+    }
     completionSteps = counter;
 }
 

@@ -8,6 +8,11 @@
 
 #include "direction_sensor.hpp"
 
+DirectionSensor::DirectionSensor()
+{
+    Sensor::setName('d');
+}
+
 void DirectionSensor::setValue(array<bool, 4> directions)
 {
     if (Sensor::getStatus()) value = directions;
@@ -16,9 +21,4 @@ void DirectionSensor::setValue(array<bool, 4> directions)
 array<bool, 4> DirectionSensor::getValue()
 {
     return value;
-}
-
-DirectionSensor::DirectionSensor()
-{
-    Sensor::setName('d');
 }

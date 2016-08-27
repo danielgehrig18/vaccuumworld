@@ -17,12 +17,31 @@ using namespace std;
 
 class DirectionSensor: public Sensor
 {
-private:
-    array<bool, 4> value; // order is up, right, down, left
 public:
-    void setValue(array<bool, 4> directions);
-    array<bool, 4> getValue();
+    /**
+        Constructor of direction sensor. Default name of sensor is 'r'.
+     
+        @param: -
+    */
     DirectionSensor();
+    
+    /**
+        Set the value of sensor. Only possible if sensor status is true.
+     
+        @param: directions: direction of closest dirt in order (up, right, 
+                down, left).
+    */
+    void setValue(array<bool, 4> directions);
+    
+    /**
+        Return value of sensor.
+     
+        @param: -
+    */
+    array<bool, 4> getValue();
+    
+private:
+    array<bool, 4> value;
 };
 
 #endif /* direction_sensor_hpp */

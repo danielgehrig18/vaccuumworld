@@ -17,12 +17,30 @@ using namespace std;
 
 class ProximitySensor: public Sensor
 {
-private:
-    array<bool, 4> value; // order is up, right, down, left
 public:
-    void setValue(array<bool, 4> walls);
-    array<bool, 4> getValue();
+    /**
+        Constructor of proximity sensor. Default name of sensor is 'p'.
+     
+        @param: -
+    */
     ProximitySensor();
+    
+    /**
+        Set the value of sensor. Only possible if sensor status is true.
+     
+        @param: walls: presence of walls in order (up, right, down, left).
+    */
+    void setValue(array<bool, 4> walls);
+    
+    /**
+        Return value of sensor.
+     
+        @param: -
+    */
+    array<bool, 4> getValue();
+
+private:
+    array<bool, 4> value;
 };
 
 #endif /* proximity_sensor_hpp */

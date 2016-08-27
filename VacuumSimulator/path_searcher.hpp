@@ -18,21 +18,59 @@ using namespace std;
 
 class PathSearcher
 {
+public:
+    /**
+        Add a child to node through the action action at location location
+        and heuristic h.
+     
+        @param: node: the node to which the child is added.
+                action: the action which caused the child to spawn.
+                location: coordinates of the new child node.
+                h: heuristic of the new node.
+    */
+    void addChild(State* node, char action, array<int,2> location, int h);
+    
+    /**
+        Initialize the search tree by defining the goal state, the root (initial
+        state and the giving the pathFinder the map of the environment.
+     
+        @param: dirtPatch: coordinates of the goal state at the dirt patch.
+                location: coordinates of the agent (initial state).
+                map: map of the agent's environment.
+    */
+    void init(array<int,2> dirtPatch, array<int,2> location, vector<vector<int>> map);
+    
+    /**
+        Execute search for the goal and save the tree that created it.
+     
+        @param: -
+    */
+    void search();
+    
+    /**
+        Return the solution action sequence that led through the cheapest path 
+        to the goal.
+     
+        @param: -
+    */
+    vector<char> getSolution();
+    
 private:
-    priority_queue<State, vector<State>> frontier;
+    /**
+        Calculates the successors of the node node and adds them to the 
+        frontier.
+     
+        @param: node: node that should be expanded.
+    */
+    void expand(State* node);
+    
+    priority_queue<State, vector<State*>, CompareStates> frontier;
     vector<vector<int>> visitedStates;
     
     State* goalNode;
     State* rootNode;
     
     array<int,2> goal;
-    
-public:
-    void init(array<int,2> dirtPatch, array<int,2> location, vector<vector<int>> map);
-    void search();
-    vector<char> getSolution();
-    void expand(State* node);
-    void addNode(State* node, array<int,2> location, int h);
 };
 
 #endif /* path_searcher_hpp */

@@ -8,6 +8,11 @@
 
 #include "location_sensor.hpp"
 
+LocationSensor::LocationSensor()
+{
+    Sensor::setName('l');
+}
+
 void LocationSensor::setValue(array<int, 2> location)
 {
     if (Sensor::getStatus()) value = location;
@@ -17,10 +22,3 @@ array<int, 2> LocationSensor::getValue()
 {
     return value;
 }
-
-LocationSensor::LocationSensor()
-{
-    Sensor::setName('l');
-}
-
-#endif /* location_sensor_hpp */

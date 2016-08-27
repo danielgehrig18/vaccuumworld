@@ -13,13 +13,34 @@
 
 class Sensor
 {
+public:
+    /**
+        sets the name for the sensor: 'd' dirt sensor, 'p' proximity sensor, 'r'
+        direction sensor, 'l' location sensor.
+     
+        @param: sensorName: name of the sensor.
+    */
+    void setName(char sensorName);
+    
+    /**
+        Gets the status of the sensor. Status == false means that a sensor value
+        cannot be written.
+     
+        @param: -.
+     */
+    bool getStatus();
+    
+    /**
+        Sets the status of the sensor to active, meaning that values can be 
+        written.
+     
+        @param: -.
+     */
+    void init();
+    
 private:
     char name;
     bool status=false;
-public:
-    void setName(char sensorName);
-    bool getStatus();
-    void init();
 };
 
 #endif /* sensor_hpp */

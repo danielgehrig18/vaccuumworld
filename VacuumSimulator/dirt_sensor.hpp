@@ -9,18 +9,34 @@
 #ifndef dirt_sensor_hpp
 #define dirt_sensor_hpp
 
-#include <stdio.h>
-
 #include "sensor.hpp"
 
 class DirtSensor: public Sensor
 {
+public:
+    /**
+        Constructor of dirtsensor. Default name of sensor is 'd'.
+     
+        @param: -
+    */
+    DirtSensor();
+    
+    /**
+        Set the value of sensor. Only possible if sensor status is true.
+     
+        @param: dirt: presence of dirt under agent.
+    */
+    void setValue(bool dirt);
+    
+    /**
+        Return value of sensor.
+     
+        @param: -
+    */
+    bool getValue();
+
 private:
     bool value;
-public:
-    void setValue(bool dirt);
-    bool getValue();
-    DirtSensor();
 };
 
 #endif /* dirt_sensor_hpp */

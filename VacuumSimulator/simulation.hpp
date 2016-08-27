@@ -15,27 +15,59 @@
 #include "problem.hpp"
 
 class Simulation
-// The simulation class runs a simulation with given starting point of the agent and grid size. It does bookkeeping on the estimated payoff that the agent will receive after execution.
 {
+public:
+    /**
+     Constructor of Simulation. Initializes random generator and environment
+     with a map of the room, available sensors (see "sensor.hpp") and
+     strategy to be followed (see "strategy.hpp").
+     
+     @param: map: grid of the environment of the agent. Entries can be 0, 1
+     or -1 corresponding to empty spots, dirty spots and walls resp.
+     
+     sensors: list of sensors to be used by the agent.
+     
+     strategy: corresponds to the strategy to be used by the agent.
+     */
+    Simulation(vector<vector<int>> map, vector<char> sensors, char strategy);
+    
+    /**
+     Return penalty. 1 pt is penalized for every dirty square at every time
+     step.
+     
+     @param: -
+     */
+    float getPenalty();
+    
+    /**
+     Return steps that it took the agent to completely clean the map.
+     
+     @param: -
+     */
+    int getCompletionSteps();
+    
+    /**
+        Runs the simulation. Environment, agent and sensors are updated on a
+        stepwise basis and the payoff is recorded. The simulation is run until
+        all squares are clean. Records stepnumber and penalty cost.
+     
+        @param: visual: flag which visualises the sensor input and decisions of 
+                        the agent.
+    */
+    void run(bool visual);
+    
+    /**
+        Randomizes the dirt locations in the map and the initial agent location.
+     
+        @param: -
+    */
+    void reset();
+    
 private:
-    // the environment contains the agent, sensors and grid and keeps track of the environment.
     Environment environment;
-    // the problem represents the formulation of the problem and contains informatin about:
-    // - step-costs for each agent action
-    // - goal-testing for each state that the agent is in.
     Problem problem;
-    // The payoff represents the value amassed after performing the actions and arriving at a goal state.
     float penalty=0;
     int completionSteps;
-    
-public:
-    // A simulation must be initialized with the grid dimesions, agent initial location and available sensors
-    Simulation(vector<vector<int>> map, vector<char> sensors, char strategy);
-    // This function runs the simulation for timeSteps steps. The simulation can be visualized using the flag visual.
-    void run(bool visual);
-    void reset();
-    float getPenalty();
-    int getCompletionSteps();
 };
 
 #endif /* simulation_hpp */

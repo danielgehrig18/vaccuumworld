@@ -17,12 +17,30 @@ using namespace std;
 
 class LocationSensor: public Sensor
 {
+public:
+    /**
+        Constructor of location sensor. Default name of sensor is 'l'.
+     
+        @param: -
+    */
+    LocationSensor();
+    
+    /**
+        Set the value of sensor. Only possible if sensor status is true.
+     
+        @param: location: coordinates of the agent.
+    */
+    void setValue(array<int, 2> location);
+    
+    /**
+        Return value of sensor.
+     
+        @param: -
+    */
+    array<int, 2> getValue();
+    
 private:
     array<int, 2> value;
-public:
-    void setValue(array<int, 2> location);
-    array<int, 2> getValue();
-    LocationSensor();
 };
 
 #endif /* location_sensor_hpp */

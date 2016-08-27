@@ -8,6 +8,10 @@
 
 #include "proximity_sensor.hpp"
 
+ProximitySensor::ProximitySensor()
+{
+    Sensor::setName('p');
+}
 
 void ProximitySensor::setValue(array<bool, 4> walls)
 {
@@ -18,9 +22,3 @@ array<bool, 4> ProximitySensor::getValue()
 {
     return value;
 }
-
-ProximitySensor::ProximitySensor()
-{
-    Sensor::setName('p');
-}
-

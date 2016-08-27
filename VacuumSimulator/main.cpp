@@ -35,7 +35,7 @@ int main(int argc, const char * argv[]) {
     // r: random
     // g: greedy (uses dirt sensor)
     // h: smart greedy (uses proximity and dirt sensor)
-    char strategy = 'r';
+    char strategy = 's';
     
     float p = 0;
     float st = 0;

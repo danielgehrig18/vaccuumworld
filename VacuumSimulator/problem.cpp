@@ -11,10 +11,16 @@
 int Problem::calculatePenalty(Environment environment)
 {
     int penalty=0;
-    
     vector<vector<int>> map = environment.getMap();
     
-    for (vector<int> a:map) for (int i:a) if (i==1) penalty += dirtSpotCost;
+    // count dirty spots
+    for (vector<int> a : map)
+    {
+        for (int spot : a)
+        {
+            if (spot == 1) penalty += dirtSpotCost;
+        }
+    }
     
     return penalty;
 }
@@ -23,7 +29,14 @@ bool Problem::goalTest(Environment environment)
 {
     vector<vector<int>> map = environment.getMap();
     
-    for (vector<int> a:map) for (int i:a) if (i==1) return false;
+    // return false if any spot is dirty
+    for (vector<int> a : map)
+    {
+        for (int i : a)
+        {
+            if (i == 1) return false;
+        }
+    }
     
     return true;
 }

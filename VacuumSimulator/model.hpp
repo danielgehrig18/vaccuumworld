@@ -18,10 +18,56 @@ using namespace std;
 class Model
 {
 public:
+    /**
+        Return whether there is dirt in location.
+     
+        @param: map: dirt map of the environment.
+                location: coordinates of location where dirt is queried.
+    */
     int getDirt(vector<vector<int>> map, array<int, 2> location);
+    
+    /**
+        Calculate new location of agent based on location and action.
+     
+        @param: action: action that was executed by the agent.
+                location: initial coordinates of the agent
+                map: dirt map of the environment.
+    */
     array<int,2> getNewLocation(char action, array<int, 2> location, vector<vector<int>> map);
+    
+    /**
+        Calculate the directions of the walls based on the agent location.
+     
+        @param: map: dirt map of the environment.
+                location: coordinates of the agent.
+    */
     array<bool,4> getProximity(vector<vector<int>> map, array<int, 2> location);
+    
+    /**
+        Calculate the direction of the closest dirt patch based on the agent
+        location and map.
+     
+        @param: map: dirt map of the environment.
+                location: coordinates of the agent.
+    */
     array<bool,4> getDirections(vector<vector<int>> map, array<int, 2> location);
+    
+    /**
+        Returns a list of coordinates corresponding to the closest dirt patches
+        with respect to the taxi-cab distance.
+     
+        @param: map: dirt map of the environment.
+                location: coordinates of the agent.
+    */
+    static vector<array<int, 2>> getClosestDirt(vector<vector<int>> map, array<int, 2> location);
+    
+    /**
+        Calculates the new dirt map based on the agent action and location.
+     
+        @param: action: action executed
+                location: coordinates at which the action was executed
+                map: dirt map of the environment.
+    */
     vector<vector<int>> getNewMap(char action, array<int,2> location, vector<vector<int>> map);
 
 };

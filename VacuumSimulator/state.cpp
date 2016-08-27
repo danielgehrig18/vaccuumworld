@@ -8,20 +8,32 @@
 
 #include "state.hpp"
 
+State::State(array<int, 2> loc, char action, int pathC, int heur)
+{
+    location = loc;
+    heuristic = heur;
+    pathCost = pathC;
+};
+
 State::~State()
 {
-    for (State* node: children) node->~State();
+    for (State* node : children) node -> ~State();
     delete this;
 }
 
-bool State::operator()(State s1, State s2)
+void State::setParent(State* p)
 {
-    return s1.getTotalCost()<s2.getTotalCost();
+    parent = p;
 }
 
-bool State::isRoot()
+void State::addChild(State* c)
 {
-    return !parent;
+    children.push_back(c);
+}
+
+State* State::getParent()
+{
+    return parent;
 };
 
 char State::getAction()
@@ -44,27 +56,12 @@ int State::getTotalCost()
     return pathCost + heuristic;
 }
 
-void State::setParent(State* p)
+bool State::isRoot()
 {
-    parent = p;
-}
-
-void State::addChild(State* c)
-{
-    children.push_back(c);
-}
-
-State* State::getParent()
-{
-    return parent;
+    return !parent;
 };
 
-bool State::operator==(State s)
+bool CompareStates::operator()(State* s1, State* s2)
 {
-    return location==s.getLocation();
-};
-
-State::State(array<int,2> loc, int p, int h)
-{
-    location = loc; heuristic = h; pathCost = p;
+    return s1 -> getTotalCost() < s2 -> getTotalCost();
 };

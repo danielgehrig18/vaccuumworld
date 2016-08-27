@@ -8,6 +8,11 @@
 
 #include "dirt_sensor.hpp"
 
+DirtSensor::DirtSensor()
+{
+    Sensor::setName('d');
+}
+
 void DirtSensor::setValue(bool dirt)
 {
     if (Sensor::getStatus()) value = dirt;
@@ -16,9 +21,4 @@ void DirtSensor::setValue(bool dirt)
 bool DirtSensor::getValue()
 {
     return value;
-}
-
-DirtSensor::DirtSensor()
-{
-    Sensor::setName('d');
 }

@@ -23,14 +23,13 @@ void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
 
 char Agent::actionSelection()
 {
-    bool dirtSensorValue = dirtSensorPtr->getValue();
-    array<bool, 4> proximitySensorValue = proximitySensorPtr->getValue();
-    array<bool, 4> directionSensorValue = directionSensorPtr->getValue();
-    array<int, 2> locationSensorValue = locationSensorPtr->getValue();
-    
     if (!strategy.actionPlanned())
-        strategy.planAction(dirtSensorValue, proximitySensorValue,
-                            directionSensorValue, locationSensorValue, state);
+    {
+        strategy.planAction(dirtSensorPtr->getValue(),
+                            proximitySensorPtr->getValue(),
+                            directionSensorPtr->getValue(),
+                            locationSensorPtr->getValue(), state);
+    }
     
     return strategy.executeAction();
 }

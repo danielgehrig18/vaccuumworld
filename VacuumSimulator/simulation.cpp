@@ -34,7 +34,7 @@ void Simulation::run(bool visual)
         
         environment.step(visual);
         penalty += problem.calculatePenalty(environment);
-        counter++;
+        counter ++;
     }
     if (visual) cout << "*** Completion in " << counter << " steps. ***" << endl;
     completionSteps = counter;

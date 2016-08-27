@@ -20,25 +20,39 @@
 using namespace std;
 
 class Agent
-// The agent is an object that can perform actions by consulting its strategy and update its belief state based on sensor input.
 {
+public:
+    /**
+        Initialises the agent by linking it to the sensors and setting its state
+        (dirt map for state search) and sets the strategy.
+     
+        @param: ptr1: pointer to the dirt sensor.
+                ptr2: pointer to the proximity sensor.
+                ptr1: pointer to the direction sensor.
+                ptr1: pointer to the location sensor.
+                state: map of the dirt in the environment.
+                strategy: strategy to be followed during action selection.
+    */
+    void init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
+              LocationSensor* ptr4, vector<vector<int>> state, char strategy);
+    
+    /**
+        Select an action based on the strategy and sensor inputs of the linked 
+        sensors.
+     
+        @param: -
+    */
+    char actionSelection();
+    
 private:
-    // sensor that is used to update the belief-state of the agent.
     DirtSensor* dirtSensorPtr;
     ProximitySensor* proximitySensorPtr;
     DirectionSensor* directionSensorPtr;
     LocationSensor* locationSensorPtr;
     
-    // state
     vector<vector<int>> state;
     
-    // strategy
     Strategy strategy;
-    
-public:
-    void init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
-              LocationSensor* ptr4, vector<vector<int>> state, char strategy);
-    char actionSelection();
 };
 
 #endif /* agent_hpp */

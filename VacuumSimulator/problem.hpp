@@ -9,17 +9,28 @@
 #ifndef problem_hpp
 #define problem_hpp
 
-#include <stdio.h>
-
 #include "environment.hpp"
 
 class Problem
 {
+public:
+    /**
+        Calculates and returns penalty for one step. One point is penalized for 
+        every dirty square.
+     
+        @param: environment: Environment object with true dirt distribution.
+    */
+    int calculatePenalty(Environment environment);
+    
+    /**
+        Test if the goal has been achieved. This is when all spots are clean.
+     
+        @param: environment: Environment object with true dirt distribution.
+    */
+    bool goalTest(Environment environment);
+    
 private:
     int dirtSpotCost = 1;
-public:
-    int calculatePenalty(Environment environment);
-    bool goalTest(Environment environment);
 };
 
 #endif /* problem_hpp */

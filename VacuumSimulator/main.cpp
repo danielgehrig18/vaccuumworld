@@ -14,10 +14,8 @@
 
 using namespace std;
 
-int main(int argc, const char * argv[]) {
-    
-    cout << "Welcome to the vacuum world. Please Initialize the map.\n";
-    
+int main(int argc, const char * argv[])
+{
     // Ask for the map of the vacuum world. It must be a rectangular array.
     vector<vector<int>> map ={{0,  0,  0, -1,  0,  0,  0},
                               {0,  0,  0,  0,  0,  0,  0},
@@ -45,17 +43,17 @@ int main(int argc, const char * argv[]) {
     
     Simulation s = Simulation(map, sensors, strategy, visualize);
     
-    for (int i=0; i < it; i++)
+    for (int i = 0; i < it; i++)
     {
-        cout << "Iteration " << i+1 << endl;
+        cout << "Iteration " << i + 1 << endl;
         s.run();
         p += s.getPenalty();
         st += s.getCompletionSteps();
         s.reset();
     }
     
-    cout << "The average penalty for the agent is " << p/it << endl;
-    cout << "with completion in " << st/it<< endl;
+    cout << "The average penalty for the agent is " << p / it << endl;
+    cout << "with completion in " << st / it<< endl;
     
     return 0;
 }

@@ -18,12 +18,12 @@ Simulation::Simulation(vector<vector<int>> map, vector<char> sensors, char strat
 float Simulation::getPenalty()
 {
     return penalty;
-};
+}
 
 int Simulation::getCompletionSteps()
 {
     return completionSteps;
-};
+}
 
 void Simulation::run(bool visual)
 {

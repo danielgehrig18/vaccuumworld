@@ -21,6 +21,7 @@
 		C258564A1D6F909600D8762E /* location_sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C25856491D6F909600D8762E /* location_sensor.cpp */; };
 		C268F0701D6906F2008A63DB /* strategy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C268F06E1D6906F2008A63DB /* strategy.cpp */; };
 		C268F0791D6A1AB2008A63DB /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C268F0771D6A1AB2008A63DB /* model.cpp */; };
+		C2FEE65D1D71FFF1007B0FF8 /* visualizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2FEE65B1D71FFF1007B0FF8 /* visualizer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +66,8 @@
 		C268F0751D6A06CA008A63DB /* proximity_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proximity_sensor.hpp; sourceTree = "<group>"; };
 		C268F0771D6A1AB2008A63DB /* model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
 		C268F0781D6A1AB2008A63DB /* model.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = model.hpp; sourceTree = "<group>"; };
+		C2FEE65B1D71FFF1007B0FF8 /* visualizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = visualizer.cpp; sourceTree = "<group>"; };
+		C2FEE65C1D71FFF1007B0FF8 /* visualizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = visualizer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,7 @@
 				C25856361D6BA20700D8762E /* direction_sensor.hpp */,
 				C268F0781D6A1AB2008A63DB /* model.hpp */,
 				C25856391D6BA21D00D8762E /* location_sensor.hpp */,
+				C2FEE65C1D71FFF1007B0FF8 /* visualizer.hpp */,
 				C258563F1D6CF40600D8762E /* state.hpp */,
 				C258563C1D6CF26400D8762E /* path_searcher.hpp */,
 				C268F06F1D6906F2008A63DB /* strategy.hpp */,
@@ -133,6 +137,7 @@
 				C258563B1D6CF26400D8762E /* path_searcher.cpp */,
 				C25856471D6F8FD700D8762E /* direction_sensor.cpp */,
 				C25856411D6E1AF400D8762E /* sensor.cpp */,
+				C2FEE65B1D71FFF1007B0FF8 /* visualizer.cpp */,
 				C258563E1D6CF40600D8762E /* state.cpp */,
 				C25856451D6F8ED400D8762E /* proximity_sensor.cpp */,
 				C25856491D6F909600D8762E /* location_sensor.cpp */,
@@ -214,6 +219,7 @@
 				C258564A1D6F909600D8762E /* location_sensor.cpp in Sources */,
 				C2109C4D1D57D09F001610CC /* agent.cpp in Sources */,
 				C268F0791D6A1AB2008A63DB /* model.cpp in Sources */,
+				C2FEE65D1D71FFF1007B0FF8 /* visualizer.cpp in Sources */,
 				C258563D1D6CF26400D8762E /* path_searcher.cpp in Sources */,
 				C25856441D6F86C100D8762E /* dirt_sensor.cpp in Sources */,
 				C268F0701D6906F2008A63DB /* strategy.cpp in Sources */,

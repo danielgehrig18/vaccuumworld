@@ -15,7 +15,10 @@ DirectionSensor::DirectionSensor()
 
 void DirectionSensor::setValue(array<bool, 4> directions)
 {
-    if (Sensor::getStatus()) value = directions;
+    if (Sensor::getStatus())
+    {
+        value = directions;
+    }
 };
 
 array<bool, 4> DirectionSensor::getValue()

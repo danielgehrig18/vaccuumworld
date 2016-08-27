@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "environment.hpp"
+#include "visualizer.hpp"
 
 using namespace std;
 
@@ -56,36 +57,22 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
 
 void Environment::step(bool visual)
 {
-    // updates sensors based on true dirt and location
+    // updates and visualizes sensors based on true dirt and location
     updateSensors(currentDirt, walls, directions, agentLocation);
-    
     if (visual)
     {
-        array<char, 4> directions = {'u', 'r', 'd', 'l'};
-        array<bool, 4> prox = proximitySensor.getValue();
-        array<bool, 4> richtungen = directionSensor.getValue();
-        
-        cout << "Sensors: " << "dirt: " << dirtSensor.getValue();
-        
-        cout << " Proximity: ";
-        for (int i = 0; i < directions.size(); i++)
-        {
-            if (prox[i]) cout << directions[i];
-        }
-        
-        cout << " Directions: ";
-        for (int i = 0; i < directions.size(); i++)
-        {
-            if (richtungen[i]) cout << directions[i];
-        }
+        Visualizer::visualizeSensors(dirtSensor.getValue(),
+                                     proximitySensor.getValue(),
+                                     directionSensor.getValue(),
+                                     locationSensor.getValue());
     }
-    
+
     // agent makes decision depending on sensor reading
     char action = agent.actionSelection();
     
     if (visual)
     {
-        cout << endl << "--> action: " << action << endl;
+        Visualizer::visualizeAction(action);
     }
     
     // environment updated based on action and true location of agent.
@@ -94,24 +81,7 @@ void Environment::step(bool visual)
     // display map
     if (visual)
     {
-        cout << "MAP AFTER ACTION: " << endl;
-        for (int i = 0; i < map.size(); i++)
-        {
-            for (int j = 0; j < map[0].size(); j++)
-            {
-                if (agentLocation[0] == i && agentLocation[1] == j)
-                {
-                    if (map[i][j] == 0)
-                    {
-                        cout << 'Q';
-                    }
-                    else cout << 'J';
-                }
-                else if (map[i][j] == -1) cout << 'x';
-                else cout << map[i][j];
-            }
-            cout << endl;
-        }
+        Visualizer::visualizeMap(map, agentLocation);
     }
 }
 

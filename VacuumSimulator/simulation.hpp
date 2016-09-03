@@ -26,12 +26,12 @@ public:
                      or -1 corresponding to empty spots, dirty spots and walls 
                      resp.
                 sensors: list of sensors to be used by the agent.
-                strategy: corresponds to the strategy to be used by the agent.
+                actuators: a list of actuators to be used.
                 visual: flag which visualises the sensor input and decisions of
                         the agent.
     */
-    Simulation(vector<vector<int>> map, vector<char> sensors, char strategy,
-               bool visualize);
+    Simulation(vector<vector<int>> map, vector<char> sensors,
+               vector<char> actuators, bool visualize);
     
     /**
      Return penalty. 1 pt is penalized for every dirty square at every time

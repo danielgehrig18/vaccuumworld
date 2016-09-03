@@ -12,10 +12,10 @@
 #include "visualizer.hpp"
 
 Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
-                       char strategy, bool visual)
+                       bool visual, vector<char> actuators)
 {
     srand (time(NULL));
-    environment.init(map, sensors, strategy);
+    environment.init(map, sensors, actuators);
     visualize = visual;
 }
 

@@ -9,16 +9,21 @@
 #include "agent.hpp"
 
 void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
-                 LocationSensor* ptr4, vector<vector<int>> map, char strtgy)
+                 LocationSensor* ptr4, Actuator* ptr5, Actuator* ptr6,
+                 vector<vector<int>> map)
 {
     dirtSensorPtr = ptr1;
     proximitySensorPtr = ptr2;
     directionSensorPtr = ptr3;
     locationSensorPtr = ptr4;
     
+    motorPtr = ptr5;
+    suckerPtr = ptr6;
+    
     state = map;
     
-    strategy.setType(strtgy);
+    strategy.setType(dirtSensorPtr, proximitySensorPtr, directionSensorPtr,
+                     locationSensorPtr, motorPtr, suckerPtr);
 };
 
 char Agent::actionSelection()

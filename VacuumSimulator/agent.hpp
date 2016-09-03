@@ -15,6 +15,7 @@
 #include "proximity_sensor.hpp"
 #include "direction_sensor.hpp"
 #include "location_sensor.hpp"
+#include "actuator.hpp"
 #include "strategy.hpp"
 
 using namespace std;
@@ -28,13 +29,14 @@ public:
      
         @param: ptr1: pointer to the dirt sensor.
                 ptr2: pointer to the proximity sensor.
-                ptr1: pointer to the direction sensor.
-                ptr1: pointer to the location sensor.
+                ptr3: pointer to the direction sensor.
+                ptr4: pointer to the location sensor.
+                actuators: a list of actuators to be used.
                 state: map of the dirt in the environment.
-                strategy: strategy to be followed during action selection.
     */
-    void init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
-              LocationSensor* ptr4, vector<vector<int>> state, char strategy);
+    void init(DirtSensor* DSPtr, ProximitySensor* PSPtr, DirectionSensor* DiSPtr,
+              LocationSensor* LSPtr, Actuator* motorPtr, Actuator* suckerPtr,
+              vector<vector<int>> state);
     
     /**
         Select an action based on the strategy and sensor inputs of the linked 
@@ -49,6 +51,9 @@ private:
     ProximitySensor* proximitySensorPtr;
     DirectionSensor* directionSensorPtr;
     LocationSensor* locationSensorPtr;
+    
+    Actuator* motorPtr;
+    Actuator* suckerPtr;
     
     vector<vector<int>> state;
     

@@ -29,19 +29,13 @@ int main(int argc, const char * argv[])
     // p : proximity sensor
     vector<char> sensors = {'d', 'p', 'l', 'r'};
     
-    // Define strategy
-    // r: random
-    // g: greedy (uses dirt sensor)
-    // h: smart greedy (uses proximity and dirt sensor)
-    char strategy = 's';
-    
     // visualize
     bool visualize = true;
     
     float p = 0;
     float st = 0;
     
-    Simulation s = Simulation(map, sensors, strategy, visualize);
+    Simulation s = Simulation(map, sensors, visualize);
     
     for (int i = 0; i < it; i++)
     {

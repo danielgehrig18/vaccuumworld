@@ -14,6 +14,11 @@
 #include <queue>
 
 #include "path_searcher.hpp"
+#include "dirt_sensor.hpp"
+#include "proximity_sensor.hpp"
+#include "direction_sensor.hpp"
+#include "location_sensor.hpp"
+#include "actuator.hpp"
 
 using namespace std;
 
@@ -24,9 +29,17 @@ public:
         search, 'g' greedy search, 'h' more greedy search, 'i' super greedy
         search, 's' state search.
      
-        @param: strategy: letter corresponding to the preferred strategy.
+        @param: dirtSensorPtr: pointer to dirtSensor.
+                proximitySensorPtr: pointer to proximitySensor.
+                directionSensorPtr: pointer to directionSensor.
+                locationSensorPtr: pointer to locationSensor.
+                motorPtr: pointer to motor.
+                suckerPtr: pointer to sucker.
     */
-    void setType(char strategy);
+    void setType(DirtSensor* dirtSensorPtr, ProximitySensor* proximitySensorPtr,
+                 DirectionSensor* directionSensorPtr,
+                 LocationSensor* locationSensorPtr, Actuator* motorPtr,
+                 Actuator* suckerPtr);
     
     /**
         Test whether an action is planned.

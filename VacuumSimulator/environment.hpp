@@ -15,6 +15,7 @@
 #include "agent.hpp"
 #include "dirt_sensor.hpp"
 #include "proximity_sensor.hpp"
+#include "actuator.hpp"
 #include "model.hpp"
 
 using namespace std;
@@ -41,8 +42,11 @@ public:
         that they can be written. Randomizes the dirt pattern and agent location.
      
         @param: map: same form as in simulation (see: "simulation.hpp")
+                sensors: a list of characters corresponding to used sensors.
+                actuators: the used actuators, a list of characters.
     */
-    void init(vector<vector<int>> map, vector<char> sensors, char strategy);
+    void init(vector<vector<int>> map, vector<char> sensors,
+              vector<char> actuators);
     
     /**
         Runs one step of the simulation. This consists of a sensor update,
@@ -90,6 +94,9 @@ private:
     ProximitySensor proximitySensor;
     LocationSensor locationSensor;
     DirectionSensor directionSensor;
+    
+    Actuator motor;
+    Actuator sucker;
     
     Model model;
     Agent agent;

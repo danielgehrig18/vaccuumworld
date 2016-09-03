@@ -11,9 +11,41 @@
 #include "strategy.hpp"
 #include "model.hpp"
 
-void Strategy::setType(char strategy)
+void Strategy::setType(DirtSensor* dirtSensorPtr,
+                       ProximitySensor* proximitySensorPtr,
+                       DirectionSensor* directionSensorPtr,
+                       LocationSensor* locationSensorPtr,
+                       Actuator* motorPtr, Actuator* suckerPtr)
 {
-    type = strategy;
+    if (dirtSensorPtr -> getStatus())
+    {
+        if (proximitySensorPtr -> getStatus())
+        {
+            if (directionSensorPtr -> getStatus())
+            {
+                if (locationSensorPtr -> getStatus())
+                {
+                    type = 's';
+                }
+                else
+                {
+                    type = 'i';
+                }
+            }
+            else
+            {
+                type = 'h';
+            }
+        }
+        else
+        {
+            type = 'g';
+        }
+    }
+    else
+    {
+        type = 'r';
+    }
 }
 
 bool Strategy::actionPlanned()

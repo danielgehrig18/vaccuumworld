@@ -23,7 +23,8 @@ array<int, 2> Environment::getAgentLocation()
     return agentLocation;
 };
 
-void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strategy)
+void Environment::init(vector<vector<int>> dim, vector<char> sensors,
+                       vector<char> actuators)
 {
     map = dim;
     
@@ -47,9 +48,23 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors, char strat
         }
     };
     
+    // instantiate actuators
+    for (char i : actuators)
+    {
+        switch (i)
+        {
+            case 'm':
+                motor.init();
+                break;
+            case 's':
+                sucker.init();
+                break;
+        }
+    }
+    
     // instantiate agent
     agent.init(&dirtSensor, &proximitySensor, &directionSensor,
-               &locationSensor, map, strategy);
+               &locationSensor, &motor, &sucker, map);
     
     // randomize agent position and map and update environment states.
     reset();

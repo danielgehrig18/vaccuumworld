@@ -61,7 +61,6 @@
 		C25856451D6F8ED400D8762E /* proximity_sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proximity_sensor.cpp; sourceTree = "<group>"; };
 		C25856471D6F8FD700D8762E /* direction_sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = direction_sensor.cpp; sourceTree = "<group>"; };
 		C25856491D6F909600D8762E /* location_sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = location_sensor.cpp; sourceTree = "<group>"; };
-		C258564C1D7150A500D8762E /* Google C++ Style Guide.htm */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "Google C++ Style Guide.htm"; sourceTree = SOURCE_ROOT; };
 		C268F06E1D6906F2008A63DB /* strategy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strategy.cpp; sourceTree = "<group>"; };
 		C268F06F1D6906F2008A63DB /* strategy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = strategy.hpp; sourceTree = "<group>"; };
 		C268F0751D6A06CA008A63DB /* proximity_sensor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proximity_sensor.hpp; sourceTree = "<group>"; };
@@ -103,7 +102,6 @@
 		C2109C391D537700001610CC /* VacuumSimulator */ = {
 			isa = PBXGroup;
 			children = (
-				C258564B1D71501000D8762E /* style */,
 				C2109C581D59330F001610CC /* headers */,
 				C2109C591D593322001610CC /* main */,
 			);
@@ -153,14 +151,6 @@
 				C2109C4B1D57D09F001610CC /* agent.cpp */,
 			);
 			name = main;
-			sourceTree = "<group>";
-		};
-		C258564B1D71501000D8762E /* style */ = {
-			isa = PBXGroup;
-			children = (
-				C258564C1D7150A500D8762E /* Google C++ Style Guide.htm */,
-			);
-			name = style;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

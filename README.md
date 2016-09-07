@@ -20,4 +20,4 @@ cd ./VacuumSimulator/build/
 
 make
 
-To then run it, just use "./vacuum_world".
+To then run it, just use "./vacuum_world" in the "./VacuumSimulator/build/" directory.

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "location_sensor.hpp"
+#include "vaccuumworld/location_sensor.hpp"
 
 LocationSensor::LocationSensor()
 {

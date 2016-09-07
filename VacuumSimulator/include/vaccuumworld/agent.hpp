@@ -11,12 +11,12 @@
 
 #include <vector>
 
-#include "dirt_sensor.hpp"
-#include "proximity_sensor.hpp"
-#include "direction_sensor.hpp"
-#include "location_sensor.hpp"
-#include "actuator.hpp"
-#include "strategy.hpp"
+#include "vaccuumworld/dirt_sensor.hpp"
+#include "vaccuumworld/proximity_sensor.hpp"
+#include "vaccuumworld/direction_sensor.hpp"
+#include "vaccuumworld/location_sensor.hpp"
+#include "vaccuumworld/actuator.hpp"
+#include "vaccuumworld/strategy.hpp"
 
 using namespace std;
 

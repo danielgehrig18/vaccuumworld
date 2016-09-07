@@ -6,7 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "state.hpp"
+#include "vaccuumworld/state.hpp"
 
 State::State(array<int, 2> loc, char action, int pathC, int heur)
 {

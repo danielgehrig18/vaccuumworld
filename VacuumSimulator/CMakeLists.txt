@@ -5,6 +5,8 @@ add_definitions(-std=c++11)
 # To enable assertions when compiled in release mode.
 add_definitions(-DROS_ASSERT_ENABLED)
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 include_directories(include)
 

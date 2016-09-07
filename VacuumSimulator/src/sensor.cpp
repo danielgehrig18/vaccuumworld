@@ -6,7 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "sensor.hpp"
+#include "vaccuumworld/sensor.hpp"
 
 void Sensor::setName(char sensorName)
 {

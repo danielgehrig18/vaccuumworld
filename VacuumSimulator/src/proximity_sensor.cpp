@@ -6,7 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "proximity_sensor.hpp"
+#include "vaccuumworld/proximity_sensor.hpp"
 
 ProximitySensor::ProximitySensor()
 {

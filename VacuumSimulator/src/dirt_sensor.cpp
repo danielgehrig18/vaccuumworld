@@ -6,7 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "dirt_sensor.hpp"
+#include "vaccuumworld/dirt_sensor.hpp"
 
 DirtSensor::DirtSensor()
 {

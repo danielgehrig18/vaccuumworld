@@ -5,11 +5,7 @@
 //  Created by Daniel Gehrig on 20/08/16.
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
-
-#include <stdlib.h>
-
-#include "strategy.hpp"
-#include "model.hpp"
+#include "vaccuumworld/strategy.hpp"
 
 void Strategy::setType(DirtSensor* dirtSensorPtr,
                        ProximitySensor* proximitySensorPtr,

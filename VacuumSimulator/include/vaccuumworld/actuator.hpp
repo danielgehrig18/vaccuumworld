@@ -16,6 +16,7 @@ using namespace std;
 class Actuator
 {
 public:
+    void init();
     
 private:
     vector<char> possibleActions;

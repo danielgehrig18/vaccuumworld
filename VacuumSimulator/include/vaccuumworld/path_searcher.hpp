@@ -9,10 +9,12 @@
 #ifndef path_searcher_hpp
 #define path_searcher_hpp
 
+#include <stdlib.h>
 #include <queue>
 #include <vector>
+#include <algorithm>
 
-#include "state.hpp"
+#include "vaccuumworld/state.hpp"
 
 using namespace std;
 

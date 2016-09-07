@@ -5,10 +5,7 @@
 //  Created by Daniel Gehrig on 27/08/16.
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
-
-#include <iostream>
-
-#include "visualizer.hpp"
+#include "vaccuumworld/visualizer.hpp"
 
 using namespace std;
 

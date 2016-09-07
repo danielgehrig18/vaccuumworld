@@ -5,14 +5,10 @@
 //  Created by Daniel Gehrig on 07/08/16.
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
-
-#include <iostream>
-
-#include "simulation.hpp"
-#include "visualizer.hpp"
+#include "vaccuumworld/simulation.hpp"
 
 Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
-                       bool visual, vector<char> actuators)
+                       vector<char> actuators, bool visual)
 {
     srand (time(NULL));
     environment.init(map, sensors, actuators);

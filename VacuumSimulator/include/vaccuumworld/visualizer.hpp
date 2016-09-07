@@ -9,6 +9,7 @@
 #ifndef visualizer_hpp
 #define visualizer_hpp
 
+#include <iostream>
 #include <array>
 #include <vector>
 

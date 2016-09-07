@@ -9,7 +9,7 @@
 #ifndef problem_hpp
 #define problem_hpp
 
-#include "environment.hpp"
+#include "vaccuumworld/environment.hpp"
 
 class Problem
 {

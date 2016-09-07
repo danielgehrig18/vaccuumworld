@@ -9,16 +9,18 @@
 #ifndef strategy_hpp
 #define strategy_hpp
 
+#include <stdlib.h>
 #include <array>
 #include <vector>
 #include <queue>
 
-#include "path_searcher.hpp"
-#include "dirt_sensor.hpp"
-#include "proximity_sensor.hpp"
-#include "direction_sensor.hpp"
-#include "location_sensor.hpp"
-#include "actuator.hpp"
+#include "vaccuumworld/path_searcher.hpp"
+#include "vaccuumworld/dirt_sensor.hpp"
+#include "vaccuumworld/proximity_sensor.hpp"
+#include "vaccuumworld/direction_sensor.hpp"
+#include "vaccuumworld/location_sensor.hpp"
+#include "vaccuumworld/actuator.hpp"
+#include "vaccuumworld/model.hpp"
 
 using namespace std;
 

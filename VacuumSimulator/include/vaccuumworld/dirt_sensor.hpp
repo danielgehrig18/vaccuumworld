@@ -9,7 +9,7 @@
 #ifndef dirt_sensor_hpp
 #define dirt_sensor_hpp
 
-#include "sensor.hpp"
+#include "vaccuumworld/sensor.hpp"
 
 class DirtSensor: public Sensor
 {

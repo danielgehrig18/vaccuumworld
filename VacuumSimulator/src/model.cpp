@@ -5,10 +5,7 @@
 //  Created by Daniel Gehrig on 21/08/16.
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
-#include <iostream>
-#include <stdlib.h>
-
-#include "model.hpp"
+#include "vaccuumworld/model.hpp"
 
 using namespace std;
 

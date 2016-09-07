@@ -10,7 +10,7 @@
 #include <vector>
 #include <array>
 
-#include "simulation.hpp"
+#include "vaccuumworld/simulation.hpp"
 
 using namespace std;
 
@@ -28,6 +28,9 @@ int main(int argc, const char * argv[])
     // d : dirt
     // p : proximity sensor
     vector<char> sensors = {'d', 'p', 'l', 'r'};
+
+    // Define which actuators will be used
+    vector<char> actuators = {};
     
     // visualize
     bool visualize = true;
@@ -35,7 +38,7 @@ int main(int argc, const char * argv[])
     float p = 0;
     float st = 0;
     
-    Simulation s = Simulation(map, sensors, visualize);
+    Simulation s = Simulation(map, sensors, actuators, visualize);
     
     for (int i = 0; i < it; i++)
     {

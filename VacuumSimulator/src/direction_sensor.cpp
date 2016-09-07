@@ -6,7 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "direction_sensor.hpp"
+#include "vaccuumworld/direction_sensor.hpp"
 
 DirectionSensor::DirectionSensor()
 {

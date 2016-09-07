@@ -6,7 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "agent.hpp"
+#include "vaccuumworld/agent.hpp"
 
 void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
                  LocationSensor* ptr4, Actuator* ptr5, Actuator* ptr6,

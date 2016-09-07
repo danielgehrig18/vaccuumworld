@@ -9,14 +9,16 @@
 #ifndef environment_hpp
 #define environment_hpp
 
+#include <iostream>
 #include <vector>
 #include <array>
 
-#include "agent.hpp"
-#include "dirt_sensor.hpp"
-#include "proximity_sensor.hpp"
-#include "actuator.hpp"
-#include "model.hpp"
+#include "vaccuumworld/agent.hpp"
+#include "vaccuumworld/dirt_sensor.hpp"
+#include "vaccuumworld/proximity_sensor.hpp"
+#include "vaccuumworld/actuator.hpp"
+#include "vaccuumworld/model.hpp"
+#include "vaccuumworld/visualizer.hpp"
 
 using namespace std;
 

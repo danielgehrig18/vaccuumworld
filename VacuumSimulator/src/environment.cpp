@@ -5,11 +5,7 @@
 //  Created by Daniel Gehrig on 07/08/16.
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
-
-#include <iostream>
-
-#include "environment.hpp"
-#include "visualizer.hpp"
+#include "vaccuumworld/environment.hpp"
 
 using namespace std;
 

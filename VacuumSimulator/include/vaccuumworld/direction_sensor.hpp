@@ -11,7 +11,7 @@
 
 #include <array>
 
-#include "sensor.hpp"
+#include "vaccuumworld/sensor.hpp"
 
 using namespace std;
 

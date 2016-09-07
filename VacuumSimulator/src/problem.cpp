@@ -6,7 +6,7 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "problem.hpp"
+#include "vaccuumworld/problem.hpp"
 
 int Problem::calculatePenalty(Environment environment)
 {

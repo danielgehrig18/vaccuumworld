@@ -5,10 +5,10 @@
 //  Created by Daniel Gehrig on 23/08/16.
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
-# include <stdlib.h>
 
-#include "path_searcher.hpp"
-#include "state.hpp"
+#include "vaccuumworld/path_searcher.hpp"
+
+using namespace std;
 
 void PathSearcher::addChild(State* node, char action, array<int, 2> location, int h)
 {

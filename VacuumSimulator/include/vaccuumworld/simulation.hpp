@@ -9,11 +9,14 @@
 #ifndef simulation_hpp
 #define simulation_hpp
 
+#include <iostream>
 #include <array>
 
-#include "environment.hpp"
-#include "problem.hpp"
+#include "vaccuumworld/environment.hpp"
+#include "vaccuumworld/problem.hpp"
+#include "vaccuumworld/visualizer.hpp"
 
+using namespace std;
 class Simulation
 {
 public:
@@ -31,7 +34,7 @@ public:
                         the agent.
     */
     Simulation(vector<vector<int>> map, vector<char> sensors,
-               vector<char> actuators, bool visualize);
+               vector<char> actuators, bool visual);
     
     /**
      Return penalty. 1 pt is penalized for every dirty square at every time

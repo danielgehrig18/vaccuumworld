@@ -6,4 +6,9 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 
-#include "actuator.hpp"
+#include "vaccuumworld/actuator.hpp"
+
+void Actuator::init()
+{
+    // Maybe do some initalisation?
+}

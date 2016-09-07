@@ -11,14 +11,14 @@
 
 #include <vector>
 
-using namespace std;
-
 class Actuator
 {
 public:
     void init();
+    char execute(char action);
     
 private:
+    bool status;
     vector<char> possibleActions;
     
 };

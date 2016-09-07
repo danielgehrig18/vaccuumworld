@@ -10,5 +10,19 @@
 
 void Actuator::init()
 {
-    // Maybe do some initalisation?
+    status = true;
 }
+
+char Actuator::execute(char action)
+{
+    if (status && find(possibleActions.begin(), possibleActions.end(), action)
+        != possibleActions.end())
+    {
+        return action;
+    }
+    else
+    {
+        return 'n';
+    }
+}
+

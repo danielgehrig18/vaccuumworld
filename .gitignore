@@ -32,6 +32,9 @@
 *.project
 *.settings
 
+#XCode
+build/
+
 *~
 
 .idea

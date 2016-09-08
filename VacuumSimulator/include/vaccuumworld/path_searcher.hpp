@@ -15,6 +15,7 @@
 #include <algorithm>
 
 #include "vaccuumworld/state.hpp"
+#include "vaccuumworld/visualizer.hpp"
 
 using namespace std;
 

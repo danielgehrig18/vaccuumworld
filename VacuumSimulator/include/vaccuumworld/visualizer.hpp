@@ -13,11 +13,27 @@
 #include <array>
 #include <vector>
 
+#include "state.hpp"
+
 using namespace std;
 
 class Visualizer
 {
 public:
+    /**
+        Set flag to visualize.
+     
+        @param: visual: flag.
+    */
+    static void setVisual(bool visual);
+    
+    /**
+        Check if visual flag is on.
+     
+        @param: -
+    */
+    static bool visual();
+    
     /**
         Visualize the sensor data acquired.
 
@@ -44,6 +60,17 @@ public:
                 location: coordinates of agent.
     */
     static void visualizeMap(vector<vector<int>> map, array<int, 2> location);
+    
+    /**
+        Visualize the search tree of the agent.
+     
+        @param: root: root of the tree to be visualized.
+                indent: the indent to the tree visualizerd
+    */
+    static void visualizeTree(State root, int indent);
+
+private:
+    static bool visualize;
 };
 
 #endif /* visualizer_hpp */

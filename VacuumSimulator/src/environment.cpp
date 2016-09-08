@@ -65,11 +65,11 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors,
                &locationSensor, &motor, &sucker, map);
 }
 
-void Environment::step(bool visual)
+void Environment::step()
 {
     // updates and visualizes sensors based on true dirt and location
     updateSensors(currentDirt, walls, directions, agentLocation);
-    if (visual)
+    if (Visualizer::visual())
     {
         Visualizer::visualizeSensors(dirtSensor.getValue(),
                                      proximitySensor.getValue(),
@@ -80,7 +80,7 @@ void Environment::step(bool visual)
     // agent makes decision depending on sensor reading
     agent.executeAction();
     
-    if (visual)
+    if (Visualizer::visual())
     {
         Visualizer::visualizeAction(lastAction);
     }
@@ -89,7 +89,7 @@ void Environment::step(bool visual)
     updateEnvironment(lastAction, agentLocation);
     
     // display map
-    if (visual)
+    if (Visualizer::visual())
     {
         Visualizer::visualizeMap(map, agentLocation);
     }

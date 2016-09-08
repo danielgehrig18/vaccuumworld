@@ -56,9 +56,9 @@ public:
         action selection by the agent and environment update after action
         execution.
      
-        @param: visual: flag to visualize the sensor readings and map.
+        @param: -
     */
-    void step(bool visual);
+    void step();
     
     /**
         Randomizes the dirt locations in the map and the initial agent location.

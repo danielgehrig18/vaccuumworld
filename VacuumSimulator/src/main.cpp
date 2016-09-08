@@ -11,6 +11,7 @@
 #include <array>
 
 #include "vaccuumworld/simulation.hpp"
+#include "vaccuumworld/visualizer.hpp"
 
 using namespace std;
 
@@ -35,10 +36,12 @@ int main(int argc, const char * argv[])
     // visualize
     bool visualize = true;
     
+    Visualizer::setVisual(visualize);
+    
     float p = 0;
     float st = 0;
     
-    Simulation s = Simulation(map, sensors, actuators, visualize);
+    Simulation s = Simulation(map, sensors, actuators);
     
     for (int i = 0; i < it; i++)
     {

@@ -26,7 +26,7 @@ public:
                 pathCost: minimum cost of the path to the node so far.
                 heuristic: estimated cost from the state to the goal.
     */
-    State(array<int,2> location, char action, int pathCost, int heuristic);
+    void init(array<int,2> location, char action, int pathCost, int heuristic);
         
     /**
         Sets the parent of the node.

@@ -12,7 +12,8 @@ using namespace std;
 
 void PathSearcher::addChild(State &node, char action, array<int, 2> location, int h)
 {
-    State child = State(location, action, node.getPathCost() + 1, h);
+    State child = State();
+    child.init(location, action, node.getPathCost() + 1, h);
     child.setParent(&node);
     node.addChild(&child);
     frontier.push(child);
@@ -41,8 +42,7 @@ void PathSearcher::init(array<int, 2> dirtPatch, array<int, 2> location,
     
     int h = abs(dirtPatch[0] - location[0]) + abs(dirtPatch[1] - location[1]);
     
-    State node = State(location, ' ', 0, h);
-    rootNode = node;
+    rootNode.init(location, ' ', 0, h);
     
     frontier.push(rootNode);
 }
@@ -51,6 +51,11 @@ bool PathSearcher::search()
 {
     while (!frontier.empty())
     {
+        if (Visualizer::visual())
+        {
+            Visualizer::visualizeTree(rootNode, 0);
+        }
+        
         State nextNode = frontier.top();
         frontier.pop();
         

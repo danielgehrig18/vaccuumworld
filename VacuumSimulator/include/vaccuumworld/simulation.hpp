@@ -30,11 +30,9 @@ public:
                      resp.
                 sensors: list of sensors to be used by the agent.
                 actuators: a list of actuators to be used.
-                visual: flag which visualises the sensor input and decisions of
-                        the agent.
     */
     Simulation(vector<vector<int>> map, vector<char> sensors,
-               vector<char> actuators, bool visual);
+               vector<char> actuators);
     
     /**
      Return penalty. 1 pt is penalized for every dirty square at every time
@@ -73,7 +71,6 @@ private:
     
     float penalty=0;
     int completionSteps;
-    bool visualize;
 };
 
 #endif /* simulation_hpp */

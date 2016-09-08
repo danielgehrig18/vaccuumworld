@@ -33,6 +33,11 @@ void Agent::executeAction()
 {
     if (!strategy.actionPlanned())
     {
+        if (Visualizer::visual())
+        {
+            cout << "planning action..." << endl;
+        }
+        
         strategy.planAction(dirtSensorPtr->getValue(),
                             proximitySensorPtr->getValue(),
                             directionSensorPtr->getValue(),

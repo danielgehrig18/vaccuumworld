@@ -57,7 +57,7 @@ private:
     Sucker* suckerPtr;
     
     vector<vector<int>> state;
-    
+
     Strategy strategy;
 };
 

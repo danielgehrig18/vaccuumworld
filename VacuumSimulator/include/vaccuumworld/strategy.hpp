@@ -52,7 +52,6 @@ public:
                            "direction_sensor.hpp")
                 location: location of agent (see: "location_sensor.hpp")
                 map: dirt map of the environment.
-     
     */
     void planAction(bool dirt, array<bool, 4> proximity, array<bool, 4> direction,
                     array<int, 2> location, vector<vector<int>> map);

@@ -6,13 +6,13 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 #include "vaccuumworld/simulation.hpp"
+#include "vaccuumworld/visualizer.hpp"
 
 Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
-                       vector<char> actuators, bool visual)
+                       vector<char> actuators)
 {
     srand (time(NULL));
     environment.init(map, sensors, actuators);
-    visualize = visual;
 }
 
 float Simulation::getPenalty()
@@ -29,23 +29,23 @@ void Simulation::run()
 {
     int counter = 0;
     
-    if (visualize)
+    if (Visualizer::visual())
     {
         Visualizer::visualizeMap(environment.getMap(),
                                 environment.getAgentLocation());
     }
     while (!problem.goalTest(environment))
     {
-        if (visualize)
+        if (Visualizer::visual())
         {
             cout << "--- step " << counter + 1 << " ---" << endl;
         }
         
-        environment.step(visualize);
+        environment.step();
         penalty += problem.calculatePenalty(environment);
         counter ++;
     }
-    if (visualize)
+    if (Visualizer::visual())
     {
         cout << "*** Completion in " << counter << " steps. ***" << endl;
     }

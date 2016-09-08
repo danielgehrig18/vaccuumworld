@@ -9,6 +9,16 @@
 
 using namespace std;
 
+void Visualizer::setVisual(bool vis)
+{
+    visualize = vis;
+}
+
+bool Visualizer::visual()
+{
+    return visualize;
+}
+
 void Visualizer::visualizeSensors(bool dirt, array<bool, 4> proximity,
                              array<bool, 4> directions, array<int, 2> location)
 {
@@ -59,6 +69,39 @@ void Visualizer::visualizeMap(vector<vector<int>> map, array<int, 2> loc)
                 cout << map[i][j];
             }
         }
+        cout << endl;
+    }
+}
+
+void Visualizer::visualizeTree(State root, int indent)
+{
+    // print blanks
+    string blanks(indent, ' ');
+    cout << blanks;
+    
+    // print coordinates of node
+    for (int i : root.getLocation())
+    {
+        if (i < 10)
+        {
+            cout << 0;
+        }
+        cout << i << ',';
+    }
+    cout << ' ';
+    
+    // print total estimated pathcost
+    int totalCost = root.getTotalCost();
+    if (totalCost < 10)
+    {
+        cout << 0;
+    }
+    cout << totalCost << ' ';
+    
+    // print children
+    for (State* child : root.getChildren())
+    {
+        visualizeTree(*child, indent + 9);
         cout << endl;
     }
 }

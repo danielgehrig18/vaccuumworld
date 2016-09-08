@@ -8,7 +8,7 @@
 
 #include "vaccuumworld/state.hpp"
 
-State::State(array<int, 2> loc, char action, int pathC, int heur)
+void State::init(array<int, 2> loc, char action, int pathC, int heur)
 {
     location = loc;
     heuristic = heur;

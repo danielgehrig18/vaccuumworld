@@ -50,7 +50,7 @@ add_library(strategy src/strategy.cpp)
 target_link_libraries(strategy model path_searcher)
 
 add_library(agent src/agent.cpp)
-target_link_libraries(agent dirt_sensor proximity_sensor direction_sensor location_sensor motor sucker strategy)
+target_link_libraries(agent dirt_sensor proximity_sensor direction_sensor location_sensor motor sucker strategy visualizer)
 
 add_library(environment src/environment.cpp)
 target_link_libraries(environment agent dirt_sensor proximity_sensor motor sucker model visualizer)

@@ -6,7 +6,6 @@
 //  Copyright © 2016 Daniel Gehrig. All rights reserved.
 //
 #include "vaccuumworld/simulation.hpp"
-#include "vaccuumworld/visualizer.hpp"
 
 Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
                        vector<char> actuators)

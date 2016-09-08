@@ -18,6 +18,7 @@
 #include "vaccuumworld/motor.hpp"
 #include "vaccuumworld/sucker.hpp"
 #include "vaccuumworld/strategy.hpp"
+#include "vaccuumworld/visualizer.hpp"
 
 using namespace std;
 

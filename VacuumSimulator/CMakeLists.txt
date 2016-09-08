@@ -62,4 +62,4 @@ add_library(simulation src/simulation.cpp)
 target_link_libraries(simulation environment problem visualizer)
 
 add_executable(vacuum_world src/main.cpp)
-target_link_libraries(vacuum_world simulation)
+target_link_libraries(vacuum_world simulation visualiser)

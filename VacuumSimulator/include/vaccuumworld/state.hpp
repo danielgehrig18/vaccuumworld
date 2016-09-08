@@ -27,15 +27,7 @@ public:
                 heuristic: estimated cost from the state to the goal.
     */
     State(array<int,2> location, char action, int pathCost, int heuristic);
-    
-    /**
-        Destructor of a state node. It deletes all descendents of the node and 
-        itself.
-     
-        @param: -
-    */
-    ~State();
-    
+        
     /**
         Sets the parent of the node.
      
@@ -56,6 +48,14 @@ public:
         @param: -
     */
     State* getParent();
+    
+    
+    /**
+        Returns the children of the current node.
+     
+        @param: -
+    */
+    vector<State*> getChildren();
     
     /**
         Returns the action that was executed to achieve the current node.
@@ -115,7 +115,7 @@ public:
         @param: s1: first state.
                 s2: second state.
     */
-    bool operator()(State* s1, State* s2);
+    bool operator()(State s1, State s2);
 };
 
 #endif /* state_hpp */

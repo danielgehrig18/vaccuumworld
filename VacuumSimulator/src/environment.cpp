@@ -57,13 +57,12 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors,
                 break;
         }
     }
+    // randomize agent position and map and update environment states.
+    reset();
     
     // instantiate agent
     agent.init(&dirtSensor, &proximitySensor, &directionSensor,
                &locationSensor, &motor, &sucker, map);
-    
-    // randomize agent position and map and update environment states.
-    reset();
 }
 
 void Environment::step(bool visual)

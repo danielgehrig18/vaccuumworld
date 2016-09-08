@@ -10,12 +10,12 @@
 
 using namespace std;
 
-void PathSearcher::addChild(State* node, char action, array<int, 2> location, int h)
+void PathSearcher::addChild(State &node, char action, array<int, 2> location, int h)
 {
-    State child = State(location, action, node -> getPathCost() + 1, h);
-    child.setParent(node);
-    node -> addChild(&child);
-    frontier.push(&child);
+    State child = State(location, action, node.getPathCost() + 1, h);
+    child.setParent(&node);
+    node.addChild(&child);
+    frontier.push(child);
 }
 
 void PathSearcher::init(array<int, 2> dirtPatch, array<int, 2> location,
@@ -42,51 +42,61 @@ void PathSearcher::init(array<int, 2> dirtPatch, array<int, 2> location,
     int h = abs(dirtPatch[0] - location[0]) + abs(dirtPatch[1] - location[1]);
     
     State node = State(location, ' ', 0, h);
-    rootNode = &node;
+    rootNode = node;
     
     frontier.push(rootNode);
 }
 
-void PathSearcher::search()
+bool PathSearcher::search()
 {
     while (!frontier.empty())
     {
-        State* nextNode = frontier.top();
+        State nextNode = frontier.top();
         frontier.pop();
         
-        if (nextNode -> getLocation() == goal)
+        if (nextNode.getLocation() == goal)
         {
             goalNode = nextNode;
-            break;
+            return true;
         }
         else
         {
-            array<int, 2> location = nextNode -> getLocation();
+            array<int, 2> location = nextNode.getLocation();
             visitedStates[location[0]][location[1]]++;
             expand(nextNode);
         }
     }
+    return false;
 }
 
 vector<char> PathSearcher::getSolution()
 {
     vector<char> actionList;
-    for (State* node = goalNode; !(node -> isRoot());
-         node = node -> getParent())
+    for (State node = goalNode; !(node.isRoot());
+         node = *node.getParent())
     {
-        actionList.push_back(node -> getAction());
+        actionList.push_back(node.getAction());
     }
     
     reverse(actionList.begin(), actionList.end());
     
-    rootNode -> ~State();
+    clear(rootNode);
     
     return actionList;
 }
 
-void PathSearcher::expand(State* node)
+void PathSearcher::clear(State &root)
 {
-    array<int, 2> loc = node -> getLocation();
+    for (State* child : root.getChildren())
+    {
+        clear(*child);
+    }
+    delete &root;
+}
+
+void PathSearcher::expand(State &node)
+{
+    array<int, 2> loc = node.getLocation();
     
     int x = visitedStates.size();
     int y = visitedStates[0].size();

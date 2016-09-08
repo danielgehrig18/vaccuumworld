@@ -15,12 +15,6 @@ State::State(array<int, 2> loc, char action, int pathC, int heur)
     pathCost = pathC;
 };
 
-State::~State()
-{
-    for (State* node : children) node -> ~State();
-    delete this;
-}
-
 void State::setParent(State* p)
 {
     parent = p;
@@ -35,6 +29,11 @@ State* State::getParent()
 {
     return parent;
 };
+
+vector<State*> State::getChildren()
+{
+    return children;
+}
 
 char State::getAction()
 {
@@ -61,7 +60,7 @@ bool State::isRoot()
     return !parent;
 };
 
-bool CompareStates::operator()(State* s1, State* s2)
+bool CompareStates::operator()(State s1, State s2)
 {
-    return s1 -> getTotalCost() < s2 -> getTotalCost();
+    return s1.getTotalCost() < s2.getTotalCost();
 };

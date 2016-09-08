@@ -87,10 +87,14 @@ vector<char> Strategy::stateSearch(array<int, 2> location,
     pathSearcher.init(dirtPatch, location, map);
     
     // search for solution
-    pathSearcher.search();
-    
-    // return solution
-    return pathSearcher.getSolution();
+    if (pathSearcher.search())
+    {
+        return pathSearcher.getSolution();
+    }
+    else
+    {
+        return {};
+    }
 }
 
 char Strategy::superGreedySearch(bool dirt, array<bool, 4> proximity,

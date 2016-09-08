@@ -30,7 +30,7 @@ public:
                 location: coordinates of the new child node.
                 h: heuristic of the new node.
     */
-    void addChild(State* node, char action, array<int,2> location, int h);
+    void addChild(State &node, char action, array<int,2> location, int h);
     
     /**
         Initialize the search tree by defining the goal state, the root (initial
@@ -47,7 +47,7 @@ public:
      
         @param: -
     */
-    void search();
+    bool search();
     
     /**
         Return the solution action sequence that led through the cheapest path 
@@ -57,6 +57,13 @@ public:
     */
     vector<char> getSolution();
     
+    /**
+        Clears the tree from memory.
+     
+        @param: root: the root of the tree to be cleared.
+    */
+    void clear(State &root);
+    
 private:
     /**
         Calculates the successors of the node node and adds them to the 
@@ -64,13 +71,13 @@ private:
      
         @param: node: node that should be expanded.
     */
-    void expand(State* node);
+    void expand(State &node);
     
-    priority_queue<State, vector<State*>, CompareStates> frontier;
+    priority_queue<State, vector<State>, CompareStates> frontier;
     vector<vector<int>> visitedStates;
     
-    State* goalNode;
-    State* rootNode;
+    State goalNode;
+    State rootNode;
     
     array<int,2> goal;
 };

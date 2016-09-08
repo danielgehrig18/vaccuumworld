@@ -48,7 +48,7 @@ void Visualizer::VisualizeMap(vector<vector<int>> map, array<int, 2> location)
         {
             if (location[0] == x_coordinate && location[1] == y_coordinate)
             {
-                cout << (map[x_coordinate][y_coordinate] == 0) ? 'Q' : 'J';
+                cout << (!map[x_coordinate][y_coordinate] ? 'Q' : 'J');
             }
             else if (map[x_coordinate][y_coordinate] == -1)
             {

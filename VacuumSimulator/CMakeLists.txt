@@ -23,6 +23,12 @@ add_library(visualizer src/visualizer.cpp)
 
 
 # Libs with only one internal dependency
+add_library(motor src/motor.cpp)
+target_link_libraries(motor actuator)
+
+add_library(sucker src/sucker.cpp)
+target_link_libraries(sucker actuator)
+
 add_library(dirt_sensor src/dirt_sensor.cpp)
 target_link_libraries(dirt_sensor sensor)
 

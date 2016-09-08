@@ -20,8 +20,9 @@ array<int, 2> Environment::getAgentLocation()
 };
 
 void Environment::init(vector<vector<int>> dim, vector<char> sensors,
-                       vector<char> actuators)
+                       vector<char> actuators, Visualizer &visualizer)
 {
+    visualizer_ = visualizer;
     map = dim;
     
     // instantiate sensors
@@ -62,16 +63,16 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors,
     
     // instantiate agent
     agent.init(&dirtSensor, &proximitySensor, &directionSensor,
-               &locationSensor, &motor, &sucker, map);
+               &locationSensor, &motor, &sucker, map, visualizer);
 }
 
 void Environment::step()
 {
     // updates and visualizes sensors based on true dirt and location
     updateSensors(currentDirt, walls, directions, agentLocation);
-    if (Visualizer::visualize)
+    if (visualizer_.visualize)
     {
-        Visualizer::visualizeSensors(dirtSensor.getValue(),
+        visualizer_.visualizeSensors(dirtSensor.getValue(),
                                      proximitySensor.getValue(),
                                      directionSensor.getValue(),
                                      locationSensor.getValue());
@@ -80,18 +81,18 @@ void Environment::step()
     // agent makes decision depending on sensor reading
     agent.executeAction();
     
-    if (Visualizer::visualize)
+    if (visualizer_.visualize)
     {
-        Visualizer::visualizeAction(lastAction);
+        visualizer_.visualizeAction(lastAction);
     }
     
     // environment updated based on action and true location of agent.
     updateEnvironment(lastAction, agentLocation);
     
     // display map
-    if (Visualizer::visualize)
+    if (visualizer_.visualize)
     {
-        Visualizer::visualizeMap(map, agentLocation);
+        visualizer_.visualizeMap(map, agentLocation);
     }
 }
 

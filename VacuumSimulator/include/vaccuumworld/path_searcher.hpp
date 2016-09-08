@@ -41,7 +41,7 @@ public:
                 location: coordinates of the agent (initial state).
                 map: map of the agent's environment.
     */
-    void init(array<int,2> dirtPatch, array<int,2> location, vector<vector<int>> map);
+    void init(array<int,2> dirtPatch, array<int,2> location, vector<vector<int>> map, Visualizer &visualizer);
     
     /**
         Execute search for the goal and save the tree that created it.
@@ -81,6 +81,8 @@ private:
     State rootNode;
     
     array<int,2> goal;
+
+    Visualizer visualizer_;
 };
 
 #endif /* path_searcher_hpp */

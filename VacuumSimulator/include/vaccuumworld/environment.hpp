@@ -49,7 +49,7 @@ public:
                 actuators: the used actuators, a list of characters.
     */
     void init(vector<vector<int>> map, vector<char> sensors,
-              vector<char> actuators);
+              vector<char> actuators, Visualizer &visualizer);
     
     /**
         Runs one step of the simulation. This consists of a sensor update,
@@ -105,6 +105,7 @@ private:
     
     Model model;
     Agent agent;
+    Visualizer visualizer_;
 };
 
 #endif /* environment_hpp */

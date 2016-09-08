@@ -36,12 +36,13 @@ int main(int argc, const char * argv[])
     // visualize
     bool visualize = true;
     
-    Visualizer::visualize = visualize;
+    Visualizer visualizer;
+    visualizer.visualize = visualize;
     
     float p = 0;
     float st = 0;
     
-    Simulation s = Simulation(map, sensors, actuators);
+    Simulation s = Simulation(map, sensors, actuators, visualizer);
     
     for (int i = 0; i < it; i++)
     {

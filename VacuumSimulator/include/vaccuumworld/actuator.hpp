@@ -10,6 +10,7 @@
 #define actuator_hpp
 
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 

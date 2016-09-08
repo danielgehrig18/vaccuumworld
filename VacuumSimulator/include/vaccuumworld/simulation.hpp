@@ -32,7 +32,7 @@ public:
                 actuators: a list of actuators to be used.
     */
     Simulation(vector<vector<int>> map, vector<char> sensors,
-               vector<char> actuators);
+               vector<char> actuators, Visualizer &visualizer);
     
     /**
      Return penalty. 1 pt is penalized for every dirty square at every time
@@ -68,6 +68,7 @@ public:
 private:
     Environment environment;
     Problem problem;
+    Visualizer visualizer_;
     
     float penalty=0;
     int completionSteps;

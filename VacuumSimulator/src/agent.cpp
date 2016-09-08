@@ -10,7 +10,7 @@
 
 void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
                  LocationSensor* ptr4, Motor* ptr5, Sucker* ptr6,
-                 vector<vector<int>> map)
+                 vector<vector<int>> map, Visualizer &visualizer)
 {
     dirtSensorPtr = ptr1;
     proximitySensorPtr = ptr2;
@@ -21,6 +21,9 @@ void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
     suckerPtr = ptr6;
     
     state = map;
+    
+    visualizer_ = visualizer;
+    strategy.init(visualizer);
     
     strategy.setType(dirtSensorPtr->getStatus(),
                      proximitySensorPtr->getStatus(),
@@ -33,7 +36,7 @@ void Agent::executeAction()
 {
     if (!strategy.actionPlanned())
     {
-        if (Visualizer::visualize)
+        if (visualizer_.visualize)
         {
             cout << "planning action..." << endl;
         }

@@ -7,6 +7,11 @@
 //
 #include "vaccuumworld/strategy.hpp"
 
+void Strategy::init(Visualizer &visualizer)
+{
+    visualizer_ = visualizer;
+}
+
 void Strategy::setType(bool DSStatus, bool PSStatus, bool DirSStatus,
                        bool LSStatus, bool MStatus, bool SStatus)
 {
@@ -84,7 +89,7 @@ vector<char> Strategy::stateSearch(array<int, 2> location,
     array<int, 2> dirtPatch = closestDirt[rand() % closestDirt.size()];
     
     // setup path searcher with goal, initial condition and map of dirt.
-    pathSearcher.init(dirtPatch, location, map);
+    pathSearcher.init(dirtPatch, location, map, visualizer_);
     
     // search for solution
     if (pathSearcher.search())

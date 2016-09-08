@@ -21,6 +21,8 @@ using namespace std;
 
 class Strategy {
 public:
+
+    void init(Visualizer &visualizer);
     /**
         Set the type of strategy. Can be one of the following: 'r' random
         search, 'g' greedy search, 'h' more greedy search, 'i' super greedy
@@ -112,6 +114,7 @@ private:
     queue<char> plan;
     
     PathSearcher pathSearcher;
+    Visualizer visualizer_;
 };
 
 #endif /* strategy_hpp */

@@ -38,7 +38,7 @@ public:
     */
     void init(DirtSensor* DSPtr, ProximitySensor* PSPtr, DirectionSensor* DiSPtr,
               LocationSensor* LSPtr, Motor* motorPtr, Sucker* suckerPtr,
-              vector<vector<int>> state);
+              vector<vector<int>> state, Visualizer &visualizer);
     
     /**
         Select an action based on the strategy and sensor inputs of the linked 
@@ -60,6 +60,7 @@ private:
     vector<vector<int>> state;
 
     Strategy strategy;
+    Visualizer visualizer_;
 };
 
 #endif /* agent_hpp */

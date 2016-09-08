@@ -8,10 +8,11 @@
 #include "vaccuumworld/simulation.hpp"
 
 Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
-                       vector<char> actuators)
+                       vector<char> actuators, Visualizer &visualizer)
 {
     srand (time(NULL));
-    environment.init(map, sensors, actuators);
+    visualizer_ = visualizer;
+    environment.init(map, sensors, actuators, visualizer);
 }
 
 float Simulation::getPenalty()
@@ -28,14 +29,14 @@ void Simulation::run()
 {
     int counter = 0;
     
-    if (Visualizer::visualize)
+    if (visualizer_.visualize)
     {
-        Visualizer::visualizeMap(environment.getMap(),
+        visualizer_.visualizeMap(environment.getMap(),
                                 environment.getAgentLocation());
     }
     while (!problem.goalTest(environment))
     {
-        if (Visualizer::visualize)
+        if (visualizer_.visualize)
         {
             cout << "--- step " << counter + 1 << " ---" << endl;
         }
@@ -44,7 +45,7 @@ void Simulation::run()
         penalty += problem.calculatePenalty(environment);
         counter ++;
     }
-    if (Visualizer::visualize)
+    if (visualizer_.visualize)
     {
         cout << "*** Completion in " << counter << " steps. ***" << endl;
     }

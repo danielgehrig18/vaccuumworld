@@ -20,8 +20,10 @@ void PathSearcher::addChild(State &node, char action, array<int, 2> location, in
 }
 
 void PathSearcher::init(array<int, 2> dirtPatch, array<int, 2> location,
-                        vector<vector<int>> map)
+                        vector<vector<int>> map, Visualizer &visualizer)
 {
+    visualizer_ = visualizer;
+
     int x = map.size();
     int y = map[0].size();
     
@@ -51,9 +53,9 @@ bool PathSearcher::search()
 {
     while (!frontier.empty())
     {
-        if (Visualizer::visualize)
+        if (visualizer_.visualize)
         {
-            Visualizer::visualizeTree(rootNode, 0);
+            visualizer_.visualizeTree(rootNode, 0);
         }
         
         State nextNode = frontier.top();

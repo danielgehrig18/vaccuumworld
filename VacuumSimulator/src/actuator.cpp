@@ -8,6 +8,11 @@
 
 #include "vaccuumworld/actuator.hpp"
 
+void Actuator::setPossibleActions(vector<char> possActions)
+{
+    possibleActions = possActions;
+}
+
 void Actuator::init()
 {
     status = true;

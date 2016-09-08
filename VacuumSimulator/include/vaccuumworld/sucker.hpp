@@ -14,6 +14,11 @@
 class Sucker : Actuator
 {
 public:
+    /**
+        Sets the possible actions to suck.
+     
+        @param: -
+    */
     Sucker();
 };
 

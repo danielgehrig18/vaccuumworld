@@ -14,6 +14,11 @@
 class Motor : Actuator
 {
 public:
+    /**
+        Sets the possible actions to up, right, down, left.
+     
+        @param: -
+    */
     Motor();
 };
 

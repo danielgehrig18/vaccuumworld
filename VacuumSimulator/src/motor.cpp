@@ -10,5 +10,5 @@
 
 Motor::Motor()
 {
-    possibleActions = {'u', 'r', 'l', 'd'};
+    setPossibleActions({'u', 'r', 'l', 'd'});
 }

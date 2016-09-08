@@ -8,53 +8,55 @@
 
 #include "vaccuumworld/agent.hpp"
 
-void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
-                 LocationSensor* ptr4, Motor* ptr5, Sucker* ptr6,
-                 vector<vector<int>> map, Visualizer &visualizer)
+void Agent::Initialize(DirtSensor *dirt_sensor_pointer, ProximitySensor *proximity_sensor_pointer,
+                       DirectionSensor *direction_sensor_pointer,
+                       LocationSensor *location_sensor_pointer, Motor *motor_pointer,
+                       Sucker *sucker_pointer, vector<vector<int> > map, Visualizer &visualizer)
 {
-    dirtSensorPtr_ = ptr1;
-    proximitySensorPtr_ = ptr2;
-    directionSensorPtr_ = ptr3;
-    locationSensorPtr_ = ptr4;
+    dirt_sensor_pointer_ = dirt_sensor_pointer;
+    proximity_sensor_pointer_ = proximity_sensor_pointer;
+    direction_sensor_pointer_ = direction_sensor_pointer;
+    location_sensor_pointer_ = location_sensor_pointer;
     
-    motorPtr_ = ptr5;
-    suckerPtr_ = ptr6;
+    motor_pointer_ = motor_pointer;
+    sucker_pointer_ = sucker_pointer;
     
     state_ = map;
     
     visualizer_ = visualizer;
-    strategy_.init(visualizer);
+    strategy_.Initialize(visualizer);
     
-    strategy_.setType(dirtSensorPtr_->getStatus(),
-                     proximitySensorPtr_->getStatus(),
-                     directionSensorPtr_->getStatus(),
-                     locationSensorPtr_->getStatus(),
-                     motorPtr_->getStatus(), suckerPtr_->getStatus());
+    strategy_.SetType(dirt_sensor_pointer_ -> GetStatus(),
+                      proximity_sensor_pointer_ -> GetStatus(),
+                      direction_sensor_pointer_ -> GetStatus(),
+                      location_sensor_pointer_ -> GetStatus(),
+                      motor_pointer_ -> GetStatus(),
+                      sucker_pointer_ -> GetStatus());
 };
 
-void Agent::executeAction()
+void Agent::ExecuteAction()
 {
-    if (!strategy_.actionPlanned())
+    if (!strategy_.ActionPlanned())
     {
         if (visualizer_.visualize_)
         {
             cout << "planning action..." << endl;
         }
         
-        strategy_.planAction(dirtSensorPtr_->getValue(),
-                            proximitySensorPtr_->getValue(),
-                            directionSensorPtr_->getValue(),
-                            locationSensorPtr_->getValue(), state_);
+        strategy_.PlanAction(dirt_sensor_pointer_ -> GetValue(),
+                            proximity_sensor_pointer_ -> GetValue(),
+                            direction_sensor_pointer_ -> GetValue(),
+                            location_sensor_pointer_ -> GetValue(), state_);
     }
-    char action = strategy_.actionSelection();
+    char action = strategy_.ActionSelection();
     
     // TODO: make smarter decision which actuator to take.
-    if (motorPtr_->isApplicable(action))
+    if (motor_pointer_ -> IsApplicable(action))
     {
-        motorPtr_->execute(action);
+        motor_pointer_->Execute(action);
     }
-    else if (suckerPtr_->isApplicable(action))
+    else if (sucker_pointer_->IsApplicable(action))
     {
-        suckerPtr_->execute(action);
+        sucker_pointer_->Execute(action);
     }
 }

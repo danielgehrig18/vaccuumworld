@@ -8,17 +8,17 @@
 
 #include "vaccuumworld/sensor.hpp"
 
-void Sensor::setName(char sensorName)
+void Sensor::SetName(char sensor_name)
 {
-    name_ = sensorName;
+    name_ = sensor_name;
 }
 
-bool Sensor::getStatus()
+bool Sensor::GetStatus()
 {
     return status_;
 };
 
-void Sensor::init()
+void Sensor::Initialize()
 {
     status_ = true;
 };

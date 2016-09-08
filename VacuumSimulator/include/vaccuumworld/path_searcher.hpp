@@ -31,24 +31,26 @@ public:
                 location: coordinates of the new child node.
                 h: heuristic of the new node.
     */
-    void addChild(State &node, char action, array<int,2> location, int h);
+    void AddChild(State &node, char action, array<int,2> location, int heuristic);
     
     /**
         Initialize the search tree by defining the goal state, the root (initial
         state and the giving the pathFinder the map of the environment.
      
-        @param: dirtPatch: coordinates of the goal state at the dirt patch.
+        @param: dirt_patch: coordinates of the goal state at the dirt patch.
                 location: coordinates of the agent (initial state).
                 map: map of the agent's environment.
+                visualizer: visualizer that visualizes the path planning.
     */
-    void init(array<int,2> dirtPatch, array<int,2> location, vector<vector<int>> map, Visualizer &visualizer);
+    void Initialize(array<int,2> dirt_patch, array<int,2> location, vector<vector<int>> map,
+                    Visualizer &visualizer);
     
     /**
         Execute search for the goal and save the tree that created it.
      
         @param: -
     */
-    bool search();
+    bool Search();
     
     /**
         Return the solution action sequence that led through the cheapest path 
@@ -56,14 +58,14 @@ public:
      
         @param: -
     */
-    vector<char> getSolution();
+    vector<char> CalculateSolution();
     
     /**
         Clears the tree from memory.
      
         @param: root: the root of the tree to be cleared.
     */
-    void clear(State &root);
+    void Clear(State &root);
     
 private:
     /**
@@ -72,13 +74,13 @@ private:
      
         @param: node: node that should be expanded.
     */
-    void expand(State &node);
+    void Expand(State &node);
     
     priority_queue<State, vector<State>, CompareStates> frontier_;
-    vector<vector<int>> visitedStates_;
+    vector<vector<int>> visited_states_;
     
-    State goalNode_;
-    State rootNode_;
+    State goal_node_;
+    State root_node_;
     
     array<int,2> goal_;
 

@@ -31,14 +31,14 @@ public:
         @param: directions: direction of closest dirt in order (up, right, 
                 down, left).
     */
-    void setValue(array<bool, 4> directions);
+    void SetValue(array<bool, 4> directions);
     
     /**
         Return value of sensor.
      
         @param: -
     */
-    array<bool, 4> getValue();
+    array<bool, 4> GetValue();
     
 private:
     array<bool, 4> value_;

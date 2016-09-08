@@ -18,9 +18,9 @@ public:
         sets the name for the sensor: 'd' dirt sensor, 'p' proximity sensor, 'r'
         direction sensor, 'l' location sensor.
      
-        @param: sensorName: name of the sensor.
+        @param: sensor_name: name of the sensor.
     */
-    void setName(char sensorName);
+    void SetName(char sensor_name);
     
     /**
         Gets the status of the sensor. Status == false means that a sensor value
@@ -28,7 +28,7 @@ public:
      
         @param: -.
      */
-    bool getStatus();
+    bool GetStatus();
     
     /**
         Sets the status of the sensor to active, meaning that values can be 
@@ -36,7 +36,7 @@ public:
      
         @param: -.
      */
-    void init();
+    void Initialize();
     
 private:
     char name_;

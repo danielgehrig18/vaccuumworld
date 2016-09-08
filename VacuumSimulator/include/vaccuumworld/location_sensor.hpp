@@ -30,14 +30,14 @@ public:
      
         @param: location: coordinates of the agent.
     */
-    void setValue(array<int, 2> location);
+    void SetValue(array<int, 2> location);
     
     /**
         Return value of sensor.
      
         @param: -
     */
-    array<int, 2> getValue();
+    array<int, 2> GetValue();
     
 private:
     array<int, 2> value_;

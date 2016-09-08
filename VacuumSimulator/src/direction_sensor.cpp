@@ -10,18 +10,18 @@
 
 DirectionSensor::DirectionSensor()
 {
-    Sensor::setName('d');
+    Sensor::SetName('d');
 }
 
-void DirectionSensor::setValue(array<bool, 4> directions)
+void DirectionSensor::SetValue(array<bool, 4> directions)
 {
-    if (Sensor::getStatus())
+    if (Sensor::GetStatus())
     {
         value_ = directions;
     }
 };
 
-array<bool, 4> DirectionSensor::getValue()
+array<bool, 4> DirectionSensor::GetValue()
 {
     return value_;
 }

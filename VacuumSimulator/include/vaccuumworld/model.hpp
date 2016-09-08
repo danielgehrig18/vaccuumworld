@@ -26,7 +26,7 @@ public:
         @param: map: dirt map of the environment.
                 location: coordinates of location where dirt is queried.
     */
-    int getDirt(vector<vector<int>> map, array<int, 2> location);
+    int GetDirt(vector<vector<int>> map, array<int, 2> location);
     
     /**
         Calculate new location of agent based on location and action.
@@ -35,7 +35,7 @@ public:
                 location: initial coordinates of the agent
                 map: dirt map of the environment.
     */
-    array<int,2> getNewLocation(char action, array<int, 2> location, vector<vector<int>> map);
+    array<int,2> GetNewLocation(char action, array<int, 2> location, vector<vector<int>> map);
     
     /**
         Calculate the directions of the walls based on the agent location.
@@ -43,7 +43,7 @@ public:
         @param: map: dirt map of the environment.
                 location: coordinates of the agent.
     */
-    array<bool,4> getProximity(vector<vector<int>> map, array<int, 2> location);
+    array<bool,4> GetProximity(vector<vector<int>> map, array<int, 2> location);
     
     /**
         Calculate the direction of the closest dirt patch based on the agent
@@ -52,7 +52,7 @@ public:
         @param: map: dirt map of the environment.
                 location: coordinates of the agent.
     */
-    array<bool,4> getDirections(vector<vector<int>> map, array<int, 2> location);
+    array<bool,4> GetDirections(vector<vector<int>> map, array<int, 2> location);
     
     /**
         Returns a list of coordinates corresponding to the closest dirt patches
@@ -61,7 +61,7 @@ public:
         @param: map: dirt map of the environment.
                 location: coordinates of the agent.
     */
-    vector<array<int, 2>> getClosestDirt(vector<vector<int>> map, array<int, 2> location);
+    vector<array<int, 2>> GetClosestDirt(vector<vector<int>> map, array<int, 2> location);
     
     /**
         Calculates the new dirt map based on the agent action and location.
@@ -70,7 +70,7 @@ public:
                 location: coordinates at which the action was executed
                 map: dirt map of the environment.
     */
-    vector<vector<int>> getNewMap(char action, array<int,2> location, vector<vector<int>> map);
+    vector<vector<int>> GetNewMap(char action, array<int,2> location, vector<vector<int>> map);
 
 };
 

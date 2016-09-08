@@ -31,14 +31,14 @@ public:
      
         @param: -
     */
-    vector<vector<int>> getMap();
+    vector<vector<int>> GetMap();
     
     /**
         Return coordinates of agent.
      
         @param: -
     */
-    array<int, 2> getAgentLocation();
+    array<int, 2> GetAgentLocation();
     
     /**
         Initializes sensors, agent, and map. Instantiates and activates sensors so
@@ -47,9 +47,10 @@ public:
         @param: map: same form as in simulation (see: "simulation.hpp")
                 sensors: a list of characters corresponding to used sensors.
                 actuators: the used actuators, a list of characters.
+                visualizer: visualizer that visualizes environment variables
     */
-    void init(vector<vector<int>> map, vector<char> sensors,
-              vector<char> actuators, Visualizer &visualizer);
+    void Initialize(vector<vector<int>> map, vector<char> sensors, vector<char> actuators,
+                    Visualizer &visualizer);
     
     /**
         Runs one step of the simulation. This consists of a sensor update,
@@ -58,14 +59,14 @@ public:
      
         @param: -
     */
-    void step();
+    void Step();
     
     /**
         Randomizes the dirt locations in the map and the initial agent location.
      
         @param: -
      */
-    void reset();
+    void Reset();
     
 private:
     /**
@@ -76,8 +77,8 @@ private:
                 directions: direction of closest dirtpatch.
                 location: coordinates of agent.
     */
-    void updateSensors(bool dirt, array<bool, 4> walls,
-                       array<bool, 4> directions, array<int, 2> location );
+    void UpdateSensors(bool dirt, array<bool, 4> walls,
+                       array<bool, 4> directions, array<int, 2> location);
     
     /**
         Update agent location and map based on agents action.
@@ -85,20 +86,20 @@ private:
         @param: action: action performed by the agent.
                 location: location of the agent when it executes the action.
     */
-    void updateEnvironment(char action, array<int, 2> location);
+    void UpdateEnvironment(char action, array<int, 2> location);
     
-    array<int, 2> agentLocation_;
-    bool currentDirt_;
+    array<int, 2> agent_location_;
+    bool current_dirt_;
     array<bool, 4> walls_;
     array<bool, 4> directions_;
     vector<vector<int>> map_;
     
-    char lastAction_;
+    char last_action_;
 
-    DirtSensor dirtSensor_;
-    ProximitySensor proximitySensor_;
-    LocationSensor locationSensor_;
-    DirectionSensor directionSensor_;
+    DirtSensor dirt_sensor_;
+    ProximitySensor proximity_sensor_;
+    LocationSensor location_sensor_;
+    DirectionSensor direction_sensor_;
     
     Motor motor_;
     Sucker sucker_;

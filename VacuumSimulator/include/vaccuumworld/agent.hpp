@@ -29,16 +29,20 @@ public:
         Initialises the agent by linking it to the sensors and setting its state
         (dirt map for state search) and sets the strategy.
      
-        @param: ptr1: pointer to the dirt sensor.
-                ptr2: pointer to the proximity sensor.
-                ptr3: pointer to the direction sensor.
-                ptr4: pointer to the location sensor.
-                actuators: a list of actuators to be used.
-                state: map of the dirt in the environment.
+        @param: dirt_sensor_pointer: pointer to the dirt sensor.
+                proximity_sensor_pointer: pointer to the proximity sensor.
+                direction_sensor_pointer: pointer to the direction sensor.
+                location_sensor_pointer: pointer to the location sensor.
+                motor_pointer: pointer to the motor
+                sucker_pointer: pointer to the sucker
+                map: map of the dirt in the environment.
+                visualizer: visualizes the agent decision
     */
-    void init(DirtSensor* DSPtr, ProximitySensor* PSPtr, DirectionSensor* DiSPtr,
-              LocationSensor* LSPtr, Motor* motorPtr, Sucker* suckerPtr,
-              vector<vector<int>> state, Visualizer &visualizer);
+    void Initialize(DirtSensor* dirt_sensor_pointer,
+                    ProximitySensor* proximity_sensor_pointer,
+                    DirectionSensor* direction_sensor_pointer,
+                    LocationSensor* location_sensor_pointer, Motor* motor_pointer,
+                    Sucker* sucker_pointer, vector<vector<int>> map, Visualizer &visualizer);
     
     /**
         Select an action based on the strategy and sensor inputs of the linked 
@@ -46,16 +50,16 @@ public:
      
         @param: -
     */
-    void executeAction();
+    void ExecuteAction();
     
 private:
-    DirtSensor* dirtSensorPtr_;
-    ProximitySensor* proximitySensorPtr_;
-    DirectionSensor* directionSensorPtr_;
-    LocationSensor* locationSensorPtr_;
+    DirtSensor* dirt_sensor_pointer_;
+    ProximitySensor* proximity_sensor_pointer_;
+    DirectionSensor* direction_sensor_pointer_;
+    LocationSensor* location_sensor_pointer_;
     
-    Motor* motorPtr_;
-    Sucker* suckerPtr_;
+    Motor* motor_pointer_;
+    Sucker* sucker_pointer_;
     
     vector<vector<int>> state_;
 

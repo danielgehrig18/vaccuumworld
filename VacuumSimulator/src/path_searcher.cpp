@@ -10,135 +10,139 @@
 
 using namespace std;
 
-void PathSearcher::addChild(State &node, char action, array<int, 2> location, int h)
+void PathSearcher::AddChild(State &node, char action, array<int, 2> location, int heuristic)
 {
     State child = State();
-    child.init(location, action, node.getPathCost() + 1, h);
-    child.setParent(&node);
-    node.addChild(&child);
+    child.Initialize(location, action, node.GetPathCost() + 1, heuristic);
+    child.SetParent(&node);
+    node.AddChild(&child);
     frontier_.push(child);
 }
 
-void PathSearcher::init(array<int, 2> dirtPatch, array<int, 2> location,
-                        vector<vector<int>> map, Visualizer &visualizer)
+void PathSearcher::Initialize(array<int, 2> dirt_patch, array<int, 2> location,
+                              vector<vector<int> > map, Visualizer &visualizer)
 {
     visualizer_ = visualizer;
 
-    int x = map.size();
-    int y = map[0].size();
+    int x_dimension = map.size();
+    int y_dimension = map[0].size();
     
-    for (int i = 0; i < x; i++)
+    for (int x_coordinate = 0; x_coordinate < x_dimension; x_coordinate++)
     {
-        for (int j = 0; j < y; j++)
+        for (int y_coordinate = 0; y_coordinate < y_dimension; y_coordinate++)
         {
-            if (map[i][j] != -1)
+            if (map[x_coordinate][y_coordinate] != -1)
             {
-                map[i][j] = 0;
+                map[x_coordinate][y_coordinate] = 0;
             }
         }
     }
     map[location[0]][location[1]] = 2;
     
-    visitedStates_ = map;
-    goal_ = dirtPatch;
+    visited_states_ = map;
+    goal_ = dirt_patch;
     
-    int h = abs(dirtPatch[0] - location[0]) + abs(dirtPatch[1] - location[1]);
+    int heuristic = abs(dirt_patch[0] - location[0]) + abs(dirt_patch[1] - location[1]);
     
-    rootNode_.init(location, ' ', 0, h);
+    root_node_.Initialize(location, ' ', 0, heuristic);
     
-    frontier_.push(rootNode_);
+    frontier_.push(root_node_);
 }
 
-bool PathSearcher::search()
+bool PathSearcher::Search()
 {
     while (!frontier_.empty())
     {
         if (visualizer_.visualize_)
         {
-            visualizer_.visualizeTree(rootNode_, 0);
+            visualizer_.VisualizeTree(root_node_, 0);
         }
         
-        State nextNode = frontier_.top();
+        State next_node = frontier_.top();
         frontier_.pop();
         
-        if (nextNode.getLocation() == goal_)
+        if (next_node.GetLocation() == goal_)
         {
-            goalNode_ = nextNode;
+            goal_node_ = next_node;
             return true;
         }
         else
         {
-            array<int, 2> location = nextNode.getLocation();
-            visitedStates_[location[0]][location[1]]++;
-            expand(nextNode);
+            array<int, 2> location = next_node.GetLocation();
+            visited_states_[location[0]][location[1]]++;
+            Expand(next_node);
         }
     }
     return false;
 }
 
-vector<char> PathSearcher::getSolution()
+vector<char> PathSearcher::CalculateSolution()
 {
-    vector<char> actionList;
-    for (State node = goalNode_; !(node.isRoot());
-         node = *node.getParent())
+    vector<char> action_list;
+    for (State node = goal_node_; !(node.IsRoot());
+         node = *node.GetParent())
     {
-        actionList.push_back(node.getAction());
+        action_list.push_back(node.GetAction());
     }
     
-    reverse(actionList.begin(), actionList.end());
+    reverse(action_list.begin(), action_list.end());
     
-    clear(rootNode_);
+    Clear(root_node_);
     
-    return actionList;
+    return action_list;
 }
 
-void PathSearcher::clear(State &root)
+void PathSearcher::Clear(State &root)
 {
-    for (State* child : root.getChildren())
+    for (State* child : root.GetChildren())
     {
-        clear(*child);
+        Clear(*child);
     }
     delete &root;
 }
 
-void PathSearcher::expand(State &node)
+void PathSearcher::Expand(State &node)
 {
-    array<int, 2> loc = node.getLocation();
+    array<int, 2> location = node.GetLocation();
     
-    int x = visitedStates_.size();
-    int y = visitedStates_[0].size();
+    int x_dimension = visited_states_.size();
+    int y_dimension = visited_states_[0].size();
     
-    array<int, 2> top = {loc[0] - 1, loc[1]};
-    array<int, 2> right = {loc[0], loc[1] + 1};
-    array<int, 2> left = {loc[0], loc[1] - 1};
-    array<int, 2> bottom = {loc[0] + 1, loc[1]};
+    array<int, 2> top_location = {location[0] - 1, location[1]};
+    array<int, 2> right_location = {location[0], location[1] + 1};
+    array<int, 2> left_location = {location[0], location[1] - 1};
+    array<int, 2> bottom_location = {location[0] + 1, location[1]};
     
-    int hTop = abs(top[0] - goal_[0]) + abs(top[1] - goal_[1]);
-    int hRight = abs(right[0] - goal_[0]) + abs(right[1] - goal_[1]);
-    int hLeft = abs(left[0] - goal_[0]) + abs(left[1] - goal_[1]);
-    int hBottom = abs(bottom[0] - goal_[0]) + abs(bottom[1] - goal_[1]);
+    int heuristic_top = abs(top_location[0] - goal_[0]) + abs(top_location[1] - goal_[1]);
+    int heuristic_right = abs(right_location[0] - goal_[0]) + abs(right_location[1] - goal_[1]);
+    int heuristic_left = abs(left_location[0] - goal_[0]) + abs(left_location[1] - goal_[1]);
+    int heuristic_bottom = abs(bottom_location[0] - goal_[0]) + abs(bottom_location[1] - goal_[1]);
     
-    if (top[0] >= 0 && visitedStates_[top[0]][top[1]] == 0)
+    if (top_location[0] >= 0 &&
+        visited_states_[top_location[0]][top_location[1]] == 0)
     {
-        visitedStates_[top[0]][top[1]]++;
-        addChild(node, 'u', top, hTop);
+        visited_states_[top_location[0]][top_location[1]]++;
+        AddChild(node, 'u', top_location, heuristic_top);
     }
     
-    if (right[1] < y && visitedStates_[right[0]][right[1]] == 0)
+    if (right_location[1] < y_dimension &&
+        visited_states_[right_location[0]][right_location[1]] == 0)
     {
-        visitedStates_[right[0]][right[1]]++;
-        addChild(node, 'r', right, hRight);
+        visited_states_[right_location[0]][right_location[1]]++;
+        AddChild(node, 'r', right_location, heuristic_right);
     }
     
-    if (left[1] >= 0 && visitedStates_[left[0]][left[1]] == 0)
+    if (left_location[1] >= 0 &&
+        visited_states_[left_location[0]][left_location[1]] == 0)
     {
-        visitedStates_[left[0]][left[1]]++;
-        addChild(node, 'l', left, hLeft);
+        visited_states_[left_location[0]][left_location[1]]++;
+        AddChild(node, 'l', left_location, heuristic_left);
     }
     
-    if (bottom[0] < x && visitedStates_[bottom[0]][bottom[1]] == 0)
+    if (bottom_location[0] < x_dimension &&
+        visited_states_[bottom_location[0]][bottom_location[1]] == 0)
     {
-        visitedStates_[bottom[0]][bottom[1]]++;
-        addChild(node, 'd', bottom, hBottom);
+        visited_states_[bottom_location[0]][bottom_location[1]]++;
+        AddChild(node, 'd', bottom_location, heuristic_bottom);
     }
 }

@@ -18,12 +18,12 @@ using namespace std;
 int main(int argc, const char * argv[])
 {
     // Ask for the map of the vacuum world. It must be a rectangular array.
-    vector<vector<int>> map ={{0,  0,  0, -1,  0,  0,  0},
-                              {0,  0,  0,  0,  0,  0,  0},
-                              {0,  0,  0, -1,  0,  0,  0}};
+    vector<vector<int>> map = {{0,  0,  0, -1,  0,  0,  0},
+                               {0,  0,  0,  0,  0,  0,  0},
+                               {0,  0,  0, -1,  0,  0,  0}};
     
     // Ask for number of iterations
-    int it = 1;
+    int iterations = 1;
     
     // Define which sensors will be used
     // d : dirt
@@ -39,22 +39,22 @@ int main(int argc, const char * argv[])
     Visualizer visualizer;
     visualizer.visualize_ = visualize;
     
-    float p = 0;
-    float st = 0;
+    float penalty = 0;
+    float steps = 0;
     
-    Simulation s = Simulation(map, sensors, actuators, visualizer);
+    Simulation simulation = Simulation(map, sensors, actuators, visualizer);
     
-    for (int i = 0; i < it; i++)
+    for (int iteration = 0; iteration < iterations; iteration++)
     {
-        cout << "Iteration " << i + 1 << endl;
-        s.run();
-        p += s.getPenalty();
-        st += s.getCompletionSteps();
-        s.reset();
+        cout << "Iteration " << iteration + 1 << endl;
+        simulation.Run();
+        penalty += simulation.GetPenalty();
+        steps += simulation.GetCompletionSteps();
+        simulation.Reset();
     }
     
-    cout << "The average penalty for the agent is " << p / it << endl;
-    cout << "with completion in " << st / it<< endl;
+    cout << "The average penalty for the agent is " << penalty / iterations << endl;
+    cout << "with completion in " << steps / iterations << endl;
     
     return 0;
 }

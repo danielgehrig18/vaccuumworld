@@ -10,18 +10,18 @@
 
 ProximitySensor::ProximitySensor()
 {
-    Sensor::setName('p');
+    Sensor::SetName('p');
 }
 
-void ProximitySensor::setValue(array<bool, 4> walls)
+void ProximitySensor::SetValue(array<bool, 4> walls)
 {
-    if (Sensor::getStatus())
+    if (Sensor::GetStatus())
     {
         value_ = walls;
     }
 };
 
-array<bool, 4> ProximitySensor::getValue()
+array<bool, 4> ProximitySensor::GetValue()
 {
     return value_;
 }

@@ -12,49 +12,49 @@ Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
 {
     srand (time(NULL));
     visualizer_ = visualizer;
-    environment_.init(map, sensors, actuators, visualizer);
+    environment_.Initialize(map, sensors, actuators, visualizer);
 }
 
-float Simulation::getPenalty()
+float Simulation::GetPenalty()
 {
     return penalty_;
 }
 
-int Simulation::getCompletionSteps()
+int Simulation::GetCompletionSteps()
 {
-    return completionSteps_;
+    return completion_steps_;
 }
 
-void Simulation::run()
+void Simulation::Run()
 {
     int counter = 0;
     
     if (visualizer_.visualize_)
     {
-        visualizer_.visualizeMap(environment_.getMap(),
-                                environment_.getAgentLocation());
+        visualizer_.VisualizeMap(environment_.GetMap(),
+                                environment_.GetAgentLocation());
     }
-    while (!problem_.goalTest(environment_))
+    while (!problem_.GoalTest(environment_))
     {
         if (visualizer_.visualize_)
         {
             cout << "--- step " << counter + 1 << " ---" << endl;
         }
         
-        environment_.step();
-        penalty_ += problem_.calculatePenalty(environment_);
+        environment_.Step();
+        penalty_ += problem_.CalculatePenalty(environment_);
         counter ++;
     }
     if (visualizer_.visualize_)
     {
         cout << "*** Completion in " << counter << " steps. ***" << endl;
     }
-    completionSteps_ = counter;
+    completion_steps_ = counter;
 }
 
-void Simulation::reset()
+void Simulation::Reset()
 {
     penalty_ = 0;
-    completionSteps_ = -1;
-    environment_.reset();
+    completion_steps_ = -1;
+    environment_.Reset();
 }

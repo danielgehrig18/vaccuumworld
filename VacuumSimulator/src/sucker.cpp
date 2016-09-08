@@ -10,5 +10,5 @@
 
 Sucker::Sucker()
 {
-    setPossibleActions({'s'});
+    SetPossibleActions({'s'});
 }

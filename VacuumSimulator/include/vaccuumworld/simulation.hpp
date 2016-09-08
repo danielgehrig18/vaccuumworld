@@ -31,8 +31,8 @@ public:
                 sensors: list of sensors to be used by the agent.
                 actuators: a list of actuators to be used.
     */
-    Simulation(vector<vector<int>> map, vector<char> sensors,
-               vector<char> actuators, Visualizer &visualizer);
+    Simulation(vector<vector<int>> map, vector<char> sensors, vector<char> actuators,
+               Visualizer &visualizer);
     
     /**
      Return penalty. 1 pt is penalized for every dirty square at every time
@@ -40,14 +40,14 @@ public:
      
      @param: -
      */
-    float getPenalty();
+    float GetPenalty();
     
     /**
      Return steps that it took the agent to completely clean the map.
      
      @param: -
      */
-    int getCompletionSteps();
+    int GetCompletionSteps();
     
     /**
         Runs the simulation. Environment, agent and sensors are updated on a
@@ -56,14 +56,14 @@ public:
      
         @param: -
     */
-    void run();
+    void Run();
     
     /**
         Randomizes the dirt locations in the map and the initial agent location.
      
         @param: -
     */
-    void reset();
+    void Reset();
     
 private:
     Environment environment_;
@@ -71,7 +71,7 @@ private:
     Visualizer visualizer_;
     
     float penalty_ = 0;
-    int completionSteps_;
+    int completion_steps_;
 };
 
 #endif /* simulation_hpp */

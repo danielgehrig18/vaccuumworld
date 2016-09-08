@@ -9,149 +9,152 @@
 
 using namespace std;
 
-vector<vector<int>> Environment::getMap()
+vector<vector<int>> Environment::GetMap()
 {
     return map_;
 };
 
-array<int, 2> Environment::getAgentLocation()
+array<int, 2> Environment::GetAgentLocation()
 {
-    return agentLocation_;
+    return agent_location_;
 };
 
-void Environment::init(vector<vector<int>> dim, vector<char> sensors,
-                       vector<char> actuators, Visualizer &visualizer)
+void Environment::Initialize(vector<vector<int> > map, vector<char> sensors,
+                             vector<char> actuators, Visualizer &visualizer)
 {
     visualizer_ = visualizer;
-    map_ = dim;
+    map_ = map;
     
     // instantiate sensors
-    for (char i : sensors)
+    for (char sensor_name : sensors)
     {
-        switch (i)
+        switch (sensor_name)
         {
             case 'd':
-                dirtSensor_.init();
+                dirt_sensor_.Initialize();
                 break;
             case 'p':
-                proximitySensor_.init();
+                proximity_sensor_.Initialize();
                 break;
             case 'r': // richtung
-                directionSensor_.init();
+                direction_sensor_.Initialize();
                 break;
             case 'l':
-                locationSensor_.init();
+                location_sensor_.Initialize();
                 break;
         }
     };
     
     // instantiate actuators
-    for (char i : actuators)
+    for (char actuator : actuators)
     {
-        switch (i)
+        switch (actuator)
         {
             case 'm':
-                motor_.init(&lastAction_);
+                motor_.Initialize(&last_action_);
                 break;
             case 's':
-                sucker_.init(&lastAction_);
+                sucker_.Initialize(&last_action_);
                 break;
         }
     }
     // randomize agent position and map and update environment states.
-    reset();
+    Reset();
     
     // instantiate agent
-    agent.init(&dirtSensor_, &proximitySensor_, &directionSensor_,
-               &locationSensor_, &motor_, &sucker_, map_, visualizer_);
+    agent_.Initialize(&dirt_sensor_, &proximity_sensor_, &direction_sensor_,
+                      &location_sensor_, &motor_, &sucker_, map_, visualizer_);
 }
 
-void Environment::step()
+void Environment::Step()
 {
     // updates and visualizes sensors based on true dirt and location
-    updateSensors(currentDirt_, walls_, directions_, agentLocation_);
+    UpdateSensors(current_dirt_, walls_, directions_, agent_location_);
+    
     if (visualizer_.visualize_)
     {
-        visualizer_.visualizeSensors(dirtSensor_.getValue(),
-                                     proximitySensor_.getValue(),
-                                     directionSensor_.getValue(),
-                                     locationSensor_.getValue());
+        visualizer_.VisualizeSensors(dirt_sensor_.GetValue(),
+                                     proximity_sensor_.GetValue(),
+                                     direction_sensor_.GetValue(),
+                                     location_sensor_.GetValue());
     }
 
     // agent makes decision depending on sensor reading
-    agent_.executeAction();
+    agent_.ExecuteAction();
     
     if (visualizer_.visualize_)
     {
-        visualizer_.visualizeAction(lastAction_);
+        visualizer_.VisualizeAction(last_action_);
     }
     
     // environment updated based on action and true location of agent.
-    updateEnvironment(lastAction_, agentLocation_);
+    UpdateEnvironment(last_action_, agent_location_);
     
     // display map
     if (visualizer_.visualize_)
     {
-        visualizer_.visualizeMap(map_, agentLocation_);
+        visualizer_.VisualizeMap(map_, agent_location_);
     }
 }
 
-void Environment::reset()
+void Environment::Reset()
 {
-    int x = map_.size();
-    int y = map_[0].size();
+    int x_dimension = map_.size();
+    int y_dimension = map_[0].size();
     
     // set initialCoords of agent.
-    agentLocation_ = {rand() % x, rand() % y};
+    agent_location_ = {rand() % x_dimension, rand() % y_dimension};
     
-    while (map_[agentLocation_[0]][agentLocation_[1]] == -1)
+    while (map_[agent_location_[0]][agent_location_[1]] == -1)
     {
-        agentLocation_ = {rand() % x, rand() % y};
+        agent_location_ = {rand() % x_dimension, rand() % y_dimension};
     }
     
     // set dirt locations
-    for (int i = 0; i < x; i++)
+    for (int x_coordinate = 0; x_coordinate < x_dimension; x_coordinate++)
     {
-        for (int j = 0; j < y; j++)
+        for (int y_coordinate = 0; x_coordinate < y_dimension; x_coordinate++)
         {
-            if (map_[i][j]==0) map_[i][j] = rand()%2;
+            if (map_[x_coordinate][y_coordinate] == 0)
+            {
+                map_[x_coordinate][y_coordinate] = rand() % 2;
+            }
         }
     };
     
     // get currentDirt
-    currentDirt_ = model_.getDirt(map_, agentLocation_);
+    current_dirt_ = model_.GetDirt(map_, agent_location_);
     
     // set wall presence
-    walls_ = model_.getProximity(map_, agentLocation_);
+    walls_ = model_.GetProximity(map_, agent_location_);
     
     // set directions
-    directions_ = model_.getDirections(map_, agentLocation_);
-    
+    directions_ = model_.GetDirections(map_, agent_location_);
 }
 
-void Environment::updateSensors(bool dirt, array<bool, 4> walls,
+void Environment::UpdateSensors(bool dirt, array<bool, 4> walls,
                                 array<bool, 4> directions, array<int, 2> location)
 {
-    dirtSensor_.setValue(dirt);
-    proximitySensor_.setValue(walls);
-    directionSensor_.setValue(directions);
-    locationSensor_.setValue(location);
+    dirt_sensor_.SetValue(dirt);
+    proximity_sensor_.SetValue(walls);
+    direction_sensor_.SetValue(directions);
+    location_sensor_.SetValue(location);
 }
 
-void Environment::updateEnvironment(char action, array<int, 2> location)
+void Environment::UpdateEnvironment(char action, array<int, 2> location)
 {
     // get new location
-    agentLocation_ = model_.getNewLocation(action, location, map_);
+    agent_location_ = model_.GetNewLocation(action, location, map_);
     
     // update map
-    map_ = model_.getNewMap(action, location, map_);
+    map_ = model_.GetNewMap(action, location, map_);
     
     // update dirt
-    currentDirt_ = model_.getDirt(map_, agentLocation_);
+    current_dirt_ = model_.GetDirt(map_, agent_location_);
     
     // set wall presence
-    walls_ = model_.getProximity(map_, agentLocation_);
+    walls_ = model_.GetProximity(map_, agent_location_);
     
     // set new directions
-    directions_ = model_.getDirections(map_, agentLocation_);
+    directions_ = model_.GetDirections(map_, agent_location_);
 }

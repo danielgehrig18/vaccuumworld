@@ -7,27 +7,29 @@
 //
 #include "vaccuumworld/strategy.hpp"
 
-void Strategy::init(Visualizer &visualizer)
+void Strategy::Initialize(Visualizer &visualizer)
 {
     visualizer_ = visualizer;
 }
 
-void Strategy::setType(bool DSStatus, bool PSStatus, bool DirSStatus,
-                       bool LSStatus, bool MStatus, bool SStatus)
+void Strategy::SetType(bool dirt_sensor_status, bool proximity_sensor_status,
+                       bool direction_sensor_status, bool location_sensor_status,
+                       bool motor_status, bool sucker_status)
 {
-    if (!DSStatus)
+    if (!dirt_sensor_status)
     {
         type_ = 'r';
     }
-    else if (DSStatus && !PSStatus)
+    else if (dirt_sensor_status && !proximity_sensor_status)
     {
         type_ = 'g';
     }
-    else if (DSStatus && PSStatus && !DirSStatus)
+    else if (dirt_sensor_status && proximity_sensor_status && !direction_sensor_status)
     {
         type_ = 'h';
     }
-    else if (DSStatus && PSStatus && DirSStatus && !LSStatus)
+    else if (dirt_sensor_status && proximity_sensor_status && direction_sensor_status
+             && !location_sensor_status)
     {
         type_ = 'i';
     }
@@ -37,33 +39,32 @@ void Strategy::setType(bool DSStatus, bool PSStatus, bool DirSStatus,
     }
 }
 
-bool Strategy::actionPlanned()
+bool Strategy::ActionPlanned()
 {
     return !plan_.empty();
 };
 
-void Strategy::planAction(bool dirt, array<bool, 4> proximity,
-                          array<bool, 4> direction, array<int, 2> location,
-                          vector<vector<int>> state)
+void Strategy::PlanAction(bool dirt, array<bool, 4> proximity, array<bool, 4> direction,
+                          array<int, 2> location, vector<vector<int>> state)
 {
     switch (type_)
     {
         case 'r':
-            plan_.push(randomSearch());
+            plan_.push(RandomSearch());
             break;
         case 'g':
-            plan_.push(greedySearch(dirt));
+            plan_.push(GreedySearch(dirt));
             break;
         case 'h':
-            plan_.push(moreGreedySearch(dirt, proximity));
+            plan_.push(MoreGreedySearch(dirt, proximity));
             break;
         case 'i':
-            plan_.push(superGreedySearch(dirt, proximity, direction));
+            plan_.push(SuperGreedySearch(dirt, proximity, direction));
             break;
         case 's':
-            for (char a : stateSearch(location, state))
+            for (char action : StateSearch(location, state))
             {
-                plan_.push(a);
+                plan_.push(action);
             }
             break;
         default:
@@ -72,29 +73,28 @@ void Strategy::planAction(bool dirt, array<bool, 4> proximity,
     }
 }
 
-char Strategy::actionSelection()
+char Strategy::ActionSelection()
 {
     char action = plan_.front();
     plan_.pop();
     return action;
 };
 
-vector<char> Strategy::stateSearch(array<int, 2> location,
-                                   vector<vector<int>> map)
+vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> map)
 {
     // find closest dirt patches to location
-    vector<array<int, 2>> closestDirt = Model::getClosestDirt(map, location);
+    vector<array<int, 2>> closest_dirt = Model::GetClosestDirt(map, location);
     
     // select random dirt patch and devise plan to clean it.
-    array<int, 2> dirtPatch = closestDirt[rand() % closestDirt.size()];
+    array<int, 2> dirt_patch = closest_dirt[rand() % closest_dirt.size()];
     
     // setup path searcher with goal, initial condition and map of dirt.
-    pathSearcher_.init(dirtPatch, location, map, visualizer_);
+    path_searcher_.Initialize(dirt_patch, location, map, visualizer_);
     
     // search for solution
-    if (pathSearcher_.search())
+    if (path_searcher_.Search())
     {
-        return pathSearcher_.getSolution();
+        return path_searcher_.CalculateSolution();
     }
     else
     {
@@ -102,41 +102,41 @@ vector<char> Strategy::stateSearch(array<int, 2> location,
     }
 }
 
-char Strategy::superGreedySearch(bool dirt, array<bool, 4> proximity,
-                                 array<bool, 4> direction)
+char Strategy::SuperGreedySearch(bool dirt, array<bool, 4> proximity,
+                                 array<bool, 4> directions)
 {
     if (dirt)
     {
         return 's';
     }
     
-    vector<int> possibleActions;
-    vector<int> bestActions;
+    vector<int> possible_actions;
+    vector<int> best_actions;
     
-    for (int i = 0; i < proximity.size(); i++)
+    for (int direction = 0; direction < proximity.size(); direction++)
     {
-        if (direction[i] && !proximity[i])
+        if (directions[direction] && !proximity[direction])
         {
-            bestActions.push_back(i);
+            best_actions.push_back(direction);
         }
-        if (!proximity[i])
+        if (!proximity[direction])
         {
-            possibleActions.push_back(i);
+            possible_actions.push_back(direction);
         }
     }
     
-    if (bestActions.size() == 0)
+    if (best_actions.size() == 0)
     {
-        return actions_[possibleActions[rand() % possibleActions.size()]];
+        return actions_[possible_actions[rand() % possible_actions.size()]];
     }
     else
     {
-        return actions_[bestActions[rand() % bestActions.size()]];
+        return actions_[best_actions[rand() % best_actions.size()]];
     }
     
 }
 
-char Strategy::moreGreedySearch(bool dirt, array<bool, 4> proximity)
+char Strategy::MoreGreedySearch(bool dirt, array<bool, 4> proximity)
 {
     if (dirt)
     {
@@ -144,24 +144,24 @@ char Strategy::moreGreedySearch(bool dirt, array<bool, 4> proximity)
     }
     else
     {
-        vector<int> possibleActions;
+        vector<int> possible_actions;
         
-        for (int i = 0; i < proximity.size(); i++)
+        for (int direction = 0; direction < proximity.size(); direction++)
         {
-            if (!proximity[i])
+            if (!proximity[direction])
             {
-                possibleActions.push_back(i);
+                possible_actions.push_back(direction);
             }
         }
         
-        int randIndex = rand() % possibleActions.size();
+        int random_index = rand() % possible_actions.size();
         
-        return actions_[possibleActions[randIndex]];
+        return actions_[possible_actions[random_index]];
     }
     return 'n';
 }
 
-char Strategy::greedySearch(bool dirt)
+char Strategy::GreedySearch(bool dirt)
 {
     if (dirt)
     {
@@ -173,7 +173,7 @@ char Strategy::greedySearch(bool dirt)
     }
 }
 
-char Strategy::randomSearch()
+char Strategy::RandomSearch()
 {
     return actions_[rand() % 5];
 }

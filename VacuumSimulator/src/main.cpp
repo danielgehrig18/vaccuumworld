@@ -7,8 +7,6 @@
 //
 
 #include <iostream>
-#include <vector>
-#include <array>
 
 #include "vaccuumworld/simulation.hpp"
 

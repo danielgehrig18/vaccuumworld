@@ -19,10 +19,10 @@ add_library(model src/model.cpp)
 
 add_library(state src/state.cpp)
 
-add_library(visualizer src/visualizer.cpp)
-
-
 # Libs with only one internal dependency
+add_library(visualizer src/visualizer.cpp)
+target_link_libraries(visualizer state)
+
 add_library(motor src/motor.cpp)
 target_link_libraries(motor actuator)
 

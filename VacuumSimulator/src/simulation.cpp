@@ -28,14 +28,14 @@ void Simulation::run()
 {
     int counter = 0;
     
-    if (Visualizer::visual())
+    if (Visualizer::visualize)
     {
         Visualizer::visualizeMap(environment.getMap(),
                                 environment.getAgentLocation());
     }
     while (!problem.goalTest(environment))
     {
-        if (Visualizer::visual())
+        if (Visualizer::visualize)
         {
             cout << "--- step " << counter + 1 << " ---" << endl;
         }
@@ -44,7 +44,7 @@ void Simulation::run()
         penalty += problem.calculatePenalty(environment);
         counter ++;
     }
-    if (Visualizer::visual())
+    if (Visualizer::visualize)
     {
         cout << "*** Completion in " << counter << " steps. ***" << endl;
     }

@@ -51,7 +51,7 @@ bool PathSearcher::search()
 {
     while (!frontier.empty())
     {
-        if (Visualizer::visual())
+        if (Visualizer::visualize)
         {
             Visualizer::visualizeTree(rootNode, 0);
         }

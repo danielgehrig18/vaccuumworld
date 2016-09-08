@@ -21,20 +21,6 @@ class Visualizer
 {
 public:
     /**
-        Set flag to visualize.
-     
-        @param: visual: flag.
-    */
-    static void setVisual(bool visual);
-    
-    /**
-        Check if visual flag is on.
-     
-        @param: -
-    */
-    static bool visual();
-    
-    /**
         Visualize the sensor data acquired.
 
         @param: dirt: presence of dirt.
@@ -69,7 +55,6 @@ public:
     */
     static void visualizeTree(State root, int indent);
 
-private:
     static bool visualize;
 };
 

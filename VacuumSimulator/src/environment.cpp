@@ -69,7 +69,7 @@ void Environment::step()
 {
     // updates and visualizes sensors based on true dirt and location
     updateSensors(currentDirt, walls, directions, agentLocation);
-    if (Visualizer::visual())
+    if (Visualizer::visualize)
     {
         Visualizer::visualizeSensors(dirtSensor.getValue(),
                                      proximitySensor.getValue(),
@@ -80,7 +80,7 @@ void Environment::step()
     // agent makes decision depending on sensor reading
     agent.executeAction();
     
-    if (Visualizer::visual())
+    if (Visualizer::visualize)
     {
         Visualizer::visualizeAction(lastAction);
     }
@@ -89,7 +89,7 @@ void Environment::step()
     updateEnvironment(lastAction, agentLocation);
     
     // display map
-    if (Visualizer::visual())
+    if (Visualizer::visualize)
     {
         Visualizer::visualizeMap(map, agentLocation);
     }

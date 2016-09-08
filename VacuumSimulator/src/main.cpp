@@ -36,7 +36,7 @@ int main(int argc, const char * argv[])
     // visualize
     bool visualize = true;
     
-    Visualizer::setVisual(visualize);
+    Visualizer::visualize = visualize;
     
     float p = 0;
     float st = 0;

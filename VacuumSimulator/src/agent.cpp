@@ -33,7 +33,7 @@ void Agent::executeAction()
 {
     if (!strategy.actionPlanned())
     {
-        if (Visualizer::visual())
+        if (Visualizer::visualize)
         {
             cout << "planning action..." << endl;
         }

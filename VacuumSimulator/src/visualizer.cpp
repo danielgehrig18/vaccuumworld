@@ -9,16 +9,6 @@
 
 using namespace std;
 
-void Visualizer::setVisual(bool vis)
-{
-    visualize = vis;
-}
-
-bool Visualizer::visual()
-{
-    return visualize;
-}
-
 void Visualizer::visualizeSensors(bool dirt, array<bool, 4> proximity,
                              array<bool, 4> directions, array<int, 2> location)
 {

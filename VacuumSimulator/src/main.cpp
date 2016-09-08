@@ -27,7 +27,7 @@ int main(int argc, const char * argv[])
     // Define which sensors will be used
     // d : dirt
     // p : proximity sensor
-    vector<char> sensors = {'d', 'p', 'l', 'r'};
+    vector<char> sensors = {'d', 'p', 'r'};
 
     // Define which actuators will be used
     vector<char> actuators = {};

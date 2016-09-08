@@ -11,6 +11,8 @@
 
 #include <vector>
 
+using namespace std;
+
 class Actuator
 {
 public:

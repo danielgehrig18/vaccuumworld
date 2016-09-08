@@ -108,12 +108,12 @@ private:
     */
     char randomSearch();
     
-    char type;
-    vector<char> actions = {'u', 'r', 'd', 'l', 's'};
+    char type_;
+    vector<char> actions_ = {'u', 'r', 'd', 'l', 's'};
     
-    queue<char> plan;
+    queue<char> plan_;
     
-    PathSearcher pathSearcher;
+    PathSearcher pathSearcher_;
     Visualizer visualizer_;
 };
 

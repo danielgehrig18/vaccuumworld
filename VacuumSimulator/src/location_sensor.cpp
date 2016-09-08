@@ -15,10 +15,10 @@ LocationSensor::LocationSensor()
 
 void LocationSensor::setValue(array<int, 2> location)
 {
-    if (Sensor::getStatus()) value = location;
+    if (Sensor::getStatus()) value_ = location;
 };
 
 array<int, 2> LocationSensor::getValue()
 {
-    return value;
+    return value_;
 }

@@ -11,19 +11,19 @@ using namespace std;
 
 vector<vector<int>> Environment::getMap()
 {
-    return map;
+    return map_;
 };
 
 array<int, 2> Environment::getAgentLocation()
 {
-    return agentLocation;
+    return agentLocation_;
 };
 
 void Environment::init(vector<vector<int>> dim, vector<char> sensors,
                        vector<char> actuators, Visualizer &visualizer)
 {
     visualizer_ = visualizer;
-    map = dim;
+    map_ = dim;
     
     // instantiate sensors
     for (char i : sensors)
@@ -31,16 +31,16 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors,
         switch (i)
         {
             case 'd':
-                dirtSensor.init();
+                dirtSensor_.init();
                 break;
             case 'p':
-                proximitySensor.init();
+                proximitySensor_.init();
                 break;
             case 'r': // richtung
-                directionSensor.init();
+                directionSensor_.init();
                 break;
             case 'l':
-                locationSensor.init();
+                locationSensor_.init();
                 break;
         }
     };
@@ -51,10 +51,10 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors,
         switch (i)
         {
             case 'm':
-                motor.init(&lastAction);
+                motor_.init(&lastAction_);
                 break;
             case 's':
-                sucker.init(&lastAction);
+                sucker_.init(&lastAction_);
                 break;
         }
     }
@@ -62,51 +62,51 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors,
     reset();
     
     // instantiate agent
-    agent.init(&dirtSensor, &proximitySensor, &directionSensor,
-               &locationSensor, &motor, &sucker, map, visualizer);
+    agent.init(&dirtSensor_, &proximitySensor_, &directionSensor_,
+               &locationSensor_, &motor_, &sucker_, map_, visualizer_);
 }
 
 void Environment::step()
 {
     // updates and visualizes sensors based on true dirt and location
-    updateSensors(currentDirt, walls, directions, agentLocation);
-    if (visualizer_.visualize)
+    updateSensors(currentDirt_, walls_, directions_, agentLocation_);
+    if (visualizer_.visualize_)
     {
-        visualizer_.visualizeSensors(dirtSensor.getValue(),
-                                     proximitySensor.getValue(),
-                                     directionSensor.getValue(),
-                                     locationSensor.getValue());
+        visualizer_.visualizeSensors(dirtSensor_.getValue(),
+                                     proximitySensor_.getValue(),
+                                     directionSensor_.getValue(),
+                                     locationSensor_.getValue());
     }
 
     // agent makes decision depending on sensor reading
-    agent.executeAction();
+    agent_.executeAction();
     
-    if (visualizer_.visualize)
+    if (visualizer_.visualize_)
     {
-        visualizer_.visualizeAction(lastAction);
+        visualizer_.visualizeAction(lastAction_);
     }
     
     // environment updated based on action and true location of agent.
-    updateEnvironment(lastAction, agentLocation);
+    updateEnvironment(lastAction_, agentLocation_);
     
     // display map
-    if (visualizer_.visualize)
+    if (visualizer_.visualize_)
     {
-        visualizer_.visualizeMap(map, agentLocation);
+        visualizer_.visualizeMap(map_, agentLocation_);
     }
 }
 
 void Environment::reset()
 {
-    int x = map.size();
-    int y = map[0].size();
+    int x = map_.size();
+    int y = map_[0].size();
     
     // set initialCoords of agent.
-    agentLocation = {rand() % x, rand() % y};
+    agentLocation_ = {rand() % x, rand() % y};
     
-    while (map[agentLocation[0]][agentLocation[1]] == -1)
+    while (map_[agentLocation_[0]][agentLocation_[1]] == -1)
     {
-        agentLocation = {rand() % x, rand() % y};
+        agentLocation_ = {rand() % x, rand() % y};
     }
     
     // set dirt locations
@@ -114,44 +114,44 @@ void Environment::reset()
     {
         for (int j = 0; j < y; j++)
         {
-            if (map[i][j]==0) map[i][j] = rand()%2;
+            if (map_[i][j]==0) map_[i][j] = rand()%2;
         }
     };
     
     // get currentDirt
-    currentDirt = model.getDirt(map, agentLocation);
+    currentDirt_ = model_.getDirt(map_, agentLocation_);
     
     // set wall presence
-    walls = model.getProximity(map, agentLocation);
+    walls_ = model_.getProximity(map_, agentLocation_);
     
     // set directions
-    directions = model.getDirections(map, agentLocation);
+    directions_ = model_.getDirections(map_, agentLocation_);
     
 }
 
 void Environment::updateSensors(bool dirt, array<bool, 4> walls,
                                 array<bool, 4> directions, array<int, 2> location)
 {
-    dirtSensor.setValue(dirt);
-    proximitySensor.setValue(walls);
-    directionSensor.setValue(directions);
-    locationSensor.setValue(location);
+    dirtSensor_.setValue(dirt);
+    proximitySensor_.setValue(walls);
+    directionSensor_.setValue(directions);
+    locationSensor_.setValue(location);
 }
 
 void Environment::updateEnvironment(char action, array<int, 2> location)
 {
     // get new location
-    agentLocation = model.getNewLocation(action, location, map);
+    agentLocation_ = model_.getNewLocation(action, location, map_);
     
     // update map
-    map = model.getNewMap(action, location, map);
+    map_ = model_.getNewMap(action, location, map_);
     
     // update dirt
-    currentDirt = model.getDirt(map, agentLocation);
+    currentDirt_ = model_.getDirt(map_, agentLocation_);
     
     // set wall presence
-    walls = model.getProximity(map, agentLocation);
+    walls_ = model_.getProximity(map_, agentLocation_);
     
     // set new directions
-    directions = model.getDirections(map, agentLocation);
+    directions_ = model_.getDirections(map_, agentLocation_);
 }

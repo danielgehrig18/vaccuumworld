@@ -18,7 +18,7 @@ int Problem::calculatePenalty(Environment environment)
     {
         for (int spot : a)
         {
-            if (spot == 1) penalty += dirtSpotCost;
+            if (spot == 1) penalty += dirtSpotCost_;
         }
     }
     

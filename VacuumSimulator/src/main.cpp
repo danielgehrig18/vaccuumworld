@@ -37,7 +37,7 @@ int main(int argc, const char * argv[])
     bool visualize = true;
     
     Visualizer visualizer;
-    visualizer.visualize = visualize;
+    visualizer.visualize_ = visualize;
     
     float p = 0;
     float st = 0;

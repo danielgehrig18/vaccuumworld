@@ -36,7 +36,7 @@ public:
     bool getValue();
 
 private:
-    bool value;
+    bool value_;
 };
 
 #endif /* dirt_sensor_hpp */

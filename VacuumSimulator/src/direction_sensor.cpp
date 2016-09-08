@@ -17,11 +17,11 @@ void DirectionSensor::setValue(array<bool, 4> directions)
 {
     if (Sensor::getStatus())
     {
-        value = directions;
+        value_ = directions;
     }
 };
 
 array<bool, 4> DirectionSensor::getValue()
 {
-    return value;
+    return value_;
 }

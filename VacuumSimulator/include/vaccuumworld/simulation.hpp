@@ -66,12 +66,12 @@ public:
     void reset();
     
 private:
-    Environment environment;
-    Problem problem;
+    Environment environment_;
+    Problem problem_;
     Visualizer visualizer_;
     
-    float penalty=0;
-    int completionSteps;
+    float penalty_ = 0;
+    int completionSteps_;
 };
 
 #endif /* simulation_hpp */

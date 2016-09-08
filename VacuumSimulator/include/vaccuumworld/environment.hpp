@@ -87,24 +87,24 @@ private:
     */
     void updateEnvironment(char action, array<int, 2> location);
     
-    array<int, 2> agentLocation;
-    bool currentDirt;
-    array<bool, 4> walls;
-    array<bool, 4> directions;
-    vector<vector<int>> map;
+    array<int, 2> agentLocation_;
+    bool currentDirt_;
+    array<bool, 4> walls_;
+    array<bool, 4> directions_;
+    vector<vector<int>> map_;
     
-    char lastAction;
+    char lastAction_;
 
-    DirtSensor dirtSensor;
-    ProximitySensor proximitySensor;
-    LocationSensor locationSensor;
-    DirectionSensor directionSensor;
+    DirtSensor dirtSensor_;
+    ProximitySensor proximitySensor_;
+    LocationSensor locationSensor_;
+    DirectionSensor directionSensor_;
     
-    Motor motor;
-    Sucker sucker;
+    Motor motor_;
+    Sucker sucker_;
     
-    Model model;
-    Agent agent;
+    Model model_;
+    Agent agent_;
     Visualizer visualizer_;
 };
 

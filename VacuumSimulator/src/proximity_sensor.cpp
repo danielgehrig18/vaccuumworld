@@ -15,10 +15,13 @@ ProximitySensor::ProximitySensor()
 
 void ProximitySensor::setValue(array<bool, 4> walls)
 {
-    if (Sensor::getStatus()) value = walls;
+    if (Sensor::getStatus())
+    {
+        value_ = walls;
+    }
 };
 
 array<bool, 4> ProximitySensor::getValue()
 {
-    return value;
+    return value_;
 }

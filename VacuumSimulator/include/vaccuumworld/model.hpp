@@ -61,7 +61,7 @@ public:
         @param: map: dirt map of the environment.
                 location: coordinates of the agent.
     */
-    static vector<array<int, 2>> getClosestDirt(vector<vector<int>> map, array<int, 2> location);
+    vector<array<int, 2>> getClosestDirt(vector<vector<int>> map, array<int, 2> location);
     
     /**
         Calculates the new dirt map based on the agent action and location.

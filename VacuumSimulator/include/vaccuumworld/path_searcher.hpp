@@ -74,13 +74,13 @@ private:
     */
     void expand(State &node);
     
-    priority_queue<State, vector<State>, CompareStates> frontier;
-    vector<vector<int>> visitedStates;
+    priority_queue<State, vector<State>, CompareStates> frontier_;
+    vector<vector<int>> visitedStates_;
     
-    State goalNode;
-    State rootNode;
+    State goalNode_;
+    State rootNode_;
     
-    array<int,2> goal;
+    array<int,2> goal_;
 
     Visualizer visualizer_;
 };

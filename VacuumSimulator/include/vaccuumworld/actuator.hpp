@@ -56,9 +56,9 @@ public:
     void execute(char action);
     
 private:
-    bool status;
-    char* lastActionPtr;
-    vector<char> possibleActions;
+    bool status_;
+    char* lastActionPtr_;
+    vector<char> possibleActions_;
 };
 
 #endif /* actuator_hpp */

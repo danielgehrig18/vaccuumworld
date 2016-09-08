@@ -10,54 +10,54 @@
 
 void State::init(array<int, 2> loc, char action, int pathC, int heur)
 {
-    location = loc;
-    heuristic = heur;
-    pathCost = pathC;
+    location_ = loc;
+    heuristic_ = heur;
+    pathCost_ = pathC;
 };
 
 void State::setParent(State* p)
 {
-    parent = p;
+    parent_ = p;
 }
 
 void State::addChild(State* c)
 {
-    children.push_back(c);
+    children_.push_back(c);
 }
 
 State* State::getParent()
 {
-    return parent;
+    return parent_;
 };
 
 vector<State*> State::getChildren()
 {
-    return children;
+    return children_;
 }
 
 char State::getAction()
 {
-    return action;
+    return action_;
 };
 
 array<int, 2> State::getLocation()
 {
-    return location;
+    return location_;
 }
 
 int State::getPathCost()
 {
-    return pathCost;
+    return pathCost_;
 };
 
 int State::getTotalCost()
 {
-    return pathCost + heuristic;
+    return pathCost_ + heuristic_;
 }
 
 bool State::isRoot()
 {
-    return !parent;
+    return !parent_;
 };
 
 bool CompareStates::operator()(State s1, State s2)

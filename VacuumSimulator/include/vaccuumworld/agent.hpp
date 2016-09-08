@@ -49,17 +49,17 @@ public:
     void executeAction();
     
 private:
-    DirtSensor* dirtSensorPtr;
-    ProximitySensor* proximitySensorPtr;
-    DirectionSensor* directionSensorPtr;
-    LocationSensor* locationSensorPtr;
+    DirtSensor* dirtSensorPtr_;
+    ProximitySensor* proximitySensorPtr_;
+    DirectionSensor* directionSensorPtr_;
+    LocationSensor* locationSensorPtr_;
     
-    Motor* motorPtr;
-    Sucker* suckerPtr;
+    Motor* motorPtr_;
+    Sucker* suckerPtr_;
     
-    vector<vector<int>> state;
+    vector<vector<int>> state_;
 
-    Strategy strategy;
+    Strategy strategy_;
     Visualizer visualizer_;
 };
 

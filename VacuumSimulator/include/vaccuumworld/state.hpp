@@ -95,14 +95,14 @@ public:
     bool isRoot();
 
 private:
-    State* parent=NULL;
-    vector<State*> children;
-    char action;
+    State* parent_ = NULL;
+    vector<State*> children_;
+    char action_;
     
-    array<int, 2> location;
+    array<int, 2> location_;
     
-    int pathCost;
-    int heuristic;
+    int pathCost_;
+    int heuristic_;
 };
 
 class CompareStates

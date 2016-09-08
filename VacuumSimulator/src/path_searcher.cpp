@@ -16,7 +16,7 @@ void PathSearcher::addChild(State &node, char action, array<int, 2> location, in
     child.init(location, action, node.getPathCost() + 1, h);
     child.setParent(&node);
     node.addChild(&child);
-    frontier.push(child);
+    frontier_.push(child);
 }
 
 void PathSearcher::init(array<int, 2> dirtPatch, array<int, 2> location,
@@ -39,37 +39,37 @@ void PathSearcher::init(array<int, 2> dirtPatch, array<int, 2> location,
     }
     map[location[0]][location[1]] = 2;
     
-    visitedStates = map;
-    goal = dirtPatch;
+    visitedStates_ = map;
+    goal_ = dirtPatch;
     
     int h = abs(dirtPatch[0] - location[0]) + abs(dirtPatch[1] - location[1]);
     
-    rootNode.init(location, ' ', 0, h);
+    rootNode_.init(location, ' ', 0, h);
     
-    frontier.push(rootNode);
+    frontier_.push(rootNode_);
 }
 
 bool PathSearcher::search()
 {
-    while (!frontier.empty())
+    while (!frontier_.empty())
     {
-        if (visualizer_.visualize)
+        if (visualizer_.visualize_)
         {
-            visualizer_.visualizeTree(rootNode, 0);
+            visualizer_.visualizeTree(rootNode_, 0);
         }
         
-        State nextNode = frontier.top();
-        frontier.pop();
+        State nextNode = frontier_.top();
+        frontier_.pop();
         
-        if (nextNode.getLocation() == goal)
+        if (nextNode.getLocation() == goal_)
         {
-            goalNode = nextNode;
+            goalNode_ = nextNode;
             return true;
         }
         else
         {
             array<int, 2> location = nextNode.getLocation();
-            visitedStates[location[0]][location[1]]++;
+            visitedStates_[location[0]][location[1]]++;
             expand(nextNode);
         }
     }
@@ -79,7 +79,7 @@ bool PathSearcher::search()
 vector<char> PathSearcher::getSolution()
 {
     vector<char> actionList;
-    for (State node = goalNode; !(node.isRoot());
+    for (State node = goalNode_; !(node.isRoot());
          node = *node.getParent())
     {
         actionList.push_back(node.getAction());
@@ -87,7 +87,7 @@ vector<char> PathSearcher::getSolution()
     
     reverse(actionList.begin(), actionList.end());
     
-    clear(rootNode);
+    clear(rootNode_);
     
     return actionList;
 }
@@ -105,40 +105,40 @@ void PathSearcher::expand(State &node)
 {
     array<int, 2> loc = node.getLocation();
     
-    int x = visitedStates.size();
-    int y = visitedStates[0].size();
+    int x = visitedStates_.size();
+    int y = visitedStates_[0].size();
     
     array<int, 2> top = {loc[0] - 1, loc[1]};
     array<int, 2> right = {loc[0], loc[1] + 1};
     array<int, 2> left = {loc[0], loc[1] - 1};
     array<int, 2> bottom = {loc[0] + 1, loc[1]};
     
-    int hTop = abs(top[0] - goal[0]) + abs(top[1] - goal[1]);
-    int hRight = abs(right[0] - goal[0]) + abs(right[1] - goal[1]);
-    int hLeft = abs(left[0] - goal[0]) + abs(left[1] - goal[1]);
-    int hBottom = abs(bottom[0] - goal[0]) + abs(bottom[1] - goal[1]);
+    int hTop = abs(top[0] - goal_[0]) + abs(top[1] - goal_[1]);
+    int hRight = abs(right[0] - goal_[0]) + abs(right[1] - goal_[1]);
+    int hLeft = abs(left[0] - goal_[0]) + abs(left[1] - goal_[1]);
+    int hBottom = abs(bottom[0] - goal_[0]) + abs(bottom[1] - goal_[1]);
     
-    if (top[0] >= 0 && visitedStates[top[0]][top[1]] == 0)
+    if (top[0] >= 0 && visitedStates_[top[0]][top[1]] == 0)
     {
-        visitedStates[top[0]][top[1]]++;
+        visitedStates_[top[0]][top[1]]++;
         addChild(node, 'u', top, hTop);
     }
     
-    if (right[1] < y && visitedStates[right[0]][right[1]] == 0)
+    if (right[1] < y && visitedStates_[right[0]][right[1]] == 0)
     {
-        visitedStates[right[0]][right[1]]++;
+        visitedStates_[right[0]][right[1]]++;
         addChild(node, 'r', right, hRight);
     }
     
-    if (left[1] >= 0 && visitedStates[left[0]][left[1]] == 0)
+    if (left[1] >= 0 && visitedStates_[left[0]][left[1]] == 0)
     {
-        visitedStates[left[0]][left[1]]++;
+        visitedStates_[left[0]][left[1]]++;
         addChild(node, 'l', left, hLeft);
     }
     
-    if (bottom[0] < x && visitedStates[bottom[0]][bottom[1]] == 0)
+    if (bottom[0] < x && visitedStates_[bottom[0]][bottom[1]] == 0)
     {
-        visitedStates[bottom[0]][bottom[1]]++;
+        visitedStates_[bottom[0]][bottom[1]]++;
         addChild(node, 'd', bottom, hBottom);
     }
 }

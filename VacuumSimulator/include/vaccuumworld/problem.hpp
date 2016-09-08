@@ -30,7 +30,7 @@ public:
     bool goalTest(Environment environment);
     
 private:
-    int dirtSpotCost = 1;
+    int dirtSpotCost_ = 1;
 };
 
 #endif /* problem_hpp */

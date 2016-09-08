@@ -39,8 +39,8 @@ public:
     void init();
     
 private:
-    char name;
-    bool status=false;
+    char name_;
+    bool status_ = false;
 };
 
 #endif /* sensor_hpp */

@@ -12,49 +12,49 @@ void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
                  LocationSensor* ptr4, Motor* ptr5, Sucker* ptr6,
                  vector<vector<int>> map, Visualizer &visualizer)
 {
-    dirtSensorPtr = ptr1;
-    proximitySensorPtr = ptr2;
-    directionSensorPtr = ptr3;
-    locationSensorPtr = ptr4;
+    dirtSensorPtr_ = ptr1;
+    proximitySensorPtr_ = ptr2;
+    directionSensorPtr_ = ptr3;
+    locationSensorPtr_ = ptr4;
     
-    motorPtr = ptr5;
-    suckerPtr = ptr6;
+    motorPtr_ = ptr5;
+    suckerPtr_ = ptr6;
     
-    state = map;
+    state_ = map;
     
     visualizer_ = visualizer;
-    strategy.init(visualizer);
+    strategy_.init(visualizer);
     
-    strategy.setType(dirtSensorPtr->getStatus(),
-                     proximitySensorPtr->getStatus(),
-                     directionSensorPtr->getStatus(),
-                     locationSensorPtr->getStatus(),
-                     motorPtr->getStatus(), suckerPtr->getStatus());
+    strategy_.setType(dirtSensorPtr_->getStatus(),
+                     proximitySensorPtr_->getStatus(),
+                     directionSensorPtr_->getStatus(),
+                     locationSensorPtr_->getStatus(),
+                     motorPtr_->getStatus(), suckerPtr_->getStatus());
 };
 
 void Agent::executeAction()
 {
-    if (!strategy.actionPlanned())
+    if (!strategy_.actionPlanned())
     {
-        if (visualizer_.visualize)
+        if (visualizer_.visualize_)
         {
             cout << "planning action..." << endl;
         }
         
-        strategy.planAction(dirtSensorPtr->getValue(),
-                            proximitySensorPtr->getValue(),
-                            directionSensorPtr->getValue(),
-                            locationSensorPtr->getValue(), state);
+        strategy_.planAction(dirtSensorPtr_->getValue(),
+                            proximitySensorPtr_->getValue(),
+                            directionSensorPtr_->getValue(),
+                            locationSensorPtr_->getValue(), state_);
     }
-    char action = strategy.actionSelection();
+    char action = strategy_.actionSelection();
     
     // TODO: make smarter decision which actuator to take.
-    if (motorPtr->isApplicable(action))
+    if (motorPtr_->isApplicable(action))
     {
-        motorPtr->execute(action);
+        motorPtr_->execute(action);
     }
-    else if (suckerPtr->isApplicable(action))
+    else if (suckerPtr_->isApplicable(action))
     {
-        suckerPtr->execute(action);
+        suckerPtr_->execute(action);
     }
 }

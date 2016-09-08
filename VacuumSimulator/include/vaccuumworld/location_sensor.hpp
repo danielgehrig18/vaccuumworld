@@ -40,7 +40,7 @@ public:
     array<int, 2> getValue();
     
 private:
-    array<int, 2> value;
+    array<int, 2> value_;
 };
 
 #endif /* location_sensor_hpp */

@@ -41,7 +41,7 @@ public:
     array<bool, 4> getValue();
     
 private:
-    array<bool, 4> value;
+    array<bool, 4> value_;
 };
 
 #endif /* direction_sensor_hpp */

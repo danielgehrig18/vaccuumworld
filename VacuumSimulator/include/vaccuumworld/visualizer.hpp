@@ -55,7 +55,7 @@ public:
     */
     void visualizeTree(State root, int indent);
 
-    bool visualize;
+    bool visualize_;
 };
 
 #endif /* visualizer_hpp */

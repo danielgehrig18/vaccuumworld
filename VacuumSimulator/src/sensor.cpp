@@ -10,15 +10,15 @@
 
 void Sensor::setName(char sensorName)
 {
-    name = sensorName;
+    name_ = sensorName;
 }
 
 bool Sensor::getStatus()
 {
-    return status;
+    return status_;
 };
 
 void Sensor::init()
 {
-    status=true;
+    status_ = true;
 };

@@ -15,11 +15,6 @@
 #include <queue>
 
 #include "vaccuumworld/path_searcher.hpp"
-#include "vaccuumworld/dirt_sensor.hpp"
-#include "vaccuumworld/proximity_sensor.hpp"
-#include "vaccuumworld/direction_sensor.hpp"
-#include "vaccuumworld/location_sensor.hpp"
-#include "vaccuumworld/actuator.hpp"
 #include "vaccuumworld/model.hpp"
 
 using namespace std;
@@ -31,17 +26,15 @@ public:
         search, 'g' greedy search, 'h' more greedy search, 'i' super greedy
         search, 's' state search.
      
-        @param: dirtSensorPtr: pointer to dirtSensor.
-                proximitySensorPtr: pointer to proximitySensor.
-                directionSensorPtr: pointer to directionSensor.
-                locationSensorPtr: pointer to locationSensor.
-                motorPtr: pointer to motor.
-                suckerPtr: pointer to sucker.
+        @param: DSStatus: status of dirtSensor.
+                PSStatus: status of proximitySensor.
+                DirSStatus: status of directionSensor.
+                LSStatus: status of locationSensor.
+                MStatus: status of motor.
+                SStatus: status of sucker.
     */
-    void setType(DirtSensor* dirtSensorPtr, ProximitySensor* proximitySensorPtr,
-                 DirectionSensor* directionSensorPtr,
-                 LocationSensor* locationSensorPtr, Actuator* motorPtr,
-                 Actuator* suckerPtr);
+    void setType(bool DSStatus, bool PSStatus, bool DirSStatus, bool LSStatus,
+                 bool MStatus, bool SStatus);
     
     /**
         Test whether an action is planned.
@@ -69,7 +62,7 @@ public:
      
         @param: -
     */
-    char executeAction();
+    char actionSelection();
 
 private:
     /**
@@ -89,7 +82,8 @@ private:
              direction: direction of closest dirt (see:
              "direction_sensor.hpp")
     */
-    char superGreedySearch(bool dirt, array<bool, 4> proximity, array<bool, 4> direction);
+    char superGreedySearch(bool dirt, array<bool, 4> proximity,
+                           array<bool, 4> direction);
     
     /**
         Computes the action based on proximity and dirt.

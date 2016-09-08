@@ -102,13 +102,11 @@ void Environment::reset()
     int y = map[0].size();
     
     // set initialCoords of agent.
-    agentLocation[0] = rand() % x;
-    agentLocation[1] = rand() % y;
+    agentLocation = {rand() % x, rand() % y};
     
     while (map[agentLocation[0]][agentLocation[1]] == -1)
     {
-        agentLocation[0] = rand() % x;
-        agentLocation[1] = rand() % y;
+        agentLocation = {rand() % x, rand() % y};
     }
     
     // set dirt locations

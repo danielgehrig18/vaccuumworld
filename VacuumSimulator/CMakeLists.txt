@@ -47,13 +47,13 @@ target_link_libraries(path_searcher state)
 
 # Libs with multiple internal dependencies (+ problem.cpp)
 add_library(strategy src/strategy.cpp)
-target_link_libraries(strategy dirt_sensor proximity_sensor direction_sensor location_sensor actuator model path_searcher)
+target_link_libraries(strategy model path_searcher)
 
 add_library(agent src/agent.cpp)
-target_link_libraries(agent dirt_sensor proximity_sensor direction_sensor location_sensor actuator strategy)
+target_link_libraries(agent dirt_sensor proximity_sensor direction_sensor location_sensor motor sucker strategy)
 
 add_library(environment src/environment.cpp)
-target_link_libraries(environment agent dirt_sensor proximity_sensor actuator model visualizer)
+target_link_libraries(environment agent dirt_sensor proximity_sensor motor sucker model visualizer)
 
 add_library(problem src/problem.cpp)
 target_link_libraries(problem environment)

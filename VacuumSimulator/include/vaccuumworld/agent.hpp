@@ -15,7 +15,8 @@
 #include "vaccuumworld/proximity_sensor.hpp"
 #include "vaccuumworld/direction_sensor.hpp"
 #include "vaccuumworld/location_sensor.hpp"
-#include "vaccuumworld/actuator.hpp"
+#include "vaccuumworld/motor.hpp"
+#include "vaccuumworld/sucker.hpp"
 #include "vaccuumworld/strategy.hpp"
 
 using namespace std;
@@ -35,7 +36,7 @@ public:
                 state: map of the dirt in the environment.
     */
     void init(DirtSensor* DSPtr, ProximitySensor* PSPtr, DirectionSensor* DiSPtr,
-              LocationSensor* LSPtr, Actuator* motorPtr, Actuator* suckerPtr,
+              LocationSensor* LSPtr, Motor* motorPtr, Sucker* suckerPtr,
               vector<vector<int>> state);
     
     /**
@@ -52,8 +53,8 @@ private:
     DirectionSensor* directionSensorPtr;
     LocationSensor* locationSensorPtr;
     
-    Actuator* motorPtr;
-    Actuator* suckerPtr;
+    Motor* motorPtr;
+    Sucker* suckerPtr;
     
     vector<vector<int>> state;
     

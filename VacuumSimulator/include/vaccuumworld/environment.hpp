@@ -16,7 +16,8 @@
 #include "vaccuumworld/agent.hpp"
 #include "vaccuumworld/dirt_sensor.hpp"
 #include "vaccuumworld/proximity_sensor.hpp"
-#include "vaccuumworld/actuator.hpp"
+#include "vaccuumworld/motor.hpp"
+#include "vaccuumworld/sucker.hpp"
 #include "vaccuumworld/model.hpp"
 #include "vaccuumworld/visualizer.hpp"
 
@@ -97,8 +98,8 @@ private:
     LocationSensor locationSensor;
     DirectionSensor directionSensor;
     
-    Actuator motor;
-    Actuator sucker;
+    Motor motor;
+    Sucker sucker;
     
     Model model;
     Agent agent;

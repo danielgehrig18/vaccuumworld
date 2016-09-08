@@ -7,40 +7,28 @@
 //
 #include "vaccuumworld/strategy.hpp"
 
-void Strategy::setType(DirtSensor* dirtSensorPtr,
-                       ProximitySensor* proximitySensorPtr,
-                       DirectionSensor* directionSensorPtr,
-                       LocationSensor* locationSensorPtr,
-                       Actuator* motorPtr, Actuator* suckerPtr)
+void Strategy::setType(bool DSStatus, bool PSStatus, bool DirSStatus,
+                       bool LSStatus, bool MStatus, bool SStatus)
 {
-    if (dirtSensorPtr -> getStatus())
+    if (!DSStatus)
     {
-        if (proximitySensorPtr -> getStatus())
-        {
-            if (directionSensorPtr -> getStatus())
-            {
-                if (locationSensorPtr -> getStatus())
-                {
-                    type = 's';
-                }
-                else
-                {
-                    type = 'i';
-                }
-            }
-            else
-            {
-                type = 'h';
-            }
-        }
-        else
-        {
-            type = 'g';
-        }
+        type = 'r';
+    }
+    else if (DSStatus && !PSStatus)
+    {
+        type = 'g';
+    }
+    else if (DSStatus && PSStatus && !DirSStatus)
+    {
+        type = 'h';
+    }
+    else if (DSStatus && PSStatus && DirSStatus && !LSStatus)
+    {
+        type = 'i';
     }
     else
     {
-        type = 'r';
+        type = 's';
     }
 }
 
@@ -79,7 +67,7 @@ void Strategy::planAction(bool dirt, array<bool, 4> proximity,
     }
 }
 
-char Strategy::executeAction()
+char Strategy::actionSelection()
 {
     char action = plan.front();
     plan.pop();

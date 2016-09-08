@@ -9,7 +9,7 @@
 #include "vaccuumworld/agent.hpp"
 
 void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
-                 LocationSensor* ptr4, Actuator* ptr5, Actuator* ptr6,
+                 LocationSensor* ptr4, Motor* ptr5, Sucker* ptr6,
                  vector<vector<int>> map)
 {
     dirtSensorPtr = ptr1;
@@ -22,11 +22,14 @@ void Agent::init(DirtSensor* ptr1, ProximitySensor* ptr2, DirectionSensor* ptr3,
     
     state = map;
     
-    strategy.setType(dirtSensorPtr, proximitySensorPtr, directionSensorPtr,
-                     locationSensorPtr, motorPtr, suckerPtr);
+    strategy.setType(dirtSensorPtr->getStatus(),
+                     proximitySensorPtr->getStatus(),
+                     directionSensorPtr->getStatus(),
+                     locationSensorPtr->getStatus(),
+                     motorPtr->getStatus(), suckerPtr->getStatus());
 };
 
-char Agent::actionSelection()
+void Agent::executeAction()
 {
     if (!strategy.actionPlanned())
     {

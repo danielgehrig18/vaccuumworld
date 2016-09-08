@@ -53,10 +53,10 @@ void Agent::ExecuteAction()
     // TODO: make smarter decision which actuator to take.
     if (motor_pointer_ -> IsApplicable(action))
     {
-        motor_pointer_->Execute(action);
+        motor_pointer_ -> Execute(action);
     }
-    else if (sucker_pointer_->IsApplicable(action))
+    else if (sucker_pointer_ -> IsApplicable(action))
     {
-        sucker_pointer_->Execute(action);
+        sucker_pointer_ -> Execute(action);
     }
 }

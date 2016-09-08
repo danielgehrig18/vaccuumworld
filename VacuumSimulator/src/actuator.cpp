@@ -13,21 +13,33 @@ void Actuator::setPossibleActions(vector<char> possActions)
     possibleActions = possActions;
 }
 
-void Actuator::init()
+bool Actuator::getStatus()
 {
-    status = true;
+    return status;
 }
 
-char Actuator::execute(char action)
+void Actuator::init(char* actionPtr)
 {
-    if (status && find(possibleActions.begin(), possibleActions.end(), action)
-        != possibleActions.end())
+    status = true;
+    lastActionPtr = actionPtr;
+    
+}
+
+bool Actuator::isApplicable(char action)
+{
+    return find(possibleActions.begin(), possibleActions.end(), action)
+    != possibleActions.end();
+}
+
+void Actuator::execute(char action)
+{
+    if (status && isApplicable(action))
     {
-        return action;
+        *lastActionPtr = action;
     }
     else
     {
-        return 'n';
+        *lastActionPtr = 'n';
     }
 }
 

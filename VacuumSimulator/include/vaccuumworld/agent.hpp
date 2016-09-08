@@ -45,7 +45,7 @@ public:
      
         @param: -
     */
-    char actionSelection();
+    void executeAction();
     
 private:
     DirtSensor* dirtSensorPtr;

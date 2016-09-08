@@ -38,6 +38,15 @@ void Agent::executeAction()
                             directionSensorPtr->getValue(),
                             locationSensorPtr->getValue(), state);
     }
+    char action = strategy.actionSelection();
     
-    return strategy.executeAction();
+    // TODO: make smarter decision which actuator to take.
+    if (motorPtr->isApplicable(action))
+    {
+        motorPtr->execute(action);
+    }
+    else if (suckerPtr->isApplicable(action))
+    {
+        suckerPtr->execute(action);
+    }
 }

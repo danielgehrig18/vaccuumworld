@@ -24,12 +24,27 @@ public:
     void setPossibleActions(vector<char> possibleActions);
     
     /**
-        Sets the status of the actuator to true. Actions can only be performed
-        if the status is true.
+        Gets the status of the actuator.
      
         @param: -
     */
-    void init();
+    bool getStatus();
+    
+    /**
+        Sets the status of the actuator to true. Actions can only be performed
+        if the status is true.
+     
+        @param: actionPtr: reference to the last action used by the 
+                           environment to update.
+    */
+    void init(char* actionPtr);
+    
+    /**
+        Checks if this action is applicable, meaning among possibleActions.
+     
+        @param: action: action that is queried
+    */
+    bool isApplicable(char action);
     
     /**
         Execute the action action. If the action is not among possibleActions
@@ -37,10 +52,11 @@ public:
      
         @param: action: action to be executed.
     */
-    char execute(char action);
+    void execute(char action);
     
 private:
     bool status;
+    char* lastActionPtr;
     vector<char> possibleActions;
 };
 

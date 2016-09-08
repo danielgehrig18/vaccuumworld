@@ -50,10 +50,10 @@ void Environment::init(vector<vector<int>> dim, vector<char> sensors,
         switch (i)
         {
             case 'm':
-                motor.init();
+                motor.init(&lastAction);
                 break;
             case 's':
-                sucker.init();
+                sucker.init(&lastAction);
                 break;
         }
     }
@@ -79,15 +79,15 @@ void Environment::step(bool visual)
     }
 
     // agent makes decision depending on sensor reading
-    char action = agent.actionSelection();
+    agent.executeAction();
     
     if (visual)
     {
-        Visualizer::visualizeAction(action);
+        Visualizer::visualizeAction(lastAction);
     }
     
     // environment updated based on action and true location of agent.
-    updateEnvironment(action, agentLocation);
+    updateEnvironment(lastAction, agentLocation);
     
     // display map
     if (visual)

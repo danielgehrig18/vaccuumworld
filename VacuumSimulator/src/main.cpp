@@ -30,7 +30,7 @@ int main(int argc, const char * argv[])
     vector<char> sensors = {'d', 'p', 'r'};
 
     // Define which actuators will be used
-    vector<char> actuators = {};
+    vector<char> actuators = {'m', 's'};
     
     // visualize
     bool visualize = true;

@@ -92,6 +92,8 @@ private:
     array<bool, 4> walls;
     array<bool, 4> directions;
     vector<vector<int>> map;
+    
+    char lastAction;
 
     DirtSensor dirtSensor;
     ProximitySensor proximitySensor;

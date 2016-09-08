@@ -11,7 +11,7 @@
 
 #include "actuator.hpp"
 
-class Sucker : Actuator
+class Sucker : public Actuator
 {
 public:
     /**

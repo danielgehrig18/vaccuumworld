@@ -11,7 +11,7 @@
 
 #include "actuator.hpp"
 
-class Motor : Actuator
+class Motor : public Actuator
 {
 public:
     /**

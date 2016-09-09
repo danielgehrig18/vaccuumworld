@@ -20,17 +20,17 @@ public:
      
         @param: environment: Environment object with true dirt distribution.
     */
-    int calculatePenalty(Environment environment);
+    int CalculatePenalty(Environment environment);
     
     /**
         Test if the goal has been achieved. This is when all spots are clean.
      
         @param: environment: Environment object with true dirt distribution.
     */
-    bool goalTest(Environment environment);
+    bool GoalTest(Environment environment);
     
 private:
-    int dirtSpotCost = 1;
+    int dirt_spot_cost_ = 1;
 };
 
 #endif /* problem_hpp */

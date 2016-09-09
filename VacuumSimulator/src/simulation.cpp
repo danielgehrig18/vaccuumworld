@@ -8,53 +8,53 @@
 #include "vaccuumworld/simulation.hpp"
 
 Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
-                       vector<char> actuators, bool visual)
+                       vector<char> actuators, Visualizer &visualizer)
 {
     srand (time(NULL));
-    environment.init(map, sensors, actuators);
-    visualize = visual;
+    visualizer_ = visualizer;
+    environment_.Initialize(map, sensors, actuators, visualizer);
 }
 
-float Simulation::getPenalty()
+float Simulation::GetPenalty()
 {
-    return penalty;
+    return penalty_;
 }
 
-int Simulation::getCompletionSteps()
+int Simulation::GetCompletionSteps()
 {
-    return completionSteps;
+    return completion_steps_;
 }
 
-void Simulation::run()
+void Simulation::Run()
 {
     int counter = 0;
     
-    if (visualize)
+    if (visualizer_.visualize_)
     {
-        Visualizer::visualizeMap(environment.getMap(),
-                                environment.getAgentLocation());
+        visualizer_.VisualizeMap(environment_.GetMap(),
+                                environment_.GetAgentLocation());
     }
-    while (!problem.goalTest(environment))
+    while (!problem_.GoalTest(environment_))
     {
-        if (visualize)
+        if (visualizer_.visualize_)
         {
             cout << "--- step " << counter + 1 << " ---" << endl;
         }
         
-        environment.step(visualize);
-        penalty += problem.calculatePenalty(environment);
+        environment_.Step();
+        penalty_ += problem_.CalculatePenalty(environment_);
         counter ++;
     }
-    if (visualize)
+    if (visualizer_.visualize_)
     {
         cout << "*** Completion in " << counter << " steps. ***" << endl;
     }
-    completionSteps = counter;
+    completion_steps_ = counter;
 }
 
-void Simulation::reset()
+void Simulation::Reset()
 {
-    penalty = 0;
-    completionSteps = -1;
-    environment.reset();
+    penalty_ = 0;
+    completion_steps_ = -1;
+    environment_.Reset();
 }

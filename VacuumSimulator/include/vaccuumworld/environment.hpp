@@ -16,7 +16,8 @@
 #include "vaccuumworld/agent.hpp"
 #include "vaccuumworld/dirt_sensor.hpp"
 #include "vaccuumworld/proximity_sensor.hpp"
-#include "vaccuumworld/actuator.hpp"
+#include "vaccuumworld/motor.hpp"
+#include "vaccuumworld/sucker.hpp"
 #include "vaccuumworld/model.hpp"
 #include "vaccuumworld/visualizer.hpp"
 
@@ -30,14 +31,14 @@ public:
      
         @param: -
     */
-    vector<vector<int>> getMap();
+    vector<vector<int>> GetMap();
     
     /**
         Return coordinates of agent.
      
         @param: -
     */
-    array<int, 2> getAgentLocation();
+    array<int, 2> GetAgentLocation();
     
     /**
         Initializes sensors, agent, and map. Instantiates and activates sensors so
@@ -46,25 +47,26 @@ public:
         @param: map: same form as in simulation (see: "simulation.hpp")
                 sensors: a list of characters corresponding to used sensors.
                 actuators: the used actuators, a list of characters.
+                visualizer: visualizer that visualizes environment variables
     */
-    void init(vector<vector<int>> map, vector<char> sensors,
-              vector<char> actuators);
+    void Initialize(vector<vector<int>> map, vector<char> sensors, vector<char> actuators,
+                    Visualizer &visualizer);
     
     /**
         Runs one step of the simulation. This consists of a sensor update,
         action selection by the agent and environment update after action
         execution.
      
-        @param: visual: flag to visualize the sensor readings and map.
+        @param: -
     */
-    void step(bool visual);
+    void Step();
     
     /**
         Randomizes the dirt locations in the map and the initial agent location.
      
         @param: -
      */
-    void reset();
+    void Reset();
     
 private:
     /**
@@ -75,8 +77,8 @@ private:
                 directions: direction of closest dirtpatch.
                 location: coordinates of agent.
     */
-    void updateSensors(bool dirt, array<bool, 4> walls,
-                       array<bool, 4> directions, array<int, 2> location );
+    void UpdateSensors(bool dirt, array<bool, 4> walls,
+                       array<bool, 4> directions, array<int, 2> location);
     
     /**
         Update agent location and map based on agents action.
@@ -84,24 +86,27 @@ private:
         @param: action: action performed by the agent.
                 location: location of the agent when it executes the action.
     */
-    void updateEnvironment(char action, array<int, 2> location);
+    void UpdateEnvironment(char action, array<int, 2> location);
     
-    array<int, 2> agentLocation;
-    bool currentDirt;
-    array<bool, 4> walls;
-    array<bool, 4> directions;
-    vector<vector<int>> map;
+    array<int, 2> agent_location_;
+    bool current_dirt_;
+    array<bool, 4> walls_;
+    array<bool, 4> directions_;
+    vector<vector<int>> map_;
+    
+    char last_action_;
 
-    DirtSensor dirtSensor;
-    ProximitySensor proximitySensor;
-    LocationSensor locationSensor;
-    DirectionSensor directionSensor;
+    DirtSensor dirt_sensor_;
+    ProximitySensor proximity_sensor_;
+    LocationSensor location_sensor_;
+    DirectionSensor direction_sensor_;
     
-    Actuator motor;
-    Actuator sucker;
+    Motor motor_;
+    Sucker sucker_;
     
-    Model model;
-    Agent agent;
+    Model model_;
+    Agent agent_;
+    Visualizer visualizer_;
 };
 
 #endif /* environment_hpp */

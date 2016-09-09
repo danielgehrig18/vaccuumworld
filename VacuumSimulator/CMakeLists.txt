@@ -19,10 +19,16 @@ add_library(model src/model.cpp)
 
 add_library(state src/state.cpp)
 
-add_library(visualizer src/visualizer.cpp)
-
-
 # Libs with only one internal dependency
+add_library(visualizer src/visualizer.cpp)
+target_link_libraries(visualizer state)
+
+add_library(motor src/motor.cpp)
+target_link_libraries(motor actuator)
+
+add_library(sucker src/sucker.cpp)
+target_link_libraries(sucker actuator)
+
 add_library(dirt_sensor src/dirt_sensor.cpp)
 target_link_libraries(dirt_sensor sensor)
 
@@ -41,13 +47,13 @@ target_link_libraries(path_searcher state)
 
 # Libs with multiple internal dependencies (+ problem.cpp)
 add_library(strategy src/strategy.cpp)
-target_link_libraries(strategy dirt_sensor proximity_sensor direction_sensor location_sensor actuator model path_searcher)
+target_link_libraries(strategy model path_searcher)
 
 add_library(agent src/agent.cpp)
-target_link_libraries(agent dirt_sensor proximity_sensor direction_sensor location_sensor actuator strategy)
+target_link_libraries(agent dirt_sensor proximity_sensor direction_sensor location_sensor motor sucker strategy visualizer)
 
 add_library(environment src/environment.cpp)
-target_link_libraries(environment agent dirt_sensor proximity_sensor actuator model visualizer)
+target_link_libraries(environment agent dirt_sensor proximity_sensor motor sucker model visualizer)
 
 add_library(problem src/problem.cpp)
 target_link_libraries(problem environment)
@@ -56,4 +62,4 @@ add_library(simulation src/simulation.cpp)
 target_link_libraries(simulation environment problem visualizer)
 
 add_executable(vacuum_world src/main.cpp)
-target_link_libraries(vacuum_world simulation)
+target_link_libraries(vacuum_world simulation visualizer)

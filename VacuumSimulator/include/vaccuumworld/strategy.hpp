@@ -21,27 +21,30 @@ using namespace std;
 
 class Strategy {
 public:
+
+    void Initialize(Visualizer &visualizer);
     /**
         Set the type of strategy. Can be one of the following: 'r' random
         search, 'g' greedy search, 'h' more greedy search, 'i' super greedy
         search, 's' state search.
      
-        @param: DSStatus: status of dirtSensor.
-                PSStatus: status of proximitySensor.
-                DirSStatus: status of directionSensor.
-                LSStatus: status of locationSensor.
-                MStatus: status of motor.
-                SStatus: status of sucker.
+        @param: dirt_sensor_status: status of dirtSensor.
+                proximity_sensor_status: status of proximitySensor.
+                direction_sensor_status: status of directionSensor.
+                location_sensor_status: status of locationSensor.
+                motor_status: status of motor.
+                sucker_status: status of sucker.
     */
-    void setType(bool DSStatus, bool PSStatus, bool DirSStatus, bool LSStatus,
-                 bool MStatus, bool SStatus);
+    void SetType(bool dirt_sensor_status, bool proximity_sensor_status,
+                 bool direction_sensor_status, bool location_sensor_status,
+                 bool motor_status, bool sucker_status);
     
     /**
         Test whether an action is planned.
      
         @param: -
     */
-    bool actionPlanned();
+    bool ActionPlanned();
     
     /**
         Plan action depending of sensor inputs.
@@ -52,9 +55,8 @@ public:
                            "direction_sensor.hpp")
                 location: location of agent (see: "location_sensor.hpp")
                 map: dirt map of the environment.
-     
     */
-    void planAction(bool dirt, array<bool, 4> proximity, array<bool, 4> direction,
+    void PlanAction(bool dirt, array<bool, 4> proximity, array<bool, 4> direction,
                     array<int, 2> location, vector<vector<int>> map);
     
     /**
@@ -62,7 +64,7 @@ public:
      
         @param: -
     */
-    char actionSelection();
+    char ActionSelection();
 
 private:
     /**
@@ -72,18 +74,16 @@ private:
         @param: location: initial location of agent.
                 state: dirt map of the environment.
     */
-    vector<char> stateSearch(array<int, 2> location, vector<vector<int>> state);
+    vector<char> StateSearch(array<int, 2> location, vector<vector<int>> state);
     
     /**
         Computes the action based on proximity, dirt and direction sensor.
      
      @param: dirt: presence of dirt (see: "dirt_sensor.hpp")
              proximity: presence of walls (see: "proximity_sensor.hpp")
-             direction: direction of closest dirt (see:
-             "direction_sensor.hpp")
+             direction: direction of closest dirt (see: "direction_sensor.hpp")
     */
-    char superGreedySearch(bool dirt, array<bool, 4> proximity,
-                           array<bool, 4> direction);
+    char SuperGreedySearch(bool dirt, array<bool, 4> proximity, array<bool, 4> direction);
     
     /**
         Computes the action based on proximity and dirt.
@@ -91,28 +91,29 @@ private:
         @param: dirt: presence of dirt (see: "dirt_sensor.hpp")
                 proximity: presence of walls (see: "proximity_sensor.hpp")
     */
-    char moreGreedySearch(bool dirt, array<bool, 4>proximity);
+    char MoreGreedySearch(bool dirt, array<bool, 4> proximity);
     
     /**
         Computes the action based on dirt sensor.
      
         @param: dirt: presence of dirt (see: "dirt_sensor.hpp")
     */
-    char greedySearch(bool dirt);
+    char GreedySearch(bool dirt);
     
     /**
         Computes the action without sensors.
      
         @param: -
     */
-    char randomSearch();
+    char RandomSearch();
     
-    char type;
-    vector<char> actions = {'u', 'r', 'd', 'l', 's'};
+    char type_;
+    vector<char> actions_ = {'u', 'r', 'd', 'l', 's'};
     
-    queue<char> plan;
+    queue<char> plan_;
     
-    PathSearcher pathSearcher;
+    PathSearcher path_searcher_;
+    Visualizer visualizer_;
 };
 
 #endif /* strategy_hpp */

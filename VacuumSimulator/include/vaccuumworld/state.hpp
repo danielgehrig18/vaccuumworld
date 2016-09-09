@@ -23,60 +23,60 @@ public:
         heuristic cost to the goal.
      
         @param: location: coordinates of the state.
-                pathCost: minimum cost of the path to the node so far.
+                path_cost: minimum cost of the path to the node so far.
                 heuristic: estimated cost from the state to the goal.
     */
-    State(array<int,2> location, char action, int pathCost, int heuristic);
-    
-    /**
-        Destructor of a state node. It deletes all descendents of the node and 
-        itself.
-     
-        @param: -
-    */
-    ~State();
-    
+    void Initialize(array<int,2> location, char action, int path_cost, int heuristic);
+        
     /**
         Sets the parent of the node.
      
         @param: parent: pointer to the parent node of the current node.
     */
-    void setParent(State* parent);
+    void SetParent(State* parent);
     
     /**
         Adds a child to the current node.
      
         @param: child: pointer to a child of the current node.
      */
-    void addChild(State* child);
+    void AddChild(State* child);
     
     /**
         Returns the parent of the current node.
      
         @param: -
     */
-    State* getParent();
+    State* GetParent();
+    
+    
+    /**
+        Returns the children of the current node.
+     
+        @param: -
+    */
+    vector<State*> GetChildren();
     
     /**
         Returns the action that was executed to achieve the current node.
      
         @param: -
     */
-    char getAction();
+    char GetAction();
     
     /**
         Returns the location coordinates of the current node.
      
         @param: -
     */
-    array<int, 2> getLocation();
+    array<int, 2> GetLocation();
     
     /**
         Returns the cost that was used to get to the current node.
      
         @param: -
     */
-    int getPathCost();
+    int GetPathCost();
     
     /**
         Returns the estimated total cost of the path based on the sum of the 
@@ -84,7 +84,7 @@ public:
      
         @param: -
     */
-    int getTotalCost();
+    int GetTotalCost();
     
     /**
         Tests if the current node is a root node by checking that it does not
@@ -92,17 +92,17 @@ public:
      
         @param: -
     */
-    bool isRoot();
+    bool IsRoot();
 
 private:
-    State* parent=NULL;
-    vector<State*> children;
-    char action;
+    State* parent_ = NULL;
+    vector<State*> children_;
+    char action_;
     
-    array<int, 2> location;
+    array<int, 2> location_;
     
-    int pathCost;
-    int heuristic;
+    int path_cost_;
+    int heuristic_;
 };
 
 class CompareStates
@@ -112,10 +112,10 @@ public:
         Used to define ordering on state s1 and s2 in priority queue. This is
         done based on estimated total path cost. TODO: specify order.
      
-        @param: s1: first state.
-                s2: second state.
+        @param: state_1: first state.
+                state_2: second state.
     */
-    bool operator()(State* s1, State* s2);
+    bool operator()(State state_1, State state_2);
 };
 
 #endif /* state_hpp */

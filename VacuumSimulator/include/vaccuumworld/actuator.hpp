@@ -10,6 +10,7 @@
 #define actuator_hpp
 
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -19,32 +20,32 @@ public:
     /**
         Sets the actions that are possible for the actuator.
      
-        @param: possibleActions: vector of characters, each corresponding to action.
+        @param: possible_actions: vector of characters, each corresponding to action.
     */
-    void setPossibleActions(vector<char> possibleActions);
+    void SetPossibleActions(vector<char> possible_actions);
     
     /**
         Gets the status of the actuator.
      
         @param: -
     */
-    bool getStatus();
+    bool GetStatus();
     
     /**
         Sets the status of the actuator to true. Actions can only be performed
         if the status is true.
      
-        @param: actionPtr: reference to the last action used by the 
+        @param: action_pointer: reference to the last action used by the
                            environment to update.
     */
-    void init(char* actionPtr);
+    void Initialize(char* action_pointer);
     
     /**
         Checks if this action is applicable, meaning among possibleActions.
      
         @param: action: action that is queried
     */
-    bool isApplicable(char action);
+    bool IsApplicable(char action);
     
     /**
         Execute the action action. If the action is not among possibleActions
@@ -52,12 +53,12 @@ public:
      
         @param: action: action to be executed.
     */
-    void execute(char action);
+    void Execute(char action);
     
 private:
-    bool status;
-    char* lastActionPtr;
-    vector<char> possibleActions;
+    bool status_;
+    char* last_action_pointer_;
+    vector<char> possible_actions_;
 };
 
 #endif /* actuator_hpp */

@@ -26,17 +26,17 @@ public:
      
         @param: dirt: presence of dirt under agent.
     */
-    void setValue(bool dirt);
+    void SetValue(bool dirt);
     
     /**
         Return value of sensor.
      
         @param: -
     */
-    bool getValue();
+    bool GetValue();
 
 private:
-    bool value;
+    bool value_;
 };
 
 #endif /* dirt_sensor_hpp */

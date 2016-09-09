@@ -13,6 +13,8 @@
 #include <array>
 #include <vector>
 
+#include "state.hpp"
+
 using namespace std;
 
 class Visualizer
@@ -26,16 +28,15 @@ public:
                 directions: direction of closest dirt patch
                 location: coordinates of agent
     */
-    static void visualizeSensors(bool dirt, array<bool, 4> proximity,
-                                 array<bool, 4> directions,
-                                 array<int, 2> location);
+    void VisualizeSensors(bool dirt, array<bool, 4> proximity, array<bool, 4> directions,
+                          array<int, 2> location);
     
     /**
         Visualize the action executed.
         
         @param: action: action executed.
     */
-    static void visualizeAction(char action);
+    void VisualizeAction(char action);
     
     /**
         Visualize the dirt map and agent location
@@ -43,7 +44,17 @@ public:
         @param: map: dirt map.
                 location: coordinates of agent.
     */
-    static void visualizeMap(vector<vector<int>> map, array<int, 2> location);
+    void VisualizeMap(vector<vector<int>> map, array<int, 2> location);
+    
+    /**
+        Visualize the search tree of the agent.
+     
+        @param: root: root of the tree to be visualized.
+                indent: the indent to the tree visualizerd
+    */
+    void VisualizeTree(State root, int indent);
+
+    bool visualize_;
 };
 
 #endif /* visualizer_hpp */

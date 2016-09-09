@@ -6,9 +6,9 @@
 //
 //
 
-#include "sucker.hpp"
+#include "vaccuumworld/sucker.hpp"
 
 Sucker::Sucker()
 {
-    setPossibleActions({'s'});
+    SetPossibleActions({'s'});
 }

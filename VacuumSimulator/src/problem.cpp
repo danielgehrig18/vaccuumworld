@@ -8,33 +8,39 @@
 
 #include "vaccuumworld/problem.hpp"
 
-int Problem::calculatePenalty(Environment environment)
+int Problem::CalculatePenalty(Environment environment)
 {
     int penalty=0;
-    vector<vector<int>> map = environment.getMap();
+    vector<vector<int>> map = environment.GetMap();
     
     // count dirty spots
-    for (vector<int> a : map)
+    for (vector<int> x_column : map)
     {
-        for (int spot : a)
+        for (int spot : x_column)
         {
-            if (spot == 1) penalty += dirtSpotCost;
+            if (spot == 1)
+            {
+                penalty += dirt_spot_cost_;
+            }
         }
     }
     
     return penalty;
 }
 
-bool Problem::goalTest(Environment environment)
+bool Problem::GoalTest(Environment environment)
 {
-    vector<vector<int>> map = environment.getMap();
+    vector<vector<int>> map = environment.GetMap();
     
     // return false if any spot is dirty
-    for (vector<int> a : map)
+    for (vector<int> x_column : map)
     {
-        for (int i : a)
+        for (int spot : x_column)
         {
-            if (i == 1) return false;
+            if (spot == 1)
+            {
+                return false;
+            }
         }
     }
     

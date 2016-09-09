@@ -8,38 +8,37 @@
 
 #include "vaccuumworld/actuator.hpp"
 
-void Actuator::setPossibleActions(vector<char> possActions)
+void Actuator::SetPossibleActions(vector<char> possible_actions)
 {
-    possibleActions = possActions;
+    possible_actions_ = possible_actions;
 }
 
-bool Actuator::getStatus()
+bool Actuator::GetStatus()
 {
-    return status;
+    return status_;
 }
 
-void Actuator::init(char* actionPtr)
+void Actuator::Initialize(char* action_pointer)
 {
-    status = true;
-    lastActionPtr = actionPtr;
+    status_ = true;
+    last_action_pointer_ = action_pointer;
     
 }
 
-bool Actuator::isApplicable(char action)
+bool Actuator::IsApplicable(char action)
 {
-    return find(possibleActions.begin(), possibleActions.end(), action)
-    != possibleActions.end();
+    return find(possible_actions_.begin(), possible_actions_.end(), action)
+    != possible_actions_.end();
 }
 
-void Actuator::execute(char action)
+void Actuator::Execute(char action)
 {
-    if (status && isApplicable(action))
+    if (status_ && IsApplicable(action))
     {
-        *lastActionPtr = action;
+        *last_action_pointer_ = action;
     }
     else
     {
-        *lastActionPtr = 'n';
+        *last_action_pointer_ = 'n';
     }
 }
-

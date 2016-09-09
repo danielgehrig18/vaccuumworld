@@ -9,56 +9,89 @@
 
 using namespace std;
 
-void Visualizer::visualizeSensors(bool dirt, array<bool, 4> proximity,
-                             array<bool, 4> directions, array<int, 2> location)
+void Visualizer::VisualizeSensors(bool dirt, array<bool, 4> proximity,
+                                  array<bool, 4> directions, array<int, 2> location)
 {
     array<char, 4> letters = {'u', 'r', 'd', 'l'};
     
     cout << "Sensors: " << "dirt: " << dirt << " Proximity: ";
-    for (int i = 0; i < letters.size(); i++)
+    for (int direction= 0; direction < letters.size(); direction++)
     {
-        if (proximity[i])
+        if (proximity[direction])
         {
-            cout << letters[i];
+            cout << letters[direction];
         }
     }
     
     cout << " Directions: ";
-    for (int i = 0; i < letters.size(); i++)
+    for (int direction = 0; direction < letters.size(); direction++)
     {
-        if (directions[i])
+        if (directions[direction])
         {
-            cout << letters[i];
+            cout << letters[direction];
         }
     }
     cout << endl;
 }
 
-void Visualizer::visualizeAction(char action)
+void Visualizer::VisualizeAction(char action)
 {
     cout << "--> action: " << action << endl;
 }
 
-void Visualizer::visualizeMap(vector<vector<int>> map, array<int, 2> loc)
+void Visualizer::VisualizeMap(vector<vector<int>> map, array<int, 2> location)
 {
     cout << "MAP AFTER ACTION: " << endl;
-    for (int i = 0; i < map.size(); i++)
+    for (int x_coordinate = 0; x_coordinate < map.size(); x_coordinate++)
     {
-        for (int j = 0; j < map[0].size(); j++)
+        for (int y_coordinate = 0; y_coordinate < map[0].size(); y_coordinate++)
         {
-            if (loc[0] == i && loc[1] == j)
+            if (location[0] == x_coordinate && location[1] == y_coordinate)
             {
-                (map[i][j] == 0) ? cout << 'Q' : cout << 'J';
+                cout << (!map[x_coordinate][y_coordinate] ? 'Q' : 'J');
             }
-            else if (map[i][j] == -1)
+            else if (map[x_coordinate][y_coordinate] == -1)
             {
                 cout << 'x';
             }
             else
             {
-                cout << map[i][j];
+                cout << map[x_coordinate][y_coordinate];
             }
         }
+        cout << endl;
+    }
+}
+
+void Visualizer::VisualizeTree(State root, int indent)
+{
+    // print blanks
+    string blanks(indent, ' ');
+    cout << blanks;
+    
+    // print coordinates of node
+    for (int coordinate : root.GetLocation())
+    {
+        if (coordinate < 10)
+        {
+            cout << 0;
+        }
+        cout << coordinate << ',';
+    }
+    cout << ' ';
+    
+    // print total estimated pathcost
+    int total_cost = root.GetTotalCost();
+    if (total_cost < 10)
+    {
+        cout << 0;
+    }
+    cout << total_cost << ' ';
+    
+    // print children
+    for (State* child : root.GetChildren())
+    {
+        VisualizeTree(*child, indent + 9);
         cout << endl;
     }
 }

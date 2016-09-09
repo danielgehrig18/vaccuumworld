@@ -30,17 +30,17 @@ public:
      
         @param: walls: presence of walls in order (up, right, down, left).
     */
-    void setValue(array<bool, 4> walls);
+    void SetValue(array<bool, 4> walls);
     
     /**
         Return value of sensor.
      
         @param: -
     */
-    array<bool, 4> getValue();
+    array<bool, 4> GetValue();
 
 private:
-    array<bool, 4> value;
+    array<bool, 4> value_;
 };
 
 #endif /* proximity_sensor_hpp */

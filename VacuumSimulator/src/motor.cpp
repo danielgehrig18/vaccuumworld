@@ -6,9 +6,9 @@
 //
 //
 
-#include "motor.hpp"
+#include "vaccuumworld/motor.hpp"
 
 Motor::Motor()
 {
-    setPossibleActions({'u', 'r', 'l', 'd'});
+    SetPossibleActions({'u', 'r', 'l', 'd'});
 }

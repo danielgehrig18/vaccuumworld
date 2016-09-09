@@ -10,15 +10,18 @@
 
 DirtSensor::DirtSensor()
 {
-    Sensor::setName('d');
+    Sensor::SetName('d');
 }
 
-void DirtSensor::setValue(bool dirt)
+void DirtSensor::SetValue(bool dirt)
 {
-    if (Sensor::getStatus()) value = dirt;
+    if (Sensor::GetStatus())
+    {
+        value_ = dirt;
+    }
 }
 
-bool DirtSensor::getValue()
+bool DirtSensor::GetValue()
 {
-    return value;
+    return value_;
 }

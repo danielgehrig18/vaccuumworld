@@ -8,60 +8,59 @@
 
 #include "vaccuumworld/state.hpp"
 
-State::State(array<int, 2> loc, char action, int pathC, int heur)
+void State::Initialize(array<int, 2> location, char action, int path_cost, int heuristic)
 {
-    location = loc;
-    heuristic = heur;
-    pathCost = pathC;
+    location_ = location;
+    heuristic_ = heuristic;
+    path_cost_ = path_cost;
 };
 
-State::~State()
+void State::SetParent(State* parent)
 {
-    for (State* node : children) node -> ~State();
-    delete this;
+    parent_ = parent;
 }
 
-void State::setParent(State* p)
+void State::AddChild(State* child)
 {
-    parent = p;
+    children_.push_back(child);
 }
 
-void State::addChild(State* c)
+State* State::GetParent()
 {
-    children.push_back(c);
-}
-
-State* State::getParent()
-{
-    return parent;
+    return parent_;
 };
 
-char State::getAction()
+vector<State*> State::GetChildren()
 {
-    return action;
-};
-
-array<int, 2> State::getLocation()
-{
-    return location;
+    return children_;
 }
 
-int State::getPathCost()
+char State::GetAction()
 {
-    return pathCost;
+    return action_;
 };
 
-int State::getTotalCost()
+array<int, 2> State::GetLocation()
 {
-    return pathCost + heuristic;
+    return location_;
 }
 
-bool State::isRoot()
+int State::GetPathCost()
 {
-    return !parent;
+    return path_cost_;
 };
 
-bool CompareStates::operator()(State* s1, State* s2)
+int State::GetTotalCost()
 {
-    return s1 -> getTotalCost() < s2 -> getTotalCost();
+    return path_cost_ + heuristic_;
+}
+
+bool State::IsRoot()
+{
+    return !parent_;
+};
+
+bool CompareStates::operator()(State state_1, State state_2)
+{
+    return state_1.GetTotalCost() < state_2.GetTotalCost();
 };

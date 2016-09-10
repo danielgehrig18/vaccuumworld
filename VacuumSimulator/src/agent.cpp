@@ -8,7 +8,8 @@
 
 #include "vaccuumworld/agent.hpp"
 
-void Agent::Initialize(DirtSensor *dirt_sensor_pointer, ProximitySensor *proximity_sensor_pointer,
+void Agent::Initialize(DirtSensor *dirt_sensor_pointer,
+                       ProximitySensor *proximity_sensor_pointer,
                        DirectionSensor *direction_sensor_pointer,
                        LocationSensor *location_sensor_pointer, Motor *motor_pointer,
                        Sucker *sucker_pointer, vector<vector<int> > map, Visualizer &visualizer)
@@ -44,19 +45,21 @@ void Agent::ExecuteAction()
         }
         
         strategy_.PlanAction(dirt_sensor_pointer_ -> GetValue(),
-                            proximity_sensor_pointer_ -> GetValue(),
-                            direction_sensor_pointer_ -> GetValue(),
-                            location_sensor_pointer_ -> GetValue(), state_);
+                             proximity_sensor_pointer_ -> GetValue(),
+                             direction_sensor_pointer_ -> GetValue(),
+                             location_sensor_pointer_ -> GetValue(), state_);
     }
     char action = strategy_.ActionSelection();
     
     // TODO: make smarter decision which actuator to take.
     if (motor_pointer_ -> IsApplicable(action))
     {
-        motor_pointer_->Execute(action);
+        motor_pointer_ -> Execute(action);
     }
-    else if (sucker_pointer_->IsApplicable(action))
+    else if (sucker_pointer_ -> IsApplicable(action))
     {
-        sucker_pointer_->Execute(action);
+        sucker_pointer_ -> Execute(action);
+        array<int, 2> location = location_sensor_pointer_ -> GetValue();
+        state_[location[0]][location[1]] = 0;
     }
 }

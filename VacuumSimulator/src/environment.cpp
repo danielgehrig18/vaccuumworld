@@ -113,7 +113,7 @@ void Environment::Reset()
     // set dirt locations
     for (int x_coordinate = 0; x_coordinate < x_dimension; x_coordinate++)
     {
-        for (int y_coordinate = 0; x_coordinate < y_dimension; x_coordinate++)
+        for (int y_coordinate = 0; y_coordinate < y_dimension; y_coordinate++)
         {
             if (map_[x_coordinate][y_coordinate] == 0)
             {
@@ -143,18 +143,18 @@ void Environment::UpdateSensors(bool dirt, array<bool, 4> walls,
 
 void Environment::UpdateEnvironment(char action, array<int, 2> location)
 {
-    // get new location
-    agent_location_ = model_.GetNewLocation(action, location, map_);
+    // gets new location
+    model_.UpdateLocation(action, location, map_);
     
-    // update map
-    map_ = model_.GetNewMap(action, location, map_);
+    // updates map
+    model_.UpdateMap(action, location, map_);
     
-    // update dirt
+    // updates dirt
     current_dirt_ = model_.GetDirt(map_, agent_location_);
     
-    // set wall presence
+    // sets wall presence
     walls_ = model_.GetProximity(map_, agent_location_);
     
-    // set new directions
+    // sets new directions
     directions_ = model_.GetDirections(map_, agent_location_);
 }

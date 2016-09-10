@@ -13,6 +13,7 @@ void State::Initialize(array<int, 2> location, char action, int path_cost, int h
     location_ = location;
     heuristic_ = heuristic;
     path_cost_ = path_cost;
+    action_ = action;
 };
 
 void State::SetParent(State* parent)
@@ -20,20 +21,10 @@ void State::SetParent(State* parent)
     parent_ = parent;
 }
 
-void State::AddChild(State* child)
-{
-    children_.push_back(child);
-}
-
 State* State::GetParent()
 {
     return parent_;
 };
-
-vector<State*> State::GetChildren()
-{
-    return children_;
-}
 
 char State::GetAction()
 {
@@ -62,5 +53,5 @@ bool State::IsRoot()
 
 bool CompareStates::operator()(State state_1, State state_2)
 {
-    return state_1.GetTotalCost() < state_2.GetTotalCost();
+    return state_1.GetTotalCost() > state_2.GetTotalCost();
 };

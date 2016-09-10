@@ -62,36 +62,3 @@ void Visualizer::VisualizeMap(vector<vector<int>> map, array<int, 2> location)
         cout << endl;
     }
 }
-
-void Visualizer::VisualizeTree(State root, int indent)
-{
-    // print blanks
-    string blanks(indent, ' ');
-    cout << blanks;
-    
-    // print coordinates of node
-    for (int coordinate : root.GetLocation())
-    {
-        if (coordinate < 10)
-        {
-            cout << 0;
-        }
-        cout << coordinate << ',';
-    }
-    cout << ' ';
-    
-    // print total estimated pathcost
-    int total_cost = root.GetTotalCost();
-    if (total_cost < 10)
-    {
-        cout << 0;
-    }
-    cout << total_cost << ' ';
-    
-    // print children
-    for (State* child : root.GetChildren())
-    {
-        VisualizeTree(*child, indent + 9);
-        cout << endl;
-    }
-}

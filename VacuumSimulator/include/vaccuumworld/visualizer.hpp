@@ -45,14 +45,6 @@ public:
                 location: coordinates of agent.
     */
     void VisualizeMap(vector<vector<int>> map, array<int, 2> location);
-    
-    /**
-        Visualize the search tree of the agent.
-     
-        @param: root: root of the tree to be visualized.
-                indent: the indent to the tree visualizerd
-    */
-    void VisualizeTree(State root, int indent);
 
     bool visualize_;
 };

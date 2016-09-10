@@ -88,6 +88,9 @@ vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> m
     // select random dirt patch and devise plan to clean it.
     array<int, 2> dirt_patch = closest_dirt[rand() % closest_dirt.size()];
     
+    cout << "from " << location[0] << " " << location[1] << " to ";
+    cout << dirt_patch[0] << ' ' << dirt_patch[1] << endl;
+    
     // setup path searcher with goal, initial condition and map of dirt.
     path_searcher_.Initialize(dirt_patch, location, map, visualizer_);
     

@@ -15,7 +15,7 @@ int Model::GetDirt(vector<vector<int>> map, array<int, 2> location)
     return map[location[0]][location[1]];
 };
 
-array<int, 2> Model::GetNewLocation(char action, array<int, 2> location,
+void Model::UpdateLocation(char action, array<int, 2> &location,
                                     vector<vector<int>> map)
 {
     int x_dimension = map.size();
@@ -23,40 +23,36 @@ array<int, 2> Model::GetNewLocation(char action, array<int, 2> location,
     
     int x_coordinate = location[0];
     int y_coordinate = location[1];
-    
-    array<int, 2> new_location = location;
-    
+
     switch (action)
     {
         case 'l':
             if (y_coordinate != 0 && map[x_coordinate][y_coordinate - 1] != -1)
             {
-                new_location[1] -= 1;
+                location[1] -= 1;
                 break;
             }
         case 'r':
             if (y_coordinate != y_dimension - 1 && map[x_coordinate][y_coordinate + 1] != -1)
             {
-                new_location[1] += 1;
+                location[1] += 1;
                 break;
             }
         case 'u':
             if (x_coordinate != 0 && map[x_coordinate - 1][y_coordinate] != -1)
             {
-                new_location[0] -= 1;
+                location[0] -= 1;
                 break;
             }
         case 'd':
             if (x_coordinate != x_dimension - 1 && map[x_coordinate + 1][y_coordinate] != -1)
             {
-                new_location[0] += 1;
+                location[0] += 1;
                 break;
             }
         case 's':
             break;
     }
-    
-    return new_location;
 }
 
 array<bool, 4> Model::GetProximity(vector<vector<int>> map, array<int, 2> location)
@@ -77,7 +73,7 @@ array<bool, 4> Model::GetProximity(vector<vector<int>> map, array<int, 2> locati
     return walls;
 }
 
-array<bool,4> Model::GetDirections(vector<vector<int>> map, array<int, 2> location)
+array<bool, 4> Model::GetDirections(vector<vector<int>> map, array<int, 2> location)
 {
     vector<array<int, 2>> closest_dirt = GetClosestDirt(map, location);
     
@@ -90,13 +86,13 @@ array<bool,4> Model::GetDirections(vector<vector<int>> map, array<int, 2> locati
     {
         for (array<int, 2> coordinates : closest_dirt)
         {
-            int x_coordinates = coordinates[0];
-            int y_coordinates = coordinates[1];
+            int x_direction = coordinates[0] - location[0];
+            int y_direction = coordinates[1] - location[1];
             
-            array<bool,4> new_dirt = {x_coordinates <= -abs(y_coordinates),
-                                      y_coordinates >= abs(x_coordinates),
-                                      x_coordinates >= abs(y_coordinates),
-                                      y_coordinates <= -abs(x_coordinates)};
+            array<bool,4> new_dirt = {x_direction <= -abs(y_direction),
+                                      y_direction >= abs(x_direction),
+                                      x_direction >= abs(y_direction),
+                                      y_direction <= -abs(x_direction)};
             
             for (int direction = 0; direction < directions.size(); direction++)
             {
@@ -123,15 +119,12 @@ vector<array<int, 2>> Model::GetClosestDirt(vector<vector<int>> map, array<int, 
                 
                 if (distance == closest_distance)
                 {
-                    closest_dirt.push_back({(x_coordinate - location[0]),
-                                            (y_coordinate - location[1])});
-                    
+                    closest_dirt.push_back({x_coordinate, y_coordinate});
                 }
                 else if (distance < closest_distance || closest_distance == -1)
                 {
                     closest_dirt.clear();
-                    closest_dirt.push_back({(x_coordinate - location[0]),
-                                            (y_coordinate - location[1])});
+                    closest_dirt.push_back({x_coordinate, y_coordinate});
                     closest_distance = distance;
                 }
             }
@@ -141,11 +134,10 @@ vector<array<int, 2>> Model::GetClosestDirt(vector<vector<int>> map, array<int, 
     return closest_dirt;
 }
 
-vector<vector<int>> Model::GetNewMap(char action, array<int,2> location, vector<vector<int>> map)
+void Model::UpdateMap(char action, array<int,2> location, vector<vector<int>> &map)
 {
     if (action == 's')
     {
         map[location[0]][location[1]] = 0;
     }
-    return map;
 }

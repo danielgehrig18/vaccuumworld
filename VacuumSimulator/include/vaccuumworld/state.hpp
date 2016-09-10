@@ -36,26 +36,11 @@ public:
     void SetParent(State* parent);
     
     /**
-        Adds a child to the current node.
-     
-        @param: child: pointer to a child of the current node.
-     */
-    void AddChild(State* child);
-    
-    /**
         Returns the parent of the current node.
      
         @param: -
     */
     State* GetParent();
-    
-    
-    /**
-        Returns the children of the current node.
-     
-        @param: -
-    */
-    vector<State*> GetChildren();
     
     /**
         Returns the action that was executed to achieve the current node.
@@ -96,7 +81,6 @@ public:
 
 private:
     State* parent_ = NULL;
-    vector<State*> children_;
     char action_;
     
     array<int, 2> location_;

@@ -29,9 +29,8 @@ public:
         @param: node: the node to which the child is added.
                 action: the action which caused the child to spawn.
                 location: coordinates of the new child node.
-                h: heuristic of the new node.
     */
-    void AddChild(State &node, char action, array<int,2> location, int heuristic);
+    void AddChild(State &node, char action, array<int,2> location);
     
     /**
         Initialize the search tree by defining the goal state, the root (initial
@@ -60,13 +59,6 @@ public:
     */
     vector<char> CalculateSolution();
     
-    /**
-        Clears the tree from memory.
-     
-        @param: root: the root of the tree to be cleared.
-    */
-    void Clear(State &root);
-    
 private:
     /**
         Calculates the successors of the node node and adds them to the 
@@ -76,8 +68,25 @@ private:
     */
     void Expand(State &node);
     
+    /**
+        Calculates the heuristic function of the location to the goal. Based on the 
+        taxi cab distance.
+     
+        @param: location: coordinates describing the location.
+    */
+    int GetHeuristic(array<int, 2> location);
+    
+    
+    /**
+        Checks whether the location is within the bounds of the map and not an
+        already visited state.
+     
+        @param: location: coordinates describing the location.
+    */
+    bool CheckAllowability(array<int, 2> location);
+    
     priority_queue<State, vector<State>, CompareStates> frontier_;
-    vector<vector<int>> visited_states_;
+    vector<vector<bool>> visited_states_;
     
     State goal_node_;
     State root_node_;

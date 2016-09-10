@@ -95,14 +95,9 @@ vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> m
     path_searcher_.Initialize(dirt_patch, location, map, visualizer_);
     
     // search for solution
-    if (path_searcher_.Search())
-    {
-        return path_searcher_.CalculateSolution();
-    }
-    else
-    {
-        return {};
-    }
+    path_searcher_.Search();
+    return path_searcher_.GetSolution();
+
 }
 
 char Strategy::SuperGreedySearch(bool dirt, array<bool, 4> proximity,

@@ -16,9 +16,25 @@ void State::Initialize(array<int, 2> location, char action, int path_cost, int h
     action_ = action;
 };
 
+void State::PushChild(State * child)
+{
+    children_.push_back(child);
+}
+
+void State::RemoveChild(int index)
+{
+    children_.erase(children_.begin() + index);
+}
+
 void State::SetParent(State* parent)
 {
     parent_ = parent;
+    parent -> PushChild(this);
+}
+
+vector<State*> State::GetChildren()
+{
+    return children_;
 }
 
 State* State::GetParent()
@@ -51,7 +67,7 @@ bool State::IsRoot()
     return !parent_;
 };
 
-bool CompareStates::operator()(State state_1, State state_2)
+bool CompareStates::operator()(State * state_1, State * state_2)
 {
-    return state_1.GetTotalCost() > state_2.GetTotalCost();
+    return state_1 -> GetTotalCost() > state_2 -> GetTotalCost();
 };

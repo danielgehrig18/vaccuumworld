@@ -27,6 +27,20 @@ public:
                 heuristic: estimated cost from the state to the goal.
     */
     void Initialize(array<int,2> location, char action, int path_cost, int heuristic);
+    
+    /**
+        Adds child to node.
+     
+        @param: chid: pointer to the child node of the current node.
+    */
+    void PushChild(State* child);
+    
+    /**
+        Removes child from node.
+     
+        @param: index: index of removed child.
+    */
+    void RemoveChild(int index);
         
     /**
         Sets the parent of the node.
@@ -34,6 +48,13 @@ public:
         @param: parent: pointer to the parent node of the current node.
     */
     void SetParent(State* parent);
+    
+    /**
+        Returns a vector of children of the node.
+     
+        @param: -
+    */
+    vector<State *> GetChildren();
     
     /**
         Returns the parent of the current node.
@@ -81,6 +102,8 @@ public:
 
 private:
     State* parent_ = NULL;
+    vector<State*> children_;
+    
     char action_;
     
     array<int, 2> location_;
@@ -99,7 +122,7 @@ public:
         @param: state_1: first state.
                 state_2: second state.
     */
-    bool operator()(State state_1, State state_2);
+    bool operator()(State * state_1, State * state_2);
 };
 
 #endif /* state_hpp */

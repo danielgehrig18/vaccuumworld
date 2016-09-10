@@ -10,11 +10,16 @@
 
 using namespace std;
 
+vector<char> PathSearcher::GetSolution()
+{
+    return solution_;
+}
+
 void PathSearcher::AddChild(State &node, char action, array<int, 2> location)
 {
-    State child = State();
-    child.Initialize(location, action, node.GetPathCost() + 1, GetHeuristic(location));
-    child.SetParent(&node);
+    State * child = new State();
+    child -> Initialize(location, action, node.GetPathCost() + 1, GetHeuristic(location));
+    child -> SetParent(&node);
     frontier_.push(child);
     visited_states_[location[0]][location[1]] = true;
 }
@@ -42,38 +47,51 @@ void PathSearcher::Initialize(array<int, 2> dirt_patch, array<int, 2> location,
     root_node_.Initialize(location, ' ', 0, GetHeuristic(location));
     visited_states_[location[0]][location[1]] = true;
     
-    frontier_.push(root_node_);
+    frontier_.push(&root_node_);
 }
 
-bool PathSearcher::Search()
+void PathSearcher::Search()
 {
     while (!frontier_.empty())
     {
-        State * next_node = new State;
-        next_node = frontier_.top();
+        State * next_node = frontier_.top();
         frontier_.pop();
-        array<int, 2> next_location = next_node.GetLocation();
+        array<int, 2> next_location = next_node -> GetLocation();
         
         if (next_location == goal_)
         {
-            goal_node_ = next_node;
-            return true;
+            goal_node_ = *next_node;
+            break;
         }
         else
         {
-            Expand(next_node);
+            Expand(*next_node);
         }
     }
-    return false;
+    solution_ = CalculateSolution();
+    Clear(&root_node_);
+}
+
+void PathSearcher::Clear(State* node)
+{
+    vector<State*>  children = node -> GetChildren();
+    for (int iteration = children.size() - 1; iteration >= 0; iteration --)
+    {
+        Clear(children[iteration]);
+        node -> RemoveChild(iteration);
+    }
+    if (!(node -> IsRoot()))
+    {
+        delete node;
+    }
 }
 
 vector<char> PathSearcher::CalculateSolution()
 {
     vector<char> action_list = {'s'};
-    for (State node = goal_node_; !(node.IsRoot());
-         node = *node.GetParent())
+    for (State * node = &goal_node_; !(node -> IsRoot()); node = node -> GetParent())
     {
-        action_list.push_back(node.GetAction());
+        action_list.push_back(node -> GetAction());
     }
     
     reverse(action_list.begin(), action_list.end());

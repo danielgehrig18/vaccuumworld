@@ -22,6 +22,14 @@ using namespace std;
 class PathSearcher
 {
 public:
+    /** 
+        Get the solution that is found after search. Calling this function
+        before search returns an empty list of actions.
+     
+        @param: -
+    */
+    vector<char> GetSolution();
+    
     /**
         Add a child to node through the action action at location location
         and heuristic h.
@@ -45,11 +53,19 @@ public:
                     Visualizer &visualizer);
     
     /**
-        Execute search for the goal and save the tree that created it.
+        Execute search for the goal and save the solution that is found that created it.
      
         @param: -
     */
-    bool Search();
+    void Search();
+    
+private:
+    /**
+        Clear the subtree under node and clear frontier.
+     
+        @param: node: clears the subtree under node.
+    */
+    void Clear(State* node);
     
     /**
         Return the solution action sequence that led through the cheapest path 
@@ -59,7 +75,6 @@ public:
     */
     vector<char> CalculateSolution();
     
-private:
     /**
         Calculates the successors of the node node and adds them to the 
         frontier.
@@ -85,11 +100,13 @@ private:
     */
     bool CheckAllowability(array<int, 2> location);
     
-    priority_queue<State, vector<State>, CompareStates> frontier_;
+    priority_queue<State, vector<State*>, CompareStates> frontier_;
     vector<vector<bool>> visited_states_;
     
     State goal_node_;
     State root_node_;
+    
+    vector<char> solution_;
     
     array<int,2> goal_;
 

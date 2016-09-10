@@ -144,7 +144,7 @@ void Environment::UpdateSensors(bool dirt, array<bool, 4> walls,
 void Environment::UpdateEnvironment(char action, array<int, 2> location)
 {
     // gets new location
-    model_.UpdateLocation(action, location, map_);
+    model_.UpdateLocation(action, agent_location_, map_);
     
     // updates map
     model_.UpdateMap(action, location, map_);

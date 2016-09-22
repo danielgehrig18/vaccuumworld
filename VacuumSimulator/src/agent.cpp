@@ -83,6 +83,8 @@ void BlindLocalize()
     localize_tree.Search();
     vector<char> action_sequence = localize_tree.GetSolution();
     
+    strategy_.AddActionSequence(action_sequence);
+    array<int, 2> location_ = localize_tree.GetStart();
     
-    
+    localize_tree.Clear();
 }

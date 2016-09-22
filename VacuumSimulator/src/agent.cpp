@@ -77,14 +77,14 @@ void Agent::Localize()
     }
 }
 
-void BlindLocalize()
+void Agent::BlindLocalize()
 {
     LocalizeTree localize_tree = LocalizeTree(state_);
     localize_tree.Search();
     vector<char> action_sequence = localize_tree.GetSolution();
     
-    strategy_.AddActionSequence(action_sequence);
-    array<int, 2> location_ = localize_tree.GetStart();
+    action_sequence.erase(action_sequence.begin());
     
-    localize_tree.Clear();
+    strategy_.AddActionSequence(action_sequence);
+    array<int, 2> location_ = localize_tree.GetStart(state_);
 }

@@ -8,36 +8,42 @@
 
 #include "vaccuumworld/state.hpp"
 
-void State::Initialize(array<int, 2> location, vector<char> action_sequence, char action, int path_cost, int heuristic)
+template <class T>
+void State<T>::Initialize(T data, vector<char> action_sequence, char action, int path_cost, int heuristic)
 {
-    location_ = location;
+    data_ = data;
     heuristic_ = heuristic;
     path_cost_ = path_cost;
     action_sequence_ = action_sequence;
     action_sequence_.insert(action_sequence_.begin(), action);
 };
 
-vector<char> State::GetActionSequence()
+template <class T>
+vector<char> State<T>::GetActionSequence()
 {
     return action_sequence_;
 };
 
-array<int, 2> State::GetLocation()
+template <class T>
+T State<T>::GetData()
 {
-    return location_;
+    return data_;
 }
 
-int State::GetPathCost()
+template <class T>
+int State<T>::GetPathCost()
 {
     return path_cost_;
 };
 
-int State::GetTotalCost()
+template <class T>
+int State<T>::GetTotalCost()
 {
     return path_cost_ + heuristic_;
 }
 
-bool CompareStates::operator()(State * state_1, State * state_2)
+template <class T>
+bool CompareStates<T>::operator()(State<T> * state_1, State<T> * state_2)
 {
     return state_1 -> GetTotalCost() > state_2 -> GetTotalCost();
 };

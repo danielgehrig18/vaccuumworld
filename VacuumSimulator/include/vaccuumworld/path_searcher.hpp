@@ -38,7 +38,7 @@ public:
                 action: the action which caused the child to spawn.
                 location: coordinates of the new child node.
     */
-    void AddChild(State &node, char action, array<int,2> location);
+    void AddChild(State<array<int, 2>> &node, char action, array<int,2> location);
     
     /**
         Initialize the search tree by defining the goal state, the root (initial
@@ -73,7 +73,7 @@ private:
      
         @param: node: node that should be expanded.
     */
-    void Expand(State &node);
+    void Expand(State<array<int, 2>> &node);
     
     /**
         Calculates the heuristic function of the location to the goal. Based on the 
@@ -92,7 +92,7 @@ private:
     */
     bool CheckAllowability(array<int, 2> location);
     
-    priority_queue<State, vector<State*>, CompareStates> frontier_;
+    priority_queue<State<array<int, 2>>, vector<State<array<int, 2>>*>, CompareStates<array<int, 2>>> frontier_;
     vector<vector<bool>> visited_states_;
     
     vector<char> solution_;

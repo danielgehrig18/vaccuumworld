@@ -45,10 +45,7 @@ void Strategy::PlanAction(bool dirt, array<bool, 4> proximity, array<bool, 4> di
             plan_.push(SuperGreedySearch(dirt, proximity, direction));
             break;
         case 'e':
-            for (char action : StateSearch(location, state))
-            {
-                plan_.push(action);
-            }
+            AddActionSequence(StateSearch(location, state));
             break;
         default:
             plan_.push('n');
@@ -62,6 +59,14 @@ char Strategy::ActionSelection()
     plan_.pop();
     return action;
 };
+
+void Strategy::AddActionSequence(vector<char> sequence)
+{
+    for (char action : sequence)
+    {
+        plan_.push(action);
+    }
+}
 
 vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> map)
 {

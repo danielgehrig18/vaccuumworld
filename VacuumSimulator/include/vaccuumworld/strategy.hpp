@@ -65,6 +65,13 @@ public:
         @param: -
     */
     char ActionSelection();
+    
+    /**
+        Adds a sequence of actions to a plan.
+     
+        @param: sequence: sequence of actions
+    */
+    void AddActionSequence(vector<char> sequence);
 
 private:
     /**

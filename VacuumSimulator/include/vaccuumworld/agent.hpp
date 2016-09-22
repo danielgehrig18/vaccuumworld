@@ -19,6 +19,7 @@
 #include "vaccuumworld/sucker.hpp"
 #include "vaccuumworld/strategy.hpp"
 #include "vaccuumworld/visualizer.hpp"
+#include "vaccuumworld/localize_tree.hpp"
 
 using namespace std;
 

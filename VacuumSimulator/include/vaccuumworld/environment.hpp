@@ -47,11 +47,10 @@ public:
         @param: map: same form as in simulation (see: "simulation.hpp")
                 sensors: a list of characters corresponding to used sensors.
                 actuators: the used actuators, a list of characters.
-                strategy: strategy to be used.
                 visualizer: visualizer that visualizes environment variables
     */
     void Initialize(vector<vector<int>> map, vector<char> sensors, vector<char> actuators,
-                    char strategy, Visualizer &visualizer);
+                    Visualizer &visualizer);
     
     /**
         Runs one step of the simulation. This consists of a sensor update,

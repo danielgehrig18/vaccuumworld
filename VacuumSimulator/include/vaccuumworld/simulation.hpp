@@ -30,10 +30,9 @@ public:
                      resp.
                 sensors: list of sensors to be used by the agent.
                 actuators: a list of actuators to be used.
-                strategy: one of 5 strategies to be used.
     */
     Simulation(vector<vector<int>> map, vector<char> sensors, vector<char> actuators,
-               char strategy, Visualizer &visualizer);
+               Visualizer &visualizer);
     
     /**
      Return penalty. 1 pt is penalized for every dirty square at every time

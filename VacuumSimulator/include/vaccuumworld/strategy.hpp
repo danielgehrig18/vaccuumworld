@@ -24,20 +24,20 @@ public:
 
     void Initialize(Visualizer &visualizer);
     /**
-        Set the type of strategy. Can be one of the following: 'a' random
-        search, 'b' greedy search, 'c' more greedy search, 'd' super greedy
-        search, 'e' state search.
+        Set the type of strategy. Can be one of the following: 'r' random
+        search, 'g' greedy search, 'h' more greedy search, 'i' super greedy
+        search, 's' state search.
      
-        @param: type of the strategy.
+        @param: dirt_sensor_status: status of dirtSensor.
+                proximity_sensor_status: status of proximitySensor.
+                direction_sensor_status: status of directionSensor.
+                location_sensor_status: status of locationSensor.
+                motor_status: status of motor.
+                sucker_status: status of sucker.
     */
-    void SetType(char type);
-    
-    /**
-        Gets the type of strategy.
-     
-        @param: -
-    */
-    char GetType();
+    void SetType(bool dirt_sensor_status, bool proximity_sensor_status,
+                 bool direction_sensor_status, bool location_sensor_status,
+                 bool motor_status, bool sucker_status);
     
     /**
         Test whether an action is planned.

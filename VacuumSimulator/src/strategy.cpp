@@ -12,14 +12,31 @@ void Strategy::Initialize(Visualizer &visualizer)
     visualizer_ = visualizer;
 }
 
-void Strategy::SetType(char strategy)
+void Strategy::SetType(bool dirt_sensor_status, bool proximity_sensor_status,
+                       bool direction_sensor_status, bool location_sensor_status,
+                       bool motor_status, bool sucker_status)
 {
-    type_ = strategy;
-}
-
-char Strategy::GetType()
-{
-    return type_;
+    if (!dirt_sensor_status)
+    {
+        type_ = 'r';
+    }
+    else if (dirt_sensor_status && !proximity_sensor_status)
+    {
+        type_ = 'g';
+    }
+    else if (dirt_sensor_status && proximity_sensor_status && !direction_sensor_status)
+    {
+        type_ = 'h';
+    }
+    else if (dirt_sensor_status && proximity_sensor_status && direction_sensor_status
+             && !location_sensor_status)
+    {
+        type_ = 'i';
+    }
+    else
+    {
+        type_ = 's';
+    }
 }
 
 bool Strategy::ActionPlanned()
@@ -32,19 +49,19 @@ void Strategy::PlanAction(bool dirt, array<bool, 4> proximity, array<bool, 4> di
 {
     switch (type_)
     {
-        case 'a':
+        case 'r':
             plan_.push(RandomSearch());
             break;
-        case 'b':
+        case 'g':
             plan_.push(GreedySearch(dirt));
             break;
-        case 'c':
+        case 'h':
             plan_.push(MoreGreedySearch(dirt, proximity));
             break;
-        case 'd':
+        case 'i':
             plan_.push(SuperGreedySearch(dirt, proximity, direction));
             break;
-        case 'e':
+        case 's':
             for (char action : StateSearch(location, state))
             {
                 plan_.push(action);

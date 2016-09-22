@@ -28,7 +28,14 @@ int main(int argc, const char * argv[])
     // Define which sensors will be used
     // d : dirt
     // p : proximity sensor
-    vector<char> sensors = {'d', 'p', 'r', 'l'};
+    vector<char> sensors = {'d', 'p', 'd'};
+    
+    // Define stategy: 'a': random
+    //                 'b': reflex agent
+    //                 'c': reflex agent with proximity sensor
+    //                 'd': reflex agent with proximity and direction sensor
+    //                 'e': state agent
+    char strategy = 'e';
 
     // Define which actuators will be used
     vector<char> actuators = {'m', 's'};
@@ -42,7 +49,7 @@ int main(int argc, const char * argv[])
     float penalty = 0;
     float steps = 0;
     
-    Simulation simulation = Simulation(map, sensors, actuators, visualizer);
+    Simulation simulation = Simulation(map, sensors, actuators, strategy, visualizer);
     
     for (int iteration = 0; iteration < iterations; iteration++)
     {

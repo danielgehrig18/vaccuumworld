@@ -23,52 +23,19 @@ public:
         heuristic cost to the goal.
      
         @param: location: coordinates of the state.
+                action_sequence: sequence of actions of parent.
+                action: action that was performed to get to this node.
                 path_cost: minimum cost of the path to the node so far.
                 heuristic: estimated cost from the state to the goal.
     */
-    void Initialize(array<int,2> location, char action, int path_cost, int heuristic);
+    void Initialize(array<int,2> location, vector<char> action_sequence, char action, int path_cost, int heuristic);
     
     /**
-        Adds child to node.
-     
-        @param: chid: pointer to the child node of the current node.
-    */
-    void PushChild(State* child);
-    
-    /**
-        Removes child from node.
-     
-        @param: index: index of removed child.
-    */
-    void RemoveChild(int index);
-        
-    /**
-        Sets the parent of the node.
-     
-        @param: parent: pointer to the parent node of the current node.
-    */
-    void SetParent(State* parent);
-    
-    /**
-        Returns a vector of children of the node.
+        Returns the action sequence that was executed to achieve the current node.
      
         @param: -
     */
-    vector<State *> GetChildren();
-    
-    /**
-        Returns the parent of the current node.
-     
-        @param: -
-    */
-    State* GetParent();
-    
-    /**
-        Returns the action that was executed to achieve the current node.
-     
-        @param: -
-    */
-    char GetAction();
+    vector<char> GetActionSequence();
     
     /**
         Returns the location coordinates of the current node.
@@ -91,20 +58,9 @@ public:
         @param: -
     */
     int GetTotalCost();
-    
-    /**
-        Tests if the current node is a root node by checking that it does not
-        have parents.
-     
-        @param: -
-    */
-    bool IsRoot();
 
 private:
-    State* parent_ = NULL;
-    vector<State*> children_;
-    
-    char action_;
+    vector<char> action_sequence_;
     
     array<int, 2> location_;
     

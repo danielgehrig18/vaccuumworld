@@ -36,13 +36,15 @@ public:
                 motor_pointer: pointer to the motor
                 sucker_pointer: pointer to the sucker
                 map: map of the dirt in the environment.
+                strategy: the strategy to be used.
                 visualizer: visualizes the agent decision
     */
     void Initialize(DirtSensor* dirt_sensor_pointer,
                     ProximitySensor* proximity_sensor_pointer,
                     DirectionSensor* direction_sensor_pointer,
                     LocationSensor* location_sensor_pointer, Motor* motor_pointer,
-                    Sucker* sucker_pointer, vector<vector<int>> map, Visualizer &visualizer);
+                    Sucker* sucker_pointer, vector<vector<int>> map, char strategy,
+                    Visualizer &visualizer);
     
     /**
         Select an action based on the strategy and sensor inputs of the linked 
@@ -53,6 +55,21 @@ public:
     void ExecuteAction();
     
 private:
+    /**
+        Localizes the agent either with the location sensor or otherwise by moving.
+     
+        @param: -
+    */
+    void Localize();
+    
+    /**
+        Localizes the agent by moving.
+     
+        @param: -
+    */
+    void BlindLocalize();
+    
+    
     DirtSensor* dirt_sensor_pointer_;
     ProximitySensor* proximity_sensor_pointer_;
     DirectionSensor* direction_sensor_pointer_;
@@ -62,6 +79,8 @@ private:
     Sucker* sucker_pointer_;
     
     vector<vector<int>> state_;
+    
+    array<int, 2> location_;
 
     Strategy strategy_;
     Visualizer visualizer_;

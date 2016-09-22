@@ -8,11 +8,11 @@
 #include "vaccuumworld/simulation.hpp"
 
 Simulation::Simulation(vector<vector<int>> map, vector<char> sensors,
-                       vector<char> actuators, Visualizer &visualizer)
+                       vector<char> actuators, char strategy, Visualizer &visualizer)
 {
     srand (time(NULL));
     visualizer_ = visualizer;
-    environment_.Initialize(map, sensors, actuators, visualizer);
+    environment_.Initialize(map, sensors, actuators, strategy, visualizer);
 }
 
 float Simulation::GetPenalty()

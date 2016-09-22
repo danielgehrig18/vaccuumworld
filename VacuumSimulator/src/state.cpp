@@ -8,43 +8,18 @@
 
 #include "vaccuumworld/state.hpp"
 
-void State::Initialize(array<int, 2> location, char action, int path_cost, int heuristic)
+void State::Initialize(array<int, 2> location, vector<char> action_sequence, char action, int path_cost, int heuristic)
 {
     location_ = location;
     heuristic_ = heuristic;
     path_cost_ = path_cost;
-    action_ = action;
+    action_sequence_ = action_sequence;
+    action_sequence_.insert(action_sequence_.begin(), action);
 };
 
-void State::PushChild(State * child)
+vector<char> State::GetActionSequence()
 {
-    children_.push_back(child);
-}
-
-void State::RemoveChild(int index)
-{
-    children_.erase(children_.begin() + index);
-}
-
-void State::SetParent(State* parent)
-{
-    parent_ = parent;
-    parent -> PushChild(this);
-}
-
-vector<State*> State::GetChildren()
-{
-    return children_;
-}
-
-State* State::GetParent()
-{
-    return parent_;
-};
-
-char State::GetAction()
-{
-    return action_;
+    return action_sequence_;
 };
 
 array<int, 2> State::GetLocation()
@@ -61,11 +36,6 @@ int State::GetTotalCost()
 {
     return path_cost_ + heuristic_;
 }
-
-bool State::IsRoot()
-{
-    return !parent_;
-};
 
 bool CompareStates::operator()(State * state_1, State * state_2)
 {

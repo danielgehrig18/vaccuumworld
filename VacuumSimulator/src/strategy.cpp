@@ -96,6 +96,7 @@ vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> m
     
     // search for solution
     path_searcher_.Search();
+    
     return path_searcher_.GetSolution();
 
 }

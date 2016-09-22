@@ -61,19 +61,11 @@ public:
     
 private:
     /**
-        Clear the subtree under node and clear frontier.
+        Clear all allocated memory.
      
         @param: node: clears the subtree under node.
     */
-    void Clear(State* node);
-    
-    /**
-        Return the solution action sequence that led through the cheapest path 
-        to the goal.
-     
-        @param: -
-    */
-    vector<char> CalculateSolution();
+    void Clear();
     
     /**
         Calculates the successors of the node node and adds them to the 
@@ -102,9 +94,6 @@ private:
     
     priority_queue<State, vector<State*>, CompareStates> frontier_;
     vector<vector<bool>> visited_states_;
-    
-    State goal_node_;
-    State root_node_;
     
     vector<char> solution_;
     

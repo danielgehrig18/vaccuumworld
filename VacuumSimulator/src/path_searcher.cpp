@@ -18,8 +18,7 @@ vector<char> PathSearcher::GetSolution()
 void PathSearcher::AddChild(State &node, char action, array<int, 2> location)
 {
     State * child = new State();
-    child -> Initialize(location, action, node.GetPathCost() + 1, GetHeuristic(location));
-    child -> SetParent(&node);
+    child -> Initialize(location, node.GetActionSequence(), action, node.GetPathCost() + 1, GetHeuristic(location));
     frontier_.push(child);
     visited_states_[location[0]][location[1]] = true;
 }
@@ -44,10 +43,11 @@ void PathSearcher::Initialize(array<int, 2> dirt_patch, array<int, 2> location,
     
     goal_ = dirt_patch;
     
-    root_node_.Initialize(location, ' ', 0, GetHeuristic(location));
+    State * root_node = new State();
+    root_node -> Initialize(location, root_node -> GetActionSequence(), 's', 0, GetHeuristic(location));
     visited_states_[location[0]][location[1]] = true;
     
-    frontier_.push(&root_node_);
+    frontier_.push(root_node);
 }
 
 void PathSearcher::Search()
@@ -60,43 +60,20 @@ void PathSearcher::Search()
         
         if (next_location == goal_)
         {
-            goal_node_ = *next_node;
+            solution_ = next_node -> GetActionSequence();
+            while (!frontier_.empty())
+            {
+                delete frontier_.top();
+                frontier_.pop();
+            }
             break;
         }
         else
         {
             Expand(*next_node);
         }
+        delete next_node;
     }
-    solution_ = CalculateSolution();
-    Clear(&root_node_);
-}
-
-void PathSearcher::Clear(State* node)
-{
-    vector<State*>  children = node -> GetChildren();
-    for (int iteration = children.size() - 1; iteration >= 0; iteration --)
-    {
-        Clear(children[iteration]);
-        node -> RemoveChild(iteration);
-    }
-    if (!(node -> IsRoot()))
-    {
-        delete node;
-    }
-}
-
-vector<char> PathSearcher::CalculateSolution()
-{
-    vector<char> action_list = {'s'};
-    for (State * node = &goal_node_; !(node -> IsRoot()); node = node -> GetParent())
-    {
-        action_list.push_back(node -> GetAction());
-    }
-    
-    reverse(action_list.begin(), action_list.end());
-    
-    return action_list;
 }
 
 void PathSearcher::Expand(State &node)

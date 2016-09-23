@@ -13,8 +13,6 @@
 #include <array>
 #include <vector>
 
-#include "state.hpp"
-
 using namespace std;
 
 class Visualizer

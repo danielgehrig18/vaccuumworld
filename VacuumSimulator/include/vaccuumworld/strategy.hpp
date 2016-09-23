@@ -21,23 +21,21 @@ using namespace std;
 
 class Strategy {
 public:
-
-    void Initialize(Visualizer &visualizer);
     /**
-        Set the type of strategy. Can be one of the following: 'r' random
-        search, 'g' greedy search, 'h' more greedy search, 'i' super greedy
-        search, 's' state search.
+        Set the type of strategy. Can be one of the following: 'a' random
+        search, 'b' greedy search, 'c' more greedy search, 'd' super greedy
+        search, 'e' state search.
      
-        @param: dirt_sensor_status: status of dirtSensor.
-                proximity_sensor_status: status of proximitySensor.
-                direction_sensor_status: status of directionSensor.
-                location_sensor_status: status of locationSensor.
-                motor_status: status of motor.
-                sucker_status: status of sucker.
+        @param: type of the strategy.
     */
-    void SetType(bool dirt_sensor_status, bool proximity_sensor_status,
-                 bool direction_sensor_status, bool location_sensor_status,
-                 bool motor_status, bool sucker_status);
+    void SetType(char type);
+    
+    /**
+        Gets the type of strategy.
+     
+        @param: -
+    */
+    char GetType();
     
     /**
         Test whether an action is planned.
@@ -65,6 +63,13 @@ public:
         @param: -
     */
     char ActionSelection();
+    
+    /**
+        Adds a sequence of actions to a plan.
+     
+        @param: sequence: sequence of actions
+    */
+    void AddActionSequence(vector<char> sequence);
 
 private:
     /**
@@ -111,9 +116,6 @@ private:
     vector<char> actions_ = {'u', 'r', 'd', 'l', 's'};
     
     queue<char> plan_;
-    
-    PathSearcher path_searcher_;
-    Visualizer visualizer_;
 };
 
 #endif /* strategy_hpp */

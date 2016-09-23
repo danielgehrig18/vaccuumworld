@@ -15,19 +15,17 @@ vector<char> PathSearcher::GetSolution()
     return solution_;
 }
 
-void PathSearcher::AddChild(State &node, char action, array<int, 2> location)
+void PathSearcher::AddChild(State<array<int, 2>> &node, char action, array<int, 2> location)
 {
-    State * child = new State();
+    State<array<int, 2>> * child = new State<array<int, 2>>();
     child -> Initialize(location, node.GetActionSequence(), action, node.GetPathCost() + 1, GetHeuristic(location));
     frontier_.push(child);
     visited_states_[location[0]][location[1]] = true;
 }
 
 void PathSearcher::Initialize(array<int, 2> dirt_patch, array<int, 2> location,
-                              vector<vector<int> > map, Visualizer &visualizer)
+                              vector<vector<int> > map)
 {
-    visualizer_ = visualizer;
-
     int x_dimension = map.size();
     int y_dimension = map[0].size();
     
@@ -43,7 +41,7 @@ void PathSearcher::Initialize(array<int, 2> dirt_patch, array<int, 2> location,
     
     goal_ = dirt_patch;
     
-    State * root_node = new State();
+    State<array<int, 2>> * root_node = new State<array<int, 2>>();
     root_node -> Initialize(location, root_node -> GetActionSequence(), 's', 0, GetHeuristic(location));
     visited_states_[location[0]][location[1]] = true;
     
@@ -54,9 +52,9 @@ void PathSearcher::Search()
 {
     while (!frontier_.empty())
     {
-        State * next_node = frontier_.top();
+        State<array<int, 2>> * next_node = frontier_.top();
         frontier_.pop();
-        array<int, 2> next_location = next_node -> GetLocation();
+        array<int, 2> next_location = next_node -> GetData();
         
         if (next_location == goal_)
         {
@@ -76,7 +74,7 @@ void PathSearcher::Search()
     }
 }
 
-void PathSearcher::Expand(State &node)
+void PathSearcher::Expand(State<array<int, 2>> &node)
 {
     array<char, 4> directions = {'u', 'r', 'd', 'l'};
     
@@ -84,7 +82,7 @@ void PathSearcher::Expand(State &node)
     
     for (int iteration = 0; iteration < 4; iteration++)
     {
-        array<int, 2> temporary = node.GetLocation();
+        array<int, 2> temporary = node.GetData();
         
         temporary[0] += steps[iteration][0];
         temporary[1] += steps[iteration][1];

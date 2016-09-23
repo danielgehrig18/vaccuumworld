@@ -12,7 +12,8 @@ void Agent::Initialize(DirtSensor *dirt_sensor_pointer,
                        ProximitySensor *proximity_sensor_pointer,
                        DirectionSensor *direction_sensor_pointer,
                        LocationSensor *location_sensor_pointer, Motor *motor_pointer,
-                       Sucker *sucker_pointer, vector<vector<int> > map, Visualizer &visualizer)
+                       Sucker *sucker_pointer, vector<vector<int> > map,
+                       char strategy, Visualizer &visualizer)
 {
     dirt_sensor_pointer_ = dirt_sensor_pointer;
     proximity_sensor_pointer_ = proximity_sensor_pointer;
@@ -25,14 +26,13 @@ void Agent::Initialize(DirtSensor *dirt_sensor_pointer,
     state_ = map;
     
     visualizer_ = visualizer;
-    strategy_.Initialize(visualizer);
     
-    strategy_.SetType(dirt_sensor_pointer_ -> GetStatus(),
-                      proximity_sensor_pointer_ -> GetStatus(),
-                      direction_sensor_pointer_ -> GetStatus(),
-                      location_sensor_pointer_ -> GetStatus(),
-                      motor_pointer_ -> GetStatus(),
-                      sucker_pointer_ -> GetStatus());
+    strategy_.SetType(strategy);
+    
+    if (strategy_.GetType() == 's')
+    {
+        Localize();
+    }
 };
 
 void Agent::ExecuteAction()
@@ -62,4 +62,28 @@ void Agent::ExecuteAction()
         array<int, 2> location = location_sensor_pointer_ -> GetValue();
         state_[location[0]][location[1]] = 0;
     }
+}
+
+void Agent::Localize()
+{
+    if (location_sensor_pointer_ -> GetStatus())
+    {
+        location_ = location_sensor_pointer_ -> GetValue();
+    }
+    else
+    {
+        BlindLocalize();
+    }
+}
+
+void Agent::BlindLocalize()
+{
+    LocalizeTree localize_tree = LocalizeTree(state_);
+    localize_tree.Search();
+    vector<char> action_sequence = localize_tree.GetSolution();
+    
+    action_sequence.erase(action_sequence.begin());
+    
+    strategy_.AddActionSequence(action_sequence);
+    location_ = localize_tree.GetStart(state_);
 }

@@ -20,7 +20,7 @@ array<int, 2> Environment::GetAgentLocation()
 };
 
 void Environment::Initialize(vector<vector<int> > map, vector<char> sensors,
-                             vector<char> actuators, Visualizer &visualizer)
+                             vector<char> actuators, char strategy, Visualizer &visualizer)
 {
     visualizer_ = visualizer;
     map_ = map;
@@ -63,7 +63,7 @@ void Environment::Initialize(vector<vector<int> > map, vector<char> sensors,
     
     // instantiate agent
     agent_.Initialize(&dirt_sensor_, &proximity_sensor_, &direction_sensor_,
-                      &location_sensor_, &motor_, &sucker_, map_, visualizer_);
+                      &location_sensor_, &motor_, &sucker_, map_, strategy, visualizer_);
 }
 
 void Environment::Step()

@@ -9,7 +9,7 @@
 #ifndef motor_hpp
 #define motor_hpp
 
-#include "actuator.hpp"
+#include "vaccuumworld/actuator.hpp"
 
 class Motor : public Actuator
 {

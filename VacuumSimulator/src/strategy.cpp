@@ -7,36 +7,14 @@
 //
 #include "vaccuumworld/strategy.hpp"
 
-void Strategy::Initialize(Visualizer &visualizer)
+void Strategy::SetType(char strategy)
 {
-    visualizer_ = visualizer;
+    type_ = strategy;
 }
 
-void Strategy::SetType(bool dirt_sensor_status, bool proximity_sensor_status,
-                       bool direction_sensor_status, bool location_sensor_status,
-                       bool motor_status, bool sucker_status)
+char Strategy::GetType()
 {
-    if (!dirt_sensor_status)
-    {
-        type_ = 'r';
-    }
-    else if (dirt_sensor_status && !proximity_sensor_status)
-    {
-        type_ = 'g';
-    }
-    else if (dirt_sensor_status && proximity_sensor_status && !direction_sensor_status)
-    {
-        type_ = 'h';
-    }
-    else if (dirt_sensor_status && proximity_sensor_status && direction_sensor_status
-             && !location_sensor_status)
-    {
-        type_ = 'i';
-    }
-    else
-    {
-        type_ = 's';
-    }
+    return type_;
 }
 
 bool Strategy::ActionPlanned()
@@ -49,23 +27,20 @@ void Strategy::PlanAction(bool dirt, array<bool, 4> proximity, array<bool, 4> di
 {
     switch (type_)
     {
-        case 'r':
+        case 'a':
             plan_.push(RandomSearch());
             break;
-        case 'g':
+        case 'b':
             plan_.push(GreedySearch(dirt));
             break;
-        case 'h':
+        case 'c':
             plan_.push(MoreGreedySearch(dirt, proximity));
             break;
-        case 'i':
+        case 'd':
             plan_.push(SuperGreedySearch(dirt, proximity, direction));
             break;
-        case 's':
-            for (char action : StateSearch(location, state))
-            {
-                plan_.push(action);
-            }
+        case 'e':
+            AddActionSequence(StateSearch(location, state));
             break;
         default:
             plan_.push('n');
@@ -80,6 +55,14 @@ char Strategy::ActionSelection()
     return action;
 };
 
+void Strategy::AddActionSequence(vector<char> sequence)
+{
+    for (char action : sequence)
+    {
+        plan_.push(action);
+    }
+}
+
 vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> map)
 {
     // find closest dirt patches to location
@@ -92,12 +75,13 @@ vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> m
     cout << dirt_patch[0] << ' ' << dirt_patch[1] << endl;
     
     // setup path searcher with goal, initial condition and map of dirt.
-    path_searcher_.Initialize(dirt_patch, location, map, visualizer_);
+    PathSearcher path_searcher;
+    path_searcher.Initialize(dirt_patch, location, map);
     
     // search for solution
-    path_searcher_.Search();
+    path_searcher.Search();
     
-    return path_searcher_.GetSolution();
+    return path_searcher.GetSolution();
 
 }
 

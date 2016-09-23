@@ -95,8 +95,6 @@ private:
     vector<char> solution_;
     
     array<int,2> goal_;
-
-    Visualizer visualizer_;
 };
 
 #endif /* path_searcher_hpp */

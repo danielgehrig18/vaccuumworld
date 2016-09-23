@@ -7,11 +7,6 @@
 //
 #include "vaccuumworld/strategy.hpp"
 
-void Strategy::Initialize(Visualizer &visualizer)
-{
-    visualizer_ = visualizer;
-}
-
 void Strategy::SetType(char strategy)
 {
     type_ = strategy;
@@ -81,7 +76,7 @@ vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> m
     
     // setup path searcher with goal, initial condition and map of dirt.
     PathSearcher path_searcher;
-    path_searcher.Initialize(dirt_patch, location, map, visualizer_);
+    path_searcher.Initialize(dirt_patch, location, map);
     
     // search for solution
     path_searcher.Search();

@@ -26,7 +26,6 @@ void Agent::Initialize(DirtSensor *dirt_sensor_pointer,
     state_ = map;
     
     visualizer_ = visualizer;
-    strategy_.Initialize(visualizer);
     
     strategy_.SetType(strategy);
     

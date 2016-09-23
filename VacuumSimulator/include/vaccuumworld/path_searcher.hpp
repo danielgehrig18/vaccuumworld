@@ -15,7 +15,6 @@
 #include <algorithm>
 
 #include "vaccuumworld/state.hpp"
-#include "vaccuumworld/visualizer.hpp"
 
 using namespace std;
 
@@ -47,10 +46,8 @@ public:
         @param: dirt_patch: coordinates of the goal state at the dirt patch.
                 location: coordinates of the agent (initial state).
                 map: map of the agent's environment.
-                visualizer: visualizer that visualizes the path planning.
     */
-    void Initialize(array<int,2> dirt_patch, array<int,2> location, vector<vector<int>> map,
-                    Visualizer &visualizer);
+    void Initialize(array<int,2> dirt_patch, array<int,2> location, vector<vector<int>> map);
     
     /**
         Execute search for the goal and save the solution that is found that created it.

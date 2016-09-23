@@ -24,10 +24,8 @@ void PathSearcher::AddChild(State<array<int, 2>> &node, char action, array<int, 
 }
 
 void PathSearcher::Initialize(array<int, 2> dirt_patch, array<int, 2> location,
-                              vector<vector<int> > map, Visualizer &visualizer)
+                              vector<vector<int> > map)
 {
-    visualizer_ = visualizer;
-
     int x_dimension = map.size();
     int y_dimension = map[0].size();
     

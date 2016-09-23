@@ -80,12 +80,13 @@ vector<char> Strategy::StateSearch(array<int, 2> location, vector<vector<int>> m
     cout << dirt_patch[0] << ' ' << dirt_patch[1] << endl;
     
     // setup path searcher with goal, initial condition and map of dirt.
-    path_searcher_.Initialize(dirt_patch, location, map, visualizer_);
+    PathSearcher path_searcher;
+    path_searcher.Initialize(dirt_patch, location, map, visualizer_);
     
     // search for solution
-    path_searcher_.Search();
+    path_searcher.Search();
     
-    return path_searcher_.GetSolution();
+    return path_searcher.GetSolution();
 
 }
 

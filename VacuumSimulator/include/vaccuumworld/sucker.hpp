@@ -9,7 +9,7 @@
 #ifndef sucker_hpp
 #define sucker_hpp
 
-#include "actuator.hpp"
+#include "vaccuumworld/actuator.hpp"
 
 class Sucker : public Actuator
 {

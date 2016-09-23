@@ -119,7 +119,6 @@ private:
     
     queue<char> plan_;
     
-    PathSearcher path_searcher_;
     Visualizer visualizer_;
 };
 

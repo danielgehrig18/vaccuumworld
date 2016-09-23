@@ -86,5 +86,5 @@ void Agent::BlindLocalize()
     action_sequence.erase(action_sequence.begin());
     
     strategy_.AddActionSequence(action_sequence);
-    array<int, 2> location_ = localize_tree.GetStart(state_);
+    location_ = localize_tree.GetStart(state_);
 }

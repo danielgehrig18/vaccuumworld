@@ -56,6 +56,7 @@ void Visualizer::VisualizeMap(vector<vector<int>> map, array<int, 2> location)
             }
             else
             {
+                
                 cout << map[x_coordinate][y_coordinate];
             }
         }

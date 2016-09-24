@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <queue>
 #include <vector>
-#include <algorithm>
+#include <array>
 
 #include "vaccuumworld/state.hpp"
 
